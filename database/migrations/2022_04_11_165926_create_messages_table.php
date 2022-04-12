@@ -19,9 +19,9 @@ class CreateMessagesTable extends Migration
             $table->text('content');
             $table->string('sender_email');
             $table->string('sender_name');
-            $table->boolean('visualized');
-            $table->boolean('answered');
-            $table->boolean('filed');
+            $table->boolean('visualized')->default(false);
+            $table->boolean('answered')->default(false);
+            $table->boolean('filed')->default(false);
             $table->timestamps();
         });
     }
