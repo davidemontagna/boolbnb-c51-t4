@@ -13,11 +13,11 @@ class ApartmentSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i=0; $i < 10; $i++) { 
+        for ($i=0; $i < 11; $i++) { 
             $newApartment = new Apartment();
             
             $newApartment->user_id = 1 ;
-            $newApartment->title = $faker->words(7, true);
+            $newApartment->title = $faker->words(5, true);
             $newApartment->num_rooms = rand(1, 10);
             $newApartment->num_beds = rand(1, 10);
             $newApartment->num_bath = rand(1, 4);
@@ -32,7 +32,7 @@ class ApartmentSeeder extends Seeder
             $newApartment = new Apartment();
             
             $newApartment->user_id = 2 ;
-            $newApartment->title = $faker->words(7, true);
+            $newApartment->title = $faker->words(5, true);
             $newApartment->num_rooms = rand(1, 10);
             $newApartment->num_beds = rand(1, 10);
             $newApartment->num_bath = rand(1, 4);
