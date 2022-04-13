@@ -28,6 +28,14 @@ Route::middleware('auth')
         // Route::resource('/altra_rotta', Altra_rotta_Controller::class);
 });
 
+// Route::middleware('auth')
+//     ->namespace('User')
+//     ->name('user.')
+//     ->prefix('user')
+//     ->group(function(){
+//         Route::get("{any?}", 'HomeController@index')->where("any", ".*")->name('home');
+// });
+
 Route::get("{any?}", function() {
     return view('guest.home');
 })->where("any", ".*");

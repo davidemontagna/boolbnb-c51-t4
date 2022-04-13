@@ -49924,15 +49924,39 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/sass/guest.scss":
+/*!***********************************!*\
+  !*** ./resources/sass/guest.scss ***!
+  \***********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ "./resources/sass/user.scss":
+/*!**********************************!*\
+  !*** ./resources/sass/user.scss ***!
+  \**********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
 /***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
+/*!********************************************************************************************************************!*\
+  !*** multi ./resources/js/app.js ./resources/sass/app.scss ./resources/sass/user.scss ./resources/sass/guest.scss ***!
+  \********************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(/*! C:\Users\ZebraXXII\Desktop\Boolean\Boolean_Corso\boolbnb-c51-t4\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\ZebraXXII\Desktop\Boolean\Boolean_Corso\boolbnb-c51-t4\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\ZebraXXII\Desktop\Boolean\Boolean_Corso\boolbnb-c51-t4\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\ZebraXXII\Desktop\Boolean\Boolean_Corso\boolbnb-c51-t4\resources\sass\user.scss */"./resources/sass/user.scss");
+module.exports = __webpack_require__(/*! C:\Users\ZebraXXII\Desktop\Boolean\Boolean_Corso\boolbnb-c51-t4\resources\sass\guest.scss */"./resources/sass/guest.scss");
 
 
 /***/ })

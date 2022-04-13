@@ -71,10 +71,12 @@
                 </div>
             </div>
         </nav>
-
+    </div>
+    <div id="app-2">
         <main class="py-4">
             @yield('content')
         </main>
     </div>
+    {{-- <script src="{{asset("js/user.js")}}"></script> --}}
 </body>
 </html>
