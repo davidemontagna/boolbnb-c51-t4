@@ -18,6 +18,7 @@
                 </div>
             </div>
         </div>
+        <a href="{{route("user.apartments.index")}}"><button type="button" class="btn btn-primary">Visualizza gli appartamenti</button></a>
     </div>
 </div>
 @endsection

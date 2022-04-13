@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Apartment;
+use App\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -16,7 +17,8 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        //
+        $apartments = Apartment::where('user_id', auth()->user()->id)->get();
+        return view('user.apartments.index', compact('apartments'));
     }
 
     /**
@@ -26,7 +28,8 @@ class ApartmentController extends Controller
      */
     public function create()
     {
-        //
+        $services = Service::all();
+        return view('user.apartmets.create', compact('services'));
     }
 
     /**
