@@ -9,12 +9,16 @@
 </head>
 <body>
     <div class="container">
+        <div class="mb-4">
+            <a href="{{ route('user.apartments.create') }}" class="btn btn-primary">Aggiungi appartamento</a>
+        </div>
         <table class="table">
             <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">User id</th>
                 <th scope="col">Titolo</th>
+                <th scope="col">Azioni</th>
             </tr>
             </thead>
             <tbody>
@@ -23,6 +27,11 @@
                     <td scope="row">{{$apartment->id}}</td>
                     <td>{{$apartment->user_id}}</td>
                     <td>{{$apartment->title}}</td>
+                    <td class="d-flex justify-content-start align-items-center">
+                        <a href="{{route("user.apartments.show", $apartment->id)}}"><button type="button" class="btn btn-info">Show</button></a> 
+                        <a href="{{route("user.apartments.edit", $apartment->id)}}" class="mx-2"><button type="button" class="btn btn-success">Edit</button></a>                       
+                        
+                    </td>
                 </tr>
                 @endforeach
             
