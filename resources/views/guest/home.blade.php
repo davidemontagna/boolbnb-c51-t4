@@ -8,7 +8,6 @@
     <title>Document</title>
 </head>
 <body>
-    SIAMO SULLA VISTA HOME DI GUEST
     {{-- <ul class="navbar-nav ml-auto">
         <!-- Authentication Links -->
         @guest
