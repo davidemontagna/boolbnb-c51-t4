@@ -25,6 +25,7 @@ Route::middleware('auth')
         Route::get('/', 'HomeController@index')
         ->name('home');
         Route::resource('/apartments', ApartmentController::class);
+        Route::resource('/messages', MessageController::class);
         // Route::resource('/altra_rotta', Altra_rotta_Controller::class);
 });
 
