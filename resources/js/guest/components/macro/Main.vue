@@ -1,7 +1,14 @@
 <template>
 <main>
-    <h1>Main</h1>
+    <h1>ciao</h1>
     <div class="container">
+        <div class="title">
+            In evidenza
+        </div>
+        <div class="subtitle">
+            Lasciati guidare dalla curiosità
+        </div>
+        *appartamenti sponsorizzaati*
         <router-view :key="$route.path"></router-view>
     </div>    
 </main>
@@ -14,9 +21,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.container {
-    width: 85%;
-    margin: 0 auto;
-}
+@import '../../../../sass/global.scss';
 
+.container {
+    width: 95%;
+    margin: 0 auto;
+
+    .title{
+        font-size: 30px;
+        font-weight: bold;
+    };
+
+    .subtitle{
+        font-size: 20px;
+    }
+}
 </style>
