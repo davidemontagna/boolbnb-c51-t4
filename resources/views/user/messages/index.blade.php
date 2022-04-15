@@ -18,8 +18,9 @@
                 <th scope="col">email</th>
                 <th scope="col">nome</th>
                 <th scope="col">visualizzato</th>
-                <th scope="col">rispsota</th>
+                <th scope="col">risposta</th>
                 <th scope="col">user id</th>
+                <th scope="col">azioni</th>
             </tr>
             </thead>
             <tbody>
@@ -33,6 +34,15 @@
                     <td>{{$message->visualized}}</td>
                     <td>{{$message->answered}}</td>
                     <td>{{$message->apartment->user_id}}</td>
+                    <td>
+                        <a href="{{route('user.messages.show', $message->id)}}" class="d-inline-block"><button type="button" class="btn btn-secondary">Show</button></a> 
+                        <a href="{{route('user.messages.edit', $message->id)}}" class="d-inline-block"><button type="button" class="btn btn-primary">Edit</button></a>                    
+                        <form action="{{route('user.messages.destroy', $message->id)}}" method="POST">
+                            @csrf
+                            @method("DELETE")
+                            <button type="submit" class="btn btn-danger">Elimina</button>
+                          </form>
+                      </td> 
                 </tr>
                 @endforeach
             

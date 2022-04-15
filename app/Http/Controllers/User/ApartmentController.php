@@ -19,11 +19,9 @@ class ApartmentController extends Controller
         'square_footage'=>'required|int',
         'preview'=>'nullable',
         'visible'=>'required|boolean',
-        'description'=>'nullable',
-        
+        'description'=>'nullable',        
 
-        'services' => 'exists:services,id',
-        
+        'services' => 'exists:services,id',        
     ];
     /**
      * Display a listing of the resource.
@@ -110,16 +108,6 @@ class ApartmentController extends Controller
 
         $form_data = $request->all();
 
-        if($apartment->id == $form_data['id']){
-            $id = $apartment->id;
-        }else{
-            $count = 1;
-            while(Apartment::where('id', $id)->where('id', '!=', $apartment->id)->first()){
-                $id = $form_data['id']."-".$count;
-                $count ++;
-            }
-        }
-        $form_data['id'] = $id;
 
         $apartment->update($form_data);
 
@@ -135,6 +123,7 @@ class ApartmentController extends Controller
      */
     public function destroy(Apartment $apartment)
     {
-        //
+        $apartment->delete();
+        return redirect()->route('user.apartments.index');
     }
 }

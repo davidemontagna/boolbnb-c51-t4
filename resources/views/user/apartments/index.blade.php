@@ -30,7 +30,12 @@
                     <td class="d-flex justify-content-start align-items-center">
                         <a href="{{route("user.apartments.show", $apartment->id)}}"><button type="button" class="btn btn-info">Show</button></a> 
                         <a href="{{route("user.apartments.edit", $apartment->id)}}" class="mx-2"><button type="button" class="btn btn-success">Edit</button></a>                       
+                        <form action="{{route("user.apartments.destroy", $apartment->id)}}" method="POST">
+                            @csrf
+                            @method("DELETE")
                         
+                            <input class="btn btn-danger" type="submit" value="Delete">
+                        </form>
                     </td>
                 </tr>
                 @endforeach

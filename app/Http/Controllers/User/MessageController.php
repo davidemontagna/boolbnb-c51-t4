@@ -14,6 +14,16 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    protected $validation = [
+        'sender_name' => 'nullable|string|max:50',
+        'content' => 'string|required',
+        'sender_email' => 'string|max:50|required',
+        'apartment_id' => 'exists:apartment,id',
+        'visualized' => 'boolean',
+        'answered' => 'boolean',
+    ];
+
     public function index()
     {
         $messages = Message::with("apartment")->get();
@@ -58,7 +68,10 @@ class MessageController extends Controller
      */
     public function show(Message $message)
     {
-        //
+        if(!$message){
+            abort(404);
+        }
+        return view('user.messages.show', compact('message'));
     }
 
     /**
@@ -69,7 +82,7 @@ class MessageController extends Controller
      */
     public function edit(Message $message)
     {
-        //
+        return view('user.messages.edit', compact('message'));
     }
 
     /**
@@ -81,7 +94,15 @@ class MessageController extends Controller
      */
     public function update(Request $request, Message $message)
     {
-        //
+        
+
+        $form_data = $request->all();
+        
+
+        $message->update($form_data);
+
+
+        return redirect()->route("user.messages.index");
     }
 
     /**
@@ -92,6 +113,9 @@ class MessageController extends Controller
      */
     public function destroy(Message $message)
     {
-        //
+
+        $message->delete();
+
+        return redirect()->route("user.messages.index");
     }
 }
