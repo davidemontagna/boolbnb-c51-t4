@@ -19,6 +19,7 @@ class CreateApartmentPlanTable extends Migration
             $table->foreignId('plan_id');
             $table->dateTime('date_start');
             $table->dateTime('date_end');
+            $table->unique(['apartment_id', 'plan_id', 'date_start']);
             $table->timestamps();
         });
     }
