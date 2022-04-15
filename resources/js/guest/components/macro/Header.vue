@@ -94,7 +94,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../../../sass/global.scss';
+@import '../../../../sass/variables.scss';
 header{
     height: 500px;
     background-image: url("https://images.pexels.com/photos/3278215/pexels-photo-3278215.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260");

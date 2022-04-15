@@ -18,7 +18,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../../../sass/global.scss';
+@import '../../../../sass/variables.scss';
 
 footer{
     margin-top: 1rem;
