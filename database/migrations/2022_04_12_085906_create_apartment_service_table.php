@@ -17,6 +17,7 @@ class CreateApartmentServiceTable extends Migration
             $table->id();
             $table->foreignId('apartment_id')->constrained()->onDelete("cascade");
             $table->foreignId('service_id')->constrained()->onDelete("cascade");
+            $table->unique(['apartment_id', 'service_id']);
             $table->timestamps();
         });
     }
