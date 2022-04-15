@@ -8,7 +8,8 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-12">
-                    <h3>New Apartment</h3>
+                    
+                    <h3>Inserisci un nuovo appartamento</h3>
                     <form action="{{ route("user.apartments.store") }}" method="POST">
                         @csrf
             
@@ -63,8 +64,8 @@
                         <div class="mb-3">                    
                             <label for="visible" class="form-label">Vuoi rendere disponibile il tuo appartamento?</label>
                             <select class="form-control @error('visible') is-invalid @enderror" id="visible" name="visible">
-                                <option name="visible" value="0">Si</option>
-                                <option name="visible" value="1">No</option>
+                                <option name="visible" value="1">Si</option>
+                                <option name="visible" value="0">No</option>
                             </select>
                                
                             @error('visible')
@@ -78,6 +79,19 @@
                             @error('description')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror       
+                        </div>
+
+                        <div class="form-group">
+                            <label>Servizi</label>
+                            @foreach ($services as $service)
+                                <div class="form-check">
+                                  <input type="checkbox" name="services[]" class="form-check-input" value="{{$service->id}}" id="{{$service->id}}" {{ old('services') && in_array($service->id, old('services')) ? " checked" : "" }}>
+                                  <label class="form-check-label" for="{{$service->id}}" >{{$service->name}}</label>
+                                </div>
+                            @endforeach
+                            @error('service_id')
+                              <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
                         </div>
 
                         

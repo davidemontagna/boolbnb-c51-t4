@@ -8,6 +8,9 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-12">
+
+                     <!-- Controllo per vedere se l'utente e' autorizzato a visualizzare quel determinato appartamento -->
+                    @if ($apartment->user_id == auth()->id())
                 
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
@@ -22,7 +25,18 @@
                             <li class="list-group-item">Metri quadri: {{$apartment->square_footage}}</li>
                             <li class="list-group-item">Anteprima: {{$apartment->preview}}</li>
                             <li class="list-group-item">Descrizione: {{$apartment->description}}</li>                        
-                        </ul>                       
+                        </ul>  
+                        <ul class="list-group list-group-flush">                            
+                            <li class="list-group-item"> 
+                                Servizi:
+                                <ul>
+                                    @foreach ($apartment->services as $service)
+                                    <li>{{$service->name}}</li>
+                                    @endforeach
+                                </ul>
+                                
+                            </li>                                                   
+                        </ul>                     
             
 
                         <div class="card-body">
@@ -30,6 +44,17 @@
                         
                         </div>
                     </div>
+                    @else
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-md-12">
+                                    <h3>Non sei autorizzato a visualizzare questo appartamento.</h3>
+                                    <a href="{{ route("user.apartments.index") }}"><button type="submit" class="btn btn-primary">Torna alla Dashboard</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
+
                 </div>
             </div>
         </div>
