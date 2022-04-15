@@ -15,7 +15,7 @@ class CreateAnalyticsTable extends Migration
     {
         Schema::create('analytics', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('apartment_id');
+            $table->foreignId('apartment_id')->constrained()->onDelete("cascade");
             $table->boolean('search');
             $table->boolean('view');
             $table->boolean('like');
