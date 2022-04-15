@@ -2,9 +2,9 @@
 <header>
     <div class="wrapper">
     </div>
-    <nav class="fixed-top">
+    <nav class="fixed-top header-scrolled-bg">
         <div class="container">
-            <div class="row">
+            <div class="row ">
                 <div class="col-6 col-md-4">
                     <h1 class="logo">BBNB</h1>
                 </div>
@@ -74,8 +74,22 @@ export default {
             }else{
                 multiselectOptions.classList.add("hidden");
             }
-        }
-    }
+        },
+        onScroll(e) {
+            let headerScr = document.querySelector(".header-scrolled-bg");
+            if(window.scrollY > 350){
+                headerScr.classList.add("scrolled"); 
+            }else if(window.scrollY < 350 && headerScr.classList.contains("scrolled")){
+                headerScr.classList.remove("scrolled")
+            }
+  }
+    },
+    mounted() {
+        window.addEventListener("scroll", this.onScroll, true)
+    },
+    beforeDestroy() {
+        window.removeEventListener("scroll", this.onScroll, true)
+    },
 }
 </script>
 
@@ -190,8 +204,12 @@ label{
     border-radius: 1rem;
     color: $primary-red;
 }
-.multiselect-options.hidden{
+.hidden{
     display: none;
 }
 
+.header-scrolled-bg.scrolled{
+    background-color: #222;
+    padding: 10px 0;
+}
 </style>
