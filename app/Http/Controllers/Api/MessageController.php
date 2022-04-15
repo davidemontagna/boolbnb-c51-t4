@@ -65,6 +65,36 @@ class MessageController extends Controller
         // return response()->json([
         //     "success" => true
         // ]);
+        $data = $request->all();
+
+        $validator = Validator::make($data, [
+            'sender_name' => 'nullable|string|max:50',
+            'content' => 'string|required',
+            'sender_email' => 'string|max:50|required',
+            'apartment_id' => 'exists:apartment,id',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                "success" => false,
+                "errors" => $validator->errors(),
+                "data" => $data
+            ],400);
+        }
+        $newMessage = new Message();
+        
+        $newMessage->sender_name = $data["sender_name"];
+        $newMessage->content = $data["content"];
+        $newMessage->sender_email = $data["sender_email"];
+        $newMessage->apartment_id = $data["apartment_id"];
+        $newMessage->visualized = false;
+        $newMessage->answered = false;
+        $newMessage->filed = false;
+        $newMessage->save();
+
+        return response()->json([
+            "success" => true
+        ]);
     }
 
     /**
