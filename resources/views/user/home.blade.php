@@ -19,6 +19,7 @@
             </div>
         </div>
         <a href="{{route("user.apartments.index")}}"><button type="button" class="btn btn-primary">Visualizza gli appartamenti</button></a>
+        <a href="{{route("user.messages.index")}}"><button type="button" class="btn btn-primary">Visualizza i messaggi</button></a>
     </div>
 </div>
 @endsection

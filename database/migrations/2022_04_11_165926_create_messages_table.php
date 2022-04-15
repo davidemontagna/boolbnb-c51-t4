@@ -15,7 +15,7 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('apartment_id');
+            $table->foreignId('apartment_id')->constrained()->onDelete("cascade");
             $table->text('content');
             $table->string('sender_email');
             $table->string('sender_name');

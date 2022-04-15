@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Apartment;
 use App\Http\Controllers\Controller;
 use App\Message;
 use Illuminate\Http\Request;
@@ -15,7 +16,17 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
+        $messages = Message::with("apartment")->get();
+        $newMessages = [];
+        foreach ($messages as $message) {
+            if(!in_array($message, $newMessages)){
+                if ($message->apartment->user_id == auth()->id()) {
+                    array_push($newMessages, $message);
+                }
+            }
+        }
+        $messages = $newMessages;
+        return view('user.messages.index', compact('messages'));
     }
 
     /**
