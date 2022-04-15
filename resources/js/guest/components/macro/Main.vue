@@ -1,7 +1,6 @@
 <template>
 <main>
-    <h1>ciao</h1>
-    <div class="container">
+    <div class="ms_container">
         <div class="title">
             In evidenza
         </div>
@@ -9,6 +8,8 @@
             Lasciati guidare dalla curiosità
         </div>
         *appartamenti sponsorizzaati*
+
+
         <router-view :key="$route.path"></router-view>
     </div>    
 </main>
@@ -21,10 +22,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../../../sass/global.scss';
+@import '../../../../sass/variables.scss';
 
-.container {
-    width: 95%;
+main{
+    background-color: $primary-light;
+}
+.ms_container {
+    width: 90vw;
     margin: 0 auto;
 
     .title{
