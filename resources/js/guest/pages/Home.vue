@@ -1,8 +1,7 @@
 <template>
 <div>
     <div class="ms_background">
-    <SponsoredApartment/>
-
+        <SponsoredApartment/>
     </div>
 
     <Apartments/>
