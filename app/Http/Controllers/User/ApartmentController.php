@@ -16,6 +16,8 @@ class ApartmentController extends Controller
         'num_rooms'=>'required|int',
         'num_beds'=>'required|int',
         'num_bath'=>'required|int',
+        'num_guest'=>'required|int',
+        'price'=>'required|numeric|between:0.00,9999.99',
         'square_footage'=>'required|int',
         'preview'=>'nullable',
         'visible'=>'required|boolean',

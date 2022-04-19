@@ -17,9 +17,11 @@ class CreateApartmentsTable extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete("cascade");
             $table->string('title');
+            $table->tinyInteger('num_guest');
             $table->tinyInteger('num_rooms');
             $table->tinyInteger('num_beds');
             $table->tinyInteger('num_bath');
+            $table->float('price', 4, 2);
             $table->integer('square_footage');
             $table->string('preview')->nullable();
             $table->boolean('visible');
