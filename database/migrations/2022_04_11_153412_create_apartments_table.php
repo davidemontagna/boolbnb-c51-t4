@@ -21,7 +21,7 @@ class CreateApartmentsTable extends Migration
             $table->tinyInteger('num_rooms');
             $table->tinyInteger('num_beds');
             $table->tinyInteger('num_bath');
-            $table->float('price');
+            $table->float('price', 4, 2);
             $table->integer('square_footage');
             $table->string('preview')->nullable();
             $table->boolean('visible');
