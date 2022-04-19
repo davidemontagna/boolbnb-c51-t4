@@ -20,6 +20,14 @@
                               <div class="alert alert-danger">{{ $message }}</div>
                           @enderror         
                         </div>
+
+                        <div class="mb-3">
+                            <label for="num_guest" class="form-label">Numero di ospiti:</label>
+                            <input type="number" min="1" max="50" class="form-control @error('num_guest') is-invalid @enderror" id="num_guest" name="num_guest"> 
+                            @error('num_guest')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror       
+                        </div>
                         
                         <div class="mb-3">
                           <label for="num_rooms" class="form-label">Numero di stanze:</label>
@@ -41,6 +49,14 @@
                             <label for="num_bath" class="form-label">Numero di bagni:</label>
                             <input type="number" min="1" max="6" class="form-control @error('num_bath') is-invalid @enderror" id="num_bath" name="num_bath"> 
                             @error('num_bath')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror       
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Prezzo:</label>
+                            <input type="number" step="0.01" class="form-control @error('price') is-invalid @enderror" id="price" name="price"> 
+                            @error('price')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror       
                         </div>

@@ -7,6 +7,7 @@ use App\Apartment;
 use App\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 
 class ApartmentController extends Controller
@@ -59,6 +60,15 @@ class ApartmentController extends Controller
         $request['user_id'] = auth()->id();
         $form_data = $request->all();
 
+        $slug = Str::slug($form_data['title']);
+
+        $count = 1;
+        while(Apartment::where('slug', $slug)->first()){
+            $slug = Str::slug($form_data['title'])."-".$count;
+            $count ++;
+        }
+        $form_data['slug'] = $slug;
+
         $new_apartment = new Apartment();
         $new_apartment->fill($form_data);
         $new_apartment->save();
@@ -110,6 +120,17 @@ class ApartmentController extends Controller
 
         $form_data = $request->all();
 
+        if($apartment->title == $form_data['title']){
+            $slug = $apartment->slug;
+        }else{
+            $slug = Str::slug($form_data['title']);
+            $count = 1;
+            while(Apartment::where('slug', $slug)->where('id', '!=', $apartment->id)->first()){
+                $slug = Str::slug($form_data['title'])."-".$count;
+                $count ++;
+            }
+        }
+        $form_data['slug'] = $slug;
 
         $apartment->update($form_data);
 
