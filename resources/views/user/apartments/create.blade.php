@@ -10,7 +10,7 @@
                 <div class="col-md-12">
                     
                     <h3>Inserisci un nuovo appartamento</h3>
-                    <form action="{{ route("user.apartments.store") }}" method="POST">
+                    <form action="{{ route("user.apartments.store") }}" method="POST" enctype="multipart/form-data">
                         @csrf
             
                         <div class="mb-3">
@@ -55,7 +55,7 @@
 
                         <div class="mb-3">
                             <label for="price" class="form-label">Prezzo:</label>
-                            <input type="number" step="0.01" class="form-control @error('price') is-invalid @enderror" id="price" name="price"> 
+                            <input type="number" step="0.01" min="1" max="10000" class="form-control @error('price') is-invalid @enderror" id="price" name="price"> 
                             @error('price')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror       
@@ -71,7 +71,7 @@
 
                         <div class="mb-3">
                             <label for="preview" class="form-label">Immagine preview:</label>
-                            <input type="text" class="form-control @error('preview') is-invalid @enderror" value="{{old('preview')}}" id="preview" name="preview" placeholder="Inserisci la preview">   
+                            <input type="file" class="form-control-file @error('preview') is-invalid @enderror" value="{{old('preview')}}" id="preview" name="preview" placeholder="Inserisci la preview">   
                             @error('preview')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror         
