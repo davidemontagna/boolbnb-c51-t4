@@ -3,7 +3,7 @@
 @section('content')
 <div class="container my-5">
   <h1>EMAIL</h1> 
-
+  @if ($message->apartment->user_id == auth()->id())
   <form action="{{route("user.messages.update", $message->id)}}" method="POST">
       
       @csrf
@@ -29,7 +29,18 @@
       
       <button type="submit" class="btn btn-warning my-3">Salva</button>
   </form>
-
   <a href="{{route('user.messages.index')}}"><button type="button" class="btn btn-dark">Back</button></a> 
+  @else
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-12">
+                    <h3>Non sei autorizzato a modificare questo messaggio.</h3>
+                    <a href="{{ route("user.messages.index") }}"><button type="submit" class="btn btn-primary">Torna ai Messaggi</button></a>
+                </div>
+            </div>
+        </div>
+    @endif
+
+  
 </div>
 @endsection
