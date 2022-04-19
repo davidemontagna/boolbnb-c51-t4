@@ -1,7 +1,18 @@
 <template>
 <div>
     <h1>Ecco chi siamo</h1>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Culpa aut numquam nisi vitae repudiandae nostrum recusandae doloremque, hic totam incidunt error impedit iure obcaecati quod, vero temporibus expedita voluptate cum.</p>
+    <p>Progetto realizzato da:</p>
+    <div class="contact">
+        <div class="name">
+            Davide Masa
+        </div>
+        <div class="occupation">
+            Jr. Full Stack Web Developer
+        </div>
+        <div class="linkedin">
+            <i class="fab fa-linkedin"></i>
+        </div>
+    </div>
 </div>
 </template>
 

@@ -1,25 +1,33 @@
 <template>
-<section>
-        <div class="ms_container">
-            <div class="row row-cols-sm-1 row-cols-md-2 row-cols-3 justify-content-between">
-                <div class="ms_card col mx-2 my-3 mx-auto" v-for="(apartment, index) in apartments" :key="index">
-                    <div class="ms_img mx-auto position-relative">
-                        <img src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="">
-                        <div class="ms_description position-absolute">
-                            <!-- <p class="ms_id mx-2">Id: {{apartment.id}}</p> -->
-                            <p class="ms_room mx-2">Numero di stanze: {{apartment.num_rooms}}</p>
+    <section>
+        <div class="container-fluid">
+            <h2>Le nostre strutture</h2>
+            <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 mx-5">
+                <div class="col my-3" v-for="(apartment, index) in apartments" :key="index">
+                    <div class="ms_card">
+                        <div class="ms_img mx-auto position-relative">
+                                <img src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="">
+                                <div class="ms_shadow position-absolute"></div>
+                            <div class="ms_description position-absolute">
+                                <p class="ms_beds mx-2">Numero di letti: {{apartment.num_beds}}</p>
+                            </div>
                         </div>
-                        <div class="ms_hover position-absolute">
+                        <div class="ms_text">
+                            <h2 class="ms_title my-2">{{apartment.title}}</h2>
+                            <h4 class="ms_city mt-3">Roma</h4>
+                            <p class="ms_address">Via Monte Napoleone</p>
+                            <div class="ms_description2 d-flex justify-content-between mt-3">
+                                <p class="ms_rooms">Stanze: {{apartment.num_rooms}}</p>
+                                <p class="ms_bath">Bagni: {{apartment.num_bath}}</p>
+                                <p class="ms_square">Mq: {{apartment.square_footage}}</p>
+                            </div>
+                            <!-- <router-link :to="{name: 'single-apartment', params:{slug: post.slug}}">Visualizza Appartamento</router-link> -->
                         </div>
-                    </div>
-                    <div class="ms_text">
-                        <h3 class="title">{{apartment.title}}</h3>
-                        <!-- <router-link :to="{name: 'single-apartment', params:{slug: post.slug}}">Visualizza Appartamento</router-link> -->
                     </div>
                 </div>
             </div>
         </div>
-</section>
+    </section>
 </template>
 
 <script>
@@ -49,98 +57,73 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../../../sass/variables.scss';
-.ms_container{
-    width: 100%;
-    height: 100%;
 
+.container-fluid{
     .ms_card{
-        max-width: 400px;
-        width: 400px;
-        border: 1px solid rgb(218, 218, 218);
-        border-radius: 5px;
+        height: 100%;
+        border: 1px solid $primary-grey;
+        border-radius: 10px;
         padding: 1rem;
-        box-shadow: 1px 1px 2px $primary-light;
-        background-color: white;
+        box-shadow: 2px 2px 3px $primary-light;
+        background-color: $primary-light;
+    }
+
+    .ms_img{
+        margin-right: 10px;
+        overflow: hidden;
+        border-radius: 10px;
 
         &:hover{
-            cursor: pointer;
-        }
+                cursor: pointer;
+            }
+        &:hover .ms_shadow{
+                display: none;
+            }
 
-        &:hover .ms_hover{
-            display: none;  
+        img{
+            transition: transform .2s;
+            width: 100%;
+            height: 100%;
+            
+
+            &:hover{
+                transform: scale(1.5);
+            }
         }
     }
-}
-/* .container-cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-}
 
-.card {
-    border: 1px solid rgb(218, 218, 218);
-    border-radius: 5px;
-    width: calc(50% - 66px);
-    padding: 1rem;
-    box-shadow: 1px 1px 2px grey;
-
-    &:hover{
-        cursor: pointer;
-    }
-} */
-.ms_room{
-    font-size: 20px;
-    color: white;
-}
-.ms_img{
-    height: 150px;
-    width: 300px;
-    margin-right: 10px;
-
-    img{
-        border-radius: 5px;
+    .ms_shadow{
+        border-radius: 0px 0px 10px 10px;
         width: 100%;
-        height: 100%;
+        height: 50%;
+        opacity: 1;
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgb(0, 0, 0));
+        
     }
-}
 
-.ms_hover{
-    border-radius: 0px 0px 5px 5px;
-    width: 100%;
-    height: 50%;
-    box-shadow: inset 0px -50px 50px -30px #000000;
-    opacity: 0.5;
-}
-
-.ms_description, .ms_hover{
+    .ms_description, .ms_shadow{
     left: 0;
     bottom: 0;
+    }
+
+    .ms_beds{
+    font-size: 20px;
+    color: $primary-light;
+    cursor: default;
+    }
+
+    .ms_title{
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis; 
+
+        &:hover{
+                cursor: pointer;
+            }
+    }
+    .ms_address, .ms_description2{
+        color: $primary-grey;
+    }
 }
 
-.ms_description{
-    text-shadow: 2px 0 0 rgb(0, 0, 0), -2px 0 0 rgb(0, 0, 0), 0 2px 0 rgb(0, 0, 0), 0 -2px 0 rgb(0, 0, 0), 1px 1px rgb(0, 0, 0), -1px -1px 0 rgb(0, 0, 0), 1px -1px 0 rgb(0, 0, 0), -1px 1px 0 rgb(0, 0, 0);
-}
-
-
-
-/* .img-container {
-    width: 200px;
-    height: 200px;
-    background: rgb(218, 218, 218);
-    img {
-        width: 100%;
-        height: 100%;
-    }
-} */
-
-/* @media screen and (max-width:480px){
-    .cards-container{
-    background-color: red;
-    }
-
-    .card{
-        width: calc(100%);
-    }
-} */
 </style>
