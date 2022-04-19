@@ -8,7 +8,8 @@
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-12">
-                
+                    <!-- Controllo per vedere se l'utente e' autorizzato a visualizzare quel determinato messaggio -->
+                    @if ($message->apartment->user_id == auth()->id())
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
                         <h3 class="card-title">Messaggio</h3>
@@ -26,6 +27,16 @@
                         
                         </div>
                     </div>
+                    @else
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-md-12">
+                                    <h3>Non sei autorizzato a visualizzare questo messaggio.</h3>
+                                    <a href="{{ route("user.messages.index") }}"><button type="submit" class="btn btn-primary">Torna ai Messaggi</button></a>
+                                </div>
+                            </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
