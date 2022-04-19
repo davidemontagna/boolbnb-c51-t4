@@ -6,9 +6,8 @@
                 <div class="col my-3" v-for="(apartment, index) in apartments" :key="index">
                     <div class="ms_card">
                         <div class="ms_img mx-auto position-relative">
-                            <img src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="">
-                            <div class="ms_hover position-absolute">
-                            </div>
+                                <img src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="">
+                                <div class="ms_shadow position-absolute"></div>
                             <div class="ms_description position-absolute">
                                 <p class="ms_beds mx-2">Numero di letti: {{apartment.num_beds}}</p>
                             </div>
@@ -77,8 +76,8 @@ export default {
         &:hover{
                 cursor: pointer;
             }
-        &:hover .ms_hover{
-                display: none;  
+        &:hover .ms_shadow{
+                display: none;
             }
 
         img{
@@ -93,15 +92,16 @@ export default {
         }
     }
 
-    .ms_hover{
+    .ms_shadow{
         border-radius: 0px 0px 10px 10px;
         width: 100%;
         height: 50%;
-        opacity: 0.5;
-        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgb(0, 0, 0))
+        opacity: 1;
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgb(0, 0, 0));
+        
     }
 
-    .ms_description, .ms_hover{
+    .ms_description, .ms_shadow{
     left: 0;
     bottom: 0;
     }
@@ -109,6 +109,7 @@ export default {
     .ms_beds{
     font-size: 20px;
     color: $primary-light;
+    cursor: default;
     }
 
     .ms_title{

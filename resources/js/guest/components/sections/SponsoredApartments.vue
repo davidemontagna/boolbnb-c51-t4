@@ -6,13 +6,13 @@
             *appartamenti sponsorizzati*
 
             
-            <carousel  v-bind:per-page-custom=[[0,1],[576,2],[992,3]]>
+            <carousel class="ml-3" v-bind:per-page-custom=[[0,1],[576,2],[992,3]]>
                 <slide class="slide">
                     <div class="ms_card">
                         <div class="ms_img mx-auto position-relative">
                             <img src="https://images.pexels.com/photos/276724/pexels-photo-276724.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="">
-                            <div class="ms_hover position-absolute">
-                            </div>
+                            <div class="ms_shadow position-absolute"></div>
+                            <div class="ms_sponsor position-absolute">Scelti per te</div>
                             <div class="ms_description position-absolute">
                                 <p class="ms_beds mx-2">Numero di letti: </p>
                             </div>
@@ -178,11 +178,9 @@ export default {
 <style lang="scss" scoped>
 @import '../../../../sass/variables.scss';
 
-.slide{
-    margin-right: 20px;
-}
-.ms_card{
-        
+.container-fluid{
+    .ms_card{
+        width: 95%;
         height: 100%;
         border: 1px solid $primary-grey;
         border-radius: 10px;
@@ -199,7 +197,7 @@ export default {
         &:hover{
                 cursor: pointer;
             }
-        &:hover .ms_hover{
+        &:hover .ms_shadow{
                 display: none;  
             }
 
@@ -213,17 +211,26 @@ export default {
                 transform: scale(1.5);
             }
         }
+        
+        .ms_sponsor{
+            top: 10px;
+            left: 10px;
+            background-color: $primary-red;
+            color: $primary-light;
+            border-radius: 5px;
+            padding: 2px 5px;
+            cursor: default;
+        }
     }
 
-    .ms_hover{
+    .ms_shadow{
         border-radius: 0px 0px 10px 10px;
         width: 100%;
         height: 50%;
-        opacity: 0.5;
         background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgb(0, 0, 0))
     }
 
-    .ms_description, .ms_hover{
+    .ms_description, .ms_shadow{
     left: 0;
     bottom: 0;
     }
@@ -231,6 +238,7 @@ export default {
     .ms_beds{
     font-size: 20px;
     color: $primary-light;
+    cursor: default;
     }
 
     .ms_title{
@@ -245,4 +253,5 @@ export default {
     .ms_address, .ms_description2{
         color: $primary-grey;
     }
+}
 </style>
