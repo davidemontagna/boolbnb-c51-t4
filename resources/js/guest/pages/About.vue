@@ -61,6 +61,7 @@ export default {
 @import '../../../sass/variables.scss';
 .about-container{
     margin-top: 7rem;
+    min-height: 80vh;
 }
 
 h1{
@@ -75,7 +76,7 @@ h1{
     -webkit-user-select: none;
     user-select: none;
     pointer-events: none;
-    
+
     img{
         width: 30%;
     }
