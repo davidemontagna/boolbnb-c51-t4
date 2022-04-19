@@ -14,8 +14,8 @@
                         </div>
                         <div class="ms_text">
                             <h2 class="ms_title my-2">{{apartment.title}}</h2>
-                            <h4 class="ms_city mt-3">Roma</h4>
-                            <p class="ms_address">Via Monte Napoleone</p>
+                            <h4 class="ms_city mt-3">{{apartment.location.city}}</h4>
+                            <p class="ms_address">{{apartment.location.address}}</p>
                             <div class="ms_description2 d-flex justify-content-between mt-3">
                                 <p class="ms_rooms">Stanze: {{apartment.num_rooms}}</p>
                                 <p class="ms_bath">Bagni: {{apartment.num_bath}}</p>
@@ -72,6 +72,8 @@ export default {
         margin-right: 10px;
         overflow: hidden;
         border-radius: 10px;
+        width: 450px;
+        height: 300px;
 
         &:hover{
                 cursor: pointer;
