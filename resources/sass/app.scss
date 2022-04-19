@@ -12,3 +12,25 @@
 @import '~@fortawesome/fontawesome-free/scss/regular';
 @import '~@fortawesome/fontawesome-free/scss/solid';
 @import '~@fortawesome/fontawesome-free/scss/brands';
+
+//login-register
+
+.bnb-login, .bnb-register{
+    .form-card{
+        margin-top: 2rem;
+        border: 5px solid $primary-red;
+        border-radius: 2rem;
+
+        .form-card-header{
+            border-bottom: 5px solid $primary-red;
+            height: 3rem;
+            padding-left: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            font-size: 1.7rem;
+            font-weight: 900;
+            color: #333;
+        }
+    }
+}
