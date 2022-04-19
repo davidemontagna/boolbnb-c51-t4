@@ -23,10 +23,18 @@
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror         
                             </div>
+
+                            <div class="mb-3">
+                                <label for="num_guest" class="form-label">Numero di ospiti:</label>
+                                <input type="number" min="1" max="50" class="form-control @error('num_guest') is-invalid @enderror" id="num_guest" name="num_guest" value="{{ old('num_guest', $apartment->num_guest) }}">    
+                                @error('num_guest')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror       
+                            </div>
                             
                             <div class="mb-3">
                             <label for="num_rooms" class="form-label">Numero di stanze:</label>
-                            <input type="number" class="form-control @error('num_rooms') is-invalid @enderror" id="num_rooms" name="num_rooms" value="{{ old('num_rooms', $apartment->num_rooms) }}">    
+                            <input type="number" min="1" max="30" class="form-control @error('num_rooms') is-invalid @enderror" id="num_rooms" name="num_rooms" value="{{ old('num_rooms', $apartment->num_rooms) }}">    
                             @error('num_rooms')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror       
@@ -34,7 +42,7 @@
 
                             <div class="mb-3">
                                 <label for="num_beds" class="form-label">Numero di posti letto:</label>
-                                <input type="number" class="form-control @error('num_beds') is-invalid @enderror" id="num_beds" name="num_beds" value="{{ old('num_beds', $apartment->num_beds) }}">    
+                                <input type="number" min="1" max="50" class="form-control @error('num_beds') is-invalid @enderror" id="num_beds" name="num_beds" value="{{ old('num_beds', $apartment->num_beds) }}">    
                                 @error('num_beds')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror       
@@ -42,15 +50,23 @@
 
                             <div class="mb-3">
                                 <label for="num_bath" class="form-label">Numero di bagni:</label>
-                                <input type="number" class="form-control @error('num_bath') is-invalid @enderror" id="num_bath" name="num_bath" value="{{ old('num_bath', $apartment->num_bath) }}">    
+                                <input type="number" min="1" max="6" class="form-control @error('num_bath') is-invalid @enderror" id="num_bath" name="num_bath" value="{{ old('num_bath', $apartment->num_bath) }}">    
                                 @error('num_bath')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror       
                             </div>
 
                             <div class="mb-3">
+                                <label for="price" class="form-label">Prezzo:</label>
+                                <input type="number" step="0.01" class="form-control @error('price') is-invalid @enderror" id="price" name="price" value="{{ old('price', $apartment->price) }}">    
+                                @error('price')
+                                    <div class="alert alert-danger">{{ $message }}</div>
+                                @enderror       
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="square_footage" class="form-label">Numero di metri quadri:</label>
-                                <input type="number" class="form-control @error('square_footage') is-invalid @enderror" id="square_footage" name="square_footage" value="{{ old('square_footage', $apartment->square_footage) }}">    
+                                <input type="number" min="1" max="400" class="form-control @error('square_footage') is-invalid @enderror" id="square_footage" name="square_footage" value="{{ old('square_footage', $apartment->square_footage) }}">    
                                 @error('square_footage')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror       
