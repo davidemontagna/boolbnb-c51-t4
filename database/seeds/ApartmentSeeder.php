@@ -36,7 +36,7 @@ class ApartmentSeeder extends Seeder
                 "num_rooms" => "1",
                 "num_bed" => "2",
                 "num_bath" => "1",
-                "square_footage" => "",
+                "square_footage" => "27",
                 "preview" => "https://cf.bstatic.com/xdata/images/hotel/max1280x900/230619546.jpg?k=c2b8dbc3e51be769bcc9f47f3e62387e3d4591d336ef6fa0e4905d0fb3464ec6&o=&hp=1",
                 "visible" => "",
                 "description" => "Situato a Roma, a 1 km da Piazza San Pietro, il Vatican Palace Suites by Premium Suites Collection offre la connessione WiFi gratuita, il check-in e il check-out express e il servizio concierge. La struttura si trova a circa 1,2 km dalla Basilica di San Pietro, a 1,8 km dai Musei Vaticani e a 2,2 km da Castel Sant’Angelo. Potrete soggiornare in camere familiari.
@@ -110,7 +110,7 @@ class ApartmentSeeder extends Seeder
                 "num_rooms" => "2",
                 "num_bed" => "4",
                 "num_bath" => "1",
-                "square_footage" => "/",
+                "square_footage" => "30",
                 "preview" => "https://cf.bstatic.com/xdata/images/hotel/max1280x900/113771342.jpg?k=1d95af6847702ba09591ceb19e6e8bbc733d57a0cf5e5a6411e73b77741a53b8&o=&hp=1",
                 "visible" => "",
                 "description" => "Situata a Roma, a 60 m dai Musei Vaticani, la My Tiny Home offre la vista sulla città. Tra i servizi di questa struttura figurano una cucina e un salone in comune, e la connessione WiFi gratuita in tutte le aree. La struttura dispone di camere familiari.
@@ -126,7 +126,7 @@ class ApartmentSeeder extends Seeder
                 "num_rooms" => "2",
                 "num_bed" => "2",
                 "num_bath" => "1",
-                "square_footage" => "/",
+                "square_footage" => "30",
                 "preview" => "https://cf.bstatic.com/xdata/images/hotel/max1280x900/263393015.jpg?k=41055d5682c827c827b1bf9fdbd7cc5086b6ca65f037da158b7cbc59cde4563c&o=&hp=1",
                 "visible" => "",
                 "description" => "Situato a Roma, a 400 metri dai Musei Vaticani, il Vatican Luxury Suites è interamente coperto dal WiFi gratuito.
@@ -142,7 +142,7 @@ class ApartmentSeeder extends Seeder
                 "num_rooms" => "1",
                 "num_bed" => "2",
                 "num_bath" => "1",
-                "square_footage" => "/",
+                "square_footage" => "25",
                 "preview" => "https://cf.bstatic.com/xdata/images/hotel/max1024x768/261462354.jpg?k=13f8c7461a7beb3a91049b8f18da50e7e77ce712abece3cc1bb68bc5e461fca4&o=&hp=1",
                 "visible" => "",
                 "description" => "Il NearHome si trova a Roma, a soli 350 metri dalla famosa via Veneto e a 800 metri dalla stazione della metropolitana Barberini, con collegamenti diretti per i musei vaticani, e offre camere di design con WiFi gratuito.
@@ -330,7 +330,7 @@ class ApartmentSeeder extends Seeder
             $newApartment->num_beds = $apartments[$i]['num_bed'];
             $newApartment->num_bath = $apartments[$i]['num_bath'];
             $newApartment->num_guest = $apartments[$i]['num_bed'];
-            $newApartment->price = 10 + ($apartments[$i]['beds'] * 15);
+            $newApartment->price = 10 + ($apartments[$i]['num_bed'] * 15);
             $newApartment->square_footage = $apartments[$i]['square_footage'];
             $newApartment->preview = $apartments[$i]['preview'];
             $newApartment->visible = rand(0, 1);
@@ -347,7 +347,7 @@ class ApartmentSeeder extends Seeder
             $newApartment->num_beds = $apartments[$i + 10]['num_bed'];
             $newApartment->num_bath = $apartments[$i + 10]['num_bath'];
             $newApartment->num_guest = $apartments[$i + 10]['num_bed'];
-            $newApartment->price = 10 + ($apartments[$i + 10]['beds'] * 15);
+            $newApartment->price = 10 + ($apartments[$i + 10]['num_bed'] * 15);
             $newApartment->square_footage = $apartments[$i + 10]['square_footage'];
             $newApartment->preview = $apartments[$i + 10]['preview'];
             $newApartment->visible = rand(0, 1);

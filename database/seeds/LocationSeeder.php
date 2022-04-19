@@ -164,7 +164,7 @@ class LocationSeeder extends Seeder
             $newLocation->city = $arrayAddress[$i]['city'];
             $newLocation->country = $arrayAddress[$i]['country'];
             $newLocation->lat = $arrayAddress[$i]['lat'];
-            $newLocation->lon = $arrayAddress[$i]['long'];
+            $newLocation->lon = $arrayAddress[$i]['lon'];
             $newLocation->save();
         }
     }
