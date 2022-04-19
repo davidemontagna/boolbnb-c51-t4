@@ -12,7 +12,7 @@
                     @if ($apartment->user_id == auth()->id())
 
                         <h3>Modifica Appartamento</h3>
-                        <form action="{{ route("user.apartments.update", $apartment->id) }}" method="POST">                        
+                        <form action="{{ route("user.apartments.update", $apartment->id) }}" method="POST" enctype="multipart/form-data">                        
                             @csrf
                             @method('PUT')
                 
@@ -74,7 +74,7 @@
 
                             <div class="mb-3">
                                 <label for="preview" class="form-label">Immagine preview:</label>
-                                <input type="text" class="form-control @error('preview') is-invalid @enderror" value="{{ old('preview', $apartment->preview) }}" id="preview" name="preview" placeholder="Inserisci il titolo">   
+                                <input type="file" class="form-control-file @error('preview') is-invalid @enderror" value="{{ old('preview', $apartment->preview) }}" id="preview" name="preview" placeholder="Inserisci il titolo">   
                                 @error('preview')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror         

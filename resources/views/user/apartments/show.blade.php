@@ -23,8 +23,12 @@
                             <li class="list-group-item">Posti letto: {{$apartment->num_beds}}</li>
                             <li class="list-group-item">Bagni: {{$apartment->num_bath}}</li>
                             <li class="list-group-item">Metri quadri: {{$apartment->square_footage}}</li>
-                            <li class="list-group-item">Anteprima: {{$apartment->preview}}</li>
-                            <li class="list-group-item">Descrizione: {{$apartment->description}}</li>                        
+                            @if ($apartment->preview)
+                                <li class="list-group-item">Anteprima:
+                                    <img style="width: 250px" src="{{ asset("storage/{$apartment->preview}")}}" alt="{{$apartment->title}}">
+                                </li>
+                            @endif                            
+                            <li class="list-group-item">Descrizione: {{$apartment->description}}</li>                       
                         </ul>  
                         <ul class="list-group list-group-flush">                            
                             <li class="list-group-item"> 
