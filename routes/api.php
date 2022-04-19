@@ -25,4 +25,5 @@ Route::namespace('Api')->name('api.')->group(function() {
     // Inserire slug negli appartamenti
     Route::get('/apartments/{slug}', 'ApartmentController@show')->name('apartments.show');
     Route::post('/messages', 'MessageController@store')->name('messages.store');
+    Route::get('/services', 'ServiceController@index')->name('services');
 });
