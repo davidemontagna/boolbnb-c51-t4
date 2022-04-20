@@ -22,7 +22,7 @@ class ApartmentSeeder extends Seeder
                 "num_bed" => "2",
                 "num_bath" => "1",
                 "square_footage" => "65",
-                "preview" => "https://cf.bstatic.com/xdata/images/hotel/max1280x900/196415977.jpg?k=0f2a4120fff1af7ec6899339e052cf74e22b88af11d3dac143bbdb8e8da0a9aa&o=&hp=1",
+                "preview" => "uploads/196415977.jpg",
                 "visible" => "",
                 "description" => "Situato a Roma, il Vic Pigneto si trova a 2,9 km da Porta Maggiore e a 4,1 km dall'Università di Roma La Sapienza, e offre la connessione WiFi gratuita, l’aria condizionata e un salotto in comune. La struttura dista 5 km dalla Basilica di Santa Maria Maggiore ed è provvista di un deposito bagagli.
         
@@ -38,7 +38,7 @@ class ApartmentSeeder extends Seeder
                 "num_bed" => "2",
                 "num_bath" => "1",
                 "square_footage" => "27",
-                "preview" => "https://cf.bstatic.com/xdata/images/hotel/max1280x900/230619546.jpg?k=c2b8dbc3e51be769bcc9f47f3e62387e3d4591d336ef6fa0e4905d0fb3464ec6&o=&hp=1",
+                "preview" => "uploads/230619546.jpg",
                 "visible" => "",
                 "description" => "Situato a Roma, a 1 km da Piazza San Pietro, il Vatican Palace Suites by Premium Suites Collection offre la connessione WiFi gratuita, il check-in e il check-out express e il servizio concierge. La struttura si trova a circa 1,2 km dalla Basilica di San Pietro, a 1,8 km dai Musei Vaticani e a 2,2 km da Castel Sant’Angelo. Potrete soggiornare in camere familiari.
         
@@ -52,7 +52,7 @@ class ApartmentSeeder extends Seeder
                 "num_bed" => "2",
                 "num_bath" => "1",
                 "square_footage" => "27",
-                "preview" => "https://cf.bstatic.com/xdata/images/hotel/max1024x768/58854889.jpg?k=9d756b99302d63fc861511774cb5ee33dcb4bb464abfb718bc3060728963d737&o=&hp=1",
+                "preview" => "uploads/58854889.jpg",
                 "visible" => "",
                 "description" => "Situata a Roma, l'Happy Holiday in Rome b&b sorge a 1,6 km dai Musei Vaticani.
         
@@ -68,7 +68,7 @@ class ApartmentSeeder extends Seeder
                 "num_bed" => "3",
                 "num_bath" => "1",
                 "square_footage" => "15",
-                "preview" => "https://cf.bstatic.com/xdata/images/hotel/max1280x900/338117172.jpg?k=b1d1f04b562a9157dd9179a7f268f44f4e762af785bf1a7eedfcd3430d52b27b&o=&hp=1",
+                "preview" => "uploads/338117172.jpg",
                 "visible" => "",
                 "description" => "Il B&B Sepulveda dista 5 minuti a piedi dalla stazione della metropolitana Re di Roma. Offre camere con connessione Wi-Fi gratuita.
         
@@ -84,7 +84,7 @@ class ApartmentSeeder extends Seeder
                 "num_bed" => "4",
                 "num_bath" => "1",
                 "square_footage" => "15",
-                "preview" => "https://cf.bstatic.com/xdata/images/hotel/max1280x900/263933337.jpg?k=576c7fbb8d177afcb4697f2dbab56b1492e7cc610ebe32997b84fe303aad924f&o=&hp=1",
+                "preview" => "uploads/263933337.jpg",
                 "visible" => "",
                 "description" => "Situato in una posizione incantevole nel quartiere della Stazione Centrale di Roma, il Soggiorno Emanuela si trova a 1,5 km da Santa Maria Maggiore, a 1,6 km dall’Università La Sapienza e a 1,8 km da Piazza Barberini. Tra i servizi gratuiti figurano un programma di intrattenimento e una cucina in comune.
         
@@ -98,7 +98,7 @@ class ApartmentSeeder extends Seeder
                 "num_bed" => "2",
                 "num_bath" => "1",
                 "square_footage" => "18",
-                "preview" => "https://cf.bstatic.com/xdata/images/hotel/max1280x900/92917824.jpg?k=be025772d70b5ccd232991d625bb96ae7c0f8a1929e09e8e7ea0c39a61f82e40&o=&hp=1",
+                "preview" => "uploads/92917824.jpg",
                 "visible" => "",
                 "description" => "Situato a Roma, a 600 metri da Porta Maggiore, il Roma Carina offre camere climatizzate con connessione WiFi gratuita. Questo affittacamere dista 1,1 km dall’Università La Sapienza e 900 metri dalla Domus Aurea e da Santa Maria Maggiore. La struttura sorge nel quartiere della Stazione Centrale.
         
@@ -112,7 +112,7 @@ class ApartmentSeeder extends Seeder
                 "num_bed" => "4",
                 "num_bath" => "1",
                 "square_footage" => "30",
-                "preview" => "https://cf.bstatic.com/xdata/images/hotel/max1280x900/113771342.jpg?k=1d95af6847702ba09591ceb19e6e8bbc733d57a0cf5e5a6411e73b77741a53b8&o=&hp=1",
+                "preview" => "uploads/113771342.jpg",
                 "visible" => "",
                 "description" => "Situata a Roma, a 60 m dai Musei Vaticani, la My Tiny Home offre la vista sulla città. Tra i servizi di questa struttura figurano una cucina e un salone in comune, e la connessione WiFi gratuita in tutte le aree. La struttura dispone di camere familiari.
         
@@ -128,7 +128,7 @@ class ApartmentSeeder extends Seeder
                 "num_bed" => "2",
                 "num_bath" => "1",
                 "square_footage" => "30",
-                "preview" => "https://cf.bstatic.com/xdata/images/hotel/max1280x900/263393015.jpg?k=41055d5682c827c827b1bf9fdbd7cc5086b6ca65f037da158b7cbc59cde4563c&o=&hp=1",
+                "preview" => "uploads/263393015.jpg",
                 "visible" => "",
                 "description" => "Situato a Roma, a 400 metri dai Musei Vaticani, il Vatican Luxury Suites è interamente coperto dal WiFi gratuito.
         
@@ -144,7 +144,7 @@ class ApartmentSeeder extends Seeder
                 "num_bed" => "2",
                 "num_bath" => "1",
                 "square_footage" => "25",
-                "preview" => "https://cf.bstatic.com/xdata/images/hotel/max1024x768/261462354.jpg?k=13f8c7461a7beb3a91049b8f18da50e7e77ce712abece3cc1bb68bc5e461fca4&o=&hp=1",
+                "preview" => "uploads/261462354.jpg",
                 "visible" => "",
                 "description" => "Il NearHome si trova a Roma, a soli 350 metri dalla famosa via Veneto e a 800 metri dalla stazione della metropolitana Barberini, con collegamenti diretti per i musei vaticani, e offre camere di design con WiFi gratuito.
         
@@ -158,7 +158,7 @@ class ApartmentSeeder extends Seeder
                 "num_bed" => "3",
                 "num_bath" => "1",
                 "square_footage" => "16",
-                "preview" => "https://cf.bstatic.com/xdata/images/hotel/max1280x900/34324530.jpg?k=21184736bc1b2a46813e877d9a34f6d2f3d1a3ebc1cb3e6bdbe75b38f8296f1c&o=&hp=1",
+                "preview" => "uploads/34324530.jpg",
                 "visible" => "",
                 "description" => "Situato a soli 15 minuti d’auto dal Vaticano, il hu Roma Camping In Town offre una piscina stagionale all'aperto, una vasca idromassaggio e un bar a bordo vasca. La struttura dispone di connessione WiFi e parcheggio, entrambi gratuiti.
         
@@ -174,7 +174,7 @@ class ApartmentSeeder extends Seeder
                 "num_bed" => "2",
                 "num_bath" => "1",
                 "square_footage" => "28",
-                "preview" => "https://cf.bstatic.com/xdata/images/hotel/max1280x900/165284814.jpg?k=b19e7d2e14e504057688d16e50ce4cf3e40a98263a7b2d3c81b602fccd40be58&o=&hp=1",
+                "preview" => "uploads/165284814.jpg",
                 "visible" => "",
                 "description" => "Situato a Milano, a 3,6 km dalla GAM e a 3,9 km da Villa Necchi Campiglio, il Warret offre alloggi con WiFi gratuito. A vostra disposizione una sauna.
         
@@ -188,7 +188,7 @@ class ApartmentSeeder extends Seeder
                 "num_bed" => "5",
                 "num_bath" => "1",
                 "square_footage" => "22",
-                "preview" => "https://cf.bstatic.com/xdata/images/hotel/max1280x900/343825210.jpg?k=dd96080275338a28a26233b06fed2b53691b3175642060d575c759a11cf89548&o=&hp=1",
+                "preview" => "uploads/343825210.jpg",
                 "visible" => "",
                 "description" => "Situato in una buona posizione a Bari, a breve distanza dal Teatro Margherita, dal Teatro Petruzzelli e da Piazza Mercantile, il San Nicola central apartment offre un ristorante e la connessione WiFi gratuita.
         
@@ -204,7 +204,7 @@ class ApartmentSeeder extends Seeder
                 "num_bed" => "2",
                 "num_bath" => "1",
                 "square_footage" => "25",
-                "preview" => "https://cf.bstatic.com/xdata/images/hotel/max1280x900/304396173.jpg?k=659bd3efd91b9d06f58a0f3b8765a93827a341a6322c72f24b2e45b5063d501f&o=&hp=1",
+                "preview" => "uploads/304396173.jpg",
                 "visible" => "",
                 "description" => "Situato a Napoli, a 1,7 km dalla Chiesa dei Santi Filippo e Giacomo e a 2,1 km da Via San Gregorio Armeno, il Garibaldi Rooms offre un salone in comune e il WiFi gratuito.
         
@@ -220,7 +220,7 @@ class ApartmentSeeder extends Seeder
                 "num_bed" => "4",
                 "num_bath" => "1",
                 "square_footage" => "68",
-                "preview" => "https://cf.bstatic.com/xdata/images/hotel/max1280x900/313296052.jpg?k=7d1a1db8b767406ced350a32d75baee4d75c265bed88a6c4ad9851575fd571e1&o=&hp=1",
+                "preview" => "uploads/313296052.jpg",
                 "visible" => "",
                 "description" => "Situato a Genova, a soli 10 km da Via Garibaldi, il CasaViva - Beautiful Bilo with shared pool in Genova Nervi offre un ristorante, una piscina all’aperto stagionale, un giardino e la connessione WiFi gratuita. Provvista del parcheggio privato gratuito, la struttura dista 10 km dall'Università di Genova e 13 km dal Porto di Genova.
         
@@ -234,7 +234,7 @@ class ApartmentSeeder extends Seeder
                 "num_bed" => "3",
                 "num_bath" => "1",
                 "square_footage" => "45",
-                "preview" => "https://cf.bstatic.com/xdata/images/hotel/max1024x768/132644886.jpg?k=ac289acd8fe7bc03911e4812052c3263e5a0979f7833474d2f21aeb3bafa585f&o=&hp=1",
+                "preview" => "uploads/132644886.jpg",
                 "visible" => "",
                 "description" => "Situato a Venezia, a 200 m dalla Ca' d'Oro e a 7 minuti a piedi dal Ponte di Rialto, lo Spezier offre sistemazioni con cucina. La Basilica di San Marco si trova a 1 km dall'appartamento.
         
@@ -248,7 +248,7 @@ class ApartmentSeeder extends Seeder
                 "num_bed" => "4",
                 "num_bath" => "1",
                 "square_footage" => "70",
-                "preview" => "https://cf.bstatic.com/xdata/images/hotel/max1024x768/302412943.jpg?k=2db22764a3cc2d720f63380f773517ab984978719178d78963940dd83c88d604&o=&hp=1",
+                "preview" => "uploads/302412943.jpg",
                 "visible" => "",
                 "description" => "Immersa nell'Area Marina Protetta del Plemmirio, a 9 km da Siracusa e a 200 metri dalle spiagge del Plemmirio, la Villa Smeralda vanta giardini fioriti e appartamenti in stile classico.
         
@@ -266,7 +266,7 @@ class ApartmentSeeder extends Seeder
                 "num_bed" => "2",
                 "num_bath" => "1",
                 "square_footage" => "22",
-                "preview" => "https://cf.bstatic.com/xdata/images/hotel/max1024x768/278972363.jpg?k=04876bbcb3a4da95ecf2f4062907cc9af9df45a212a42c3c447f2ce470a2f3bb&o=&hp=1",
+                "preview" => "uploads/278972363.jpg",
                 "visible" => "",
                 "description" => "L'Residenza Florentia propone camere climatizzate dotate di arredi semplici, TV LCD satellitare e bagno privato e occupa una posizione centrale di Firenze, a 5 minuti a piedi dalla stazione ferroviaria Santa Maria Novella e dal Duomo.
         
@@ -280,7 +280,7 @@ class ApartmentSeeder extends Seeder
                 "num_bed" => "3",
                 "num_bath" => "1",
                 "square_footage" => "21",
-                "preview" => "https://cf.bstatic.com/xdata/images/hotel/max1280x900/239231461.jpg?k=88a7b0cad51a17f30bd11df074cc162ddf764d13baadb84ae6c5c3aaf0f03523&o=&hp=1",
+                "preview" => "uploads/239231461.jpg",
                 "visible" => "",
                 "description" => "Situata in una posizione ideale nel centro di Pisa, la Gialel Pisa Guest House offre camere climatizzate, un salone in comune e la connessione WiFi gratuita. La struttura dista circa 200 metri dall'Orto Botanico cittadino, e 300 metri da Piazza dei Cavalieri e dalla Normale di Pisa. La struttura dispone di sistemazioni familiari.
         
@@ -294,7 +294,7 @@ class ApartmentSeeder extends Seeder
                 "num_bed" => "3",
                 "num_bath" => "1",
                 "square_footage" => "30",
-                "preview" => "https://cf.bstatic.com/xdata/images/hotel/max1280x900/178235589.jpg?k=7b004a512d80eb539d046396ae4c516f8249084721cd302ffd0ef491c0d4cdb0&o=&hp=1",
+                "preview" => "uploads/178235589.jpg",
                 "visible" => "",
                 "description" => "Situato a Caserta, a 400 metri dalla Reggia di Caserta e a 1 km dalla Seconda Università degli Studi di Napoli, il B&B Tropicana Room offre sistemazioni climatizzate con vista sulla città e connessione WiFi gratuita.
         
@@ -312,7 +312,7 @@ class ApartmentSeeder extends Seeder
                 "num_bed" => "3",
                 "num_bath" => "1",
                 "square_footage" => "55",
-                "preview" => "https://cf.bstatic.com/xdata/images/hotel/max1024x768/69394094.jpg?k=beff5ff76097b0b2880296f454fb77b146152c0468da778a3366b5e0d67cf4d2&o=&hp=1",
+                "preview" => "uploads/69394094.jpg",
                 "visible" => "",
                 "description" => "Questa struttura si trova a 5 minuti a piedi dalla spiaggia. Situato a Polignano a Mare, a meno di 400 metri dalla Spiaggia di Lama Monachile e a meno di 1 km dal Lido Cala Paura, il G.H. Polignano a Mare offre sistemazioni con area salotto. A vostra disposizione inoltre la connessione WiFi gratuita e un parcheggio privato in loco.
         
