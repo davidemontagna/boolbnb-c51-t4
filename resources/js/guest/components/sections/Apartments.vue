@@ -7,7 +7,7 @@
                     <router-link :to="{name: 'single-apartment', params:{slug: apartment.slug}}" class="router-link">
                     <div class="ms_card">
                         <div class="ms_img mx-auto position-relative">
-                                <img :src="'./storage/'+apartment.preview" alt="">
+                                <img :src="'../storage/'+apartment.preview" alt="">
                                 <div class="ms_shadow position-absolute"></div>
                             <div class="ms_description position-absolute">
                                 <p class="ms_beds mx-2">Numero di letti: {{apartment.num_beds}}</p>

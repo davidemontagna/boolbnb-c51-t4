@@ -6,7 +6,7 @@
         <div>{{apartment.location.city}}</div>
     </div>
     <div class="apartment-img">
-        <img :src="'./storage/'+apartment.preview" alt="Missing Preview">
+        <img :src="'../storage/'+apartment.preview" alt="Missing Preview">
     </div>
     <section class="description-section">
         <div class="apartment-description">
