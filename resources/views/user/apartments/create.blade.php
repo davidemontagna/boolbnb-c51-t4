@@ -13,6 +13,10 @@
                     <form action="{{ route("user.apartments.store") }}" method="POST" enctype="multipart/form-data">
                         @csrf
             
+                        <div id="location-app">
+                            
+                        </div>
+
                         <div class="mb-3">
                           <label for="title" class="form-label">Titolo:</label>
                           <input type="text" class="form-control @error('title') is-invalid @enderror" value="{{old('title')}}" id="title" name="title" placeholder="Inserisci il titolo">   

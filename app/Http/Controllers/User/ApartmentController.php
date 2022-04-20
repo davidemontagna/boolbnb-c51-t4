@@ -65,14 +65,13 @@ class ApartmentController extends Controller
             $form_data['preview'] = $img_path;
         }
 
-        $slug = Str::slug($form_data['title']);
-
+        $tempSlug = Str::of($form_data['title'])->slug("-");
         $count = 1;
-        while(Apartment::where('slug', $slug)->first()){
-            $slug = Str::slug($form_data['title'])."-".$count;
+        while(Apartment::where('slug', $tempSlug)->first()){
+            $tempSlug = Str::of($form_data['title'])->slug("-").'-'.$count;
             $count ++;
         }
-        $form_data['slug'] = $slug;
+        $form_data['slug'] = $tempSlug;
 
         $new_apartment = new Apartment();
         $new_apartment->fill($form_data);
@@ -131,16 +130,16 @@ class ApartmentController extends Controller
         }
 
         if($apartment->title == $form_data['title']){
-            $slug = $apartment->slug;
+            $tempSlug = $apartment->slug;
         }else{
-            $slug = Str::slug($form_data['title']);
+            $tempSlug = Str::of($form_data['title'])->slug("-");
             $count = 1;
-            while(Apartment::where('slug', $slug)->where('id', '!=', $apartment->id)->first()){
-                $slug = Str::slug($form_data['title'])."-".$count;
+            while(Apartment::where('slug', $tempSlug)->where('id', '!=', $apartment->id)->first()){
+                $tempSlug = Str::of($form_data['title'])->slug("-").'-'.$count;
                 $count ++;
             }
         }
-        $form_data['slug'] = $slug;
+        $form_data['slug'] = $tempSlug;
 
         $apartment->update($form_data);
 
