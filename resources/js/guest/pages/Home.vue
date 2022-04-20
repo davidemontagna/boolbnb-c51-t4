@@ -1,10 +1,10 @@
 <template>
 <div>
-    <div class="ms_background">
-        <SponsoredApartment/>
-    </div>
+    <SponsoredApartment/>
 
-    <Apartments/>
+    <div class="ms_background">
+        <Apartments/>
+    </div>
 </div>
 </template>
 

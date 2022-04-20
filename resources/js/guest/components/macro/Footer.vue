@@ -3,9 +3,9 @@
     <div class="footer-container">
         <div class="footer-left">© 2022 BoolBnb, Inc.</div>
         <div class="footer-socials">
-            <div>F</div>
-            <div>I</div>
-            <div>T</div>
+            <div><i class="fa-brands fa-facebook-f"></i></div>
+            <div><i class="fa-brands fa-instagram"></i></div>
+            <div><i class="fa-brands fa-twitter"></i></div>
         </div>
     </div>
 </footer>
@@ -23,6 +23,9 @@ export default {
 footer{
     margin-top: 1rem;
     background: linear-gradient(0deg, rgba(144, 144, 144, 0.5) 0%, rgba(255,255,255,0) 60%);
+    position: relative;
+    bottom: 0;
+    left: 0;
 }
     .footer-container{
         display: flex;
@@ -36,8 +39,8 @@ footer{
             display: flex;
             justify-content: space-evenly;
             align-items: center;
-
             & > *{
+                font-size: 1.5rem;
                 padding: 0 .3rem;
             }
         }
