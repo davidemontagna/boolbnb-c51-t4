@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
-    <title>Test</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('title', 'Create')
+
+@section('content')
+<section>
     <div class="container">
         <div class="mb-4">
             <a href="{{ route('user.apartments.create') }}" class="btn btn-primary">Aggiungi appartamento</a>
@@ -34,7 +30,7 @@
                             @csrf
                             @method("DELETE")
                         
-                            <input class="btn btn-danger" type="submit" value="Delete">
+                            <input class="btn btn-danger" type="submit" value="Delete" onclick="return confirm('Vuoi eliminare questo appartamento?')">
                         </form>
                     </td>
                 </tr>
@@ -43,5 +39,5 @@
             </tbody>
         </table>
     </div>
-</body>
-</html>
+</section>
+@endsection

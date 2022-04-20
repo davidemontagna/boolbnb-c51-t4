@@ -41,7 +41,15 @@
                                 
                             </li>                                                   
                         </ul>                     
-            
+                        
+                        <div class="card-body"> 
+                            <a href="{{route("user.apartments.edit", $apartment->id)}}" ><button type="button" class="btn btn-success mr-2">Edit</button></a>                       
+                            <form action="{{route("user.apartments.destroy", $apartment->id)}}" method="POST" class="d-inline">
+                                @csrf
+                                @method("DELETE")                        
+                                <input class="btn btn-danger" type="submit" value="Delete" onclick="return confirm('Vuoi eliminare questo appartamento?')">
+                            </form>                        
+                        </div>
 
                         <div class="card-body">
                             <a href="{{route("user.apartments.index")}}" class="card-link"><button type="button" class="btn btn-info">Torna agli appartamenti</button></a>
