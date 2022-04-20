@@ -4,9 +4,10 @@
             <h2>Le nostre strutture</h2>
             <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 mx-auto">
                 <div class="col my-3" v-for="(apartment, index) in apartments" :key="index">
+                    <router-link :to="{name: 'single-apartment', params:{slug: apartment.slug}}" class="router-link">
                     <div class="ms_card">
                         <div class="ms_img mx-auto position-relative">
-                                <img :src="apartment.preview" alt="">
+                                <img :src="'./storage/'+apartment.preview" alt="">
                                 <div class="ms_shadow position-absolute"></div>
                             <div class="ms_description position-absolute">
                                 <p class="ms_beds mx-2">Numero di letti: {{apartment.num_beds}}</p>
@@ -21,9 +22,9 @@
                                 <p class="ms_bath">Bagni: {{apartment.num_bath}}</p>
                                 <p class="ms_square">Mq: {{apartment.square_footage}}</p>
                             </div>
-                            <!-- <router-link :to="{name: 'single-apartment', params:{slug: post.slug}}">Visualizza Appartamento</router-link> -->
                         </div>
                     </div>
+                    </router-link>
                 </div>
             </div>
         </div>
@@ -142,5 +143,10 @@ export default {
     .ms_img{
         height: 200px!important;
     }
+}
+
+.router-link{
+    color: black;
+    text-decoration: none;
 }
 </style>
