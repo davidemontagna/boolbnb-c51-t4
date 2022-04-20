@@ -5,7 +5,7 @@ Vue.use(VueRouter);
 
 import Home from "./pages/Home";
 import About from "./pages/About";
-import SinglePost from "./pages/SinglePost";
+import SingleApartment from "./pages/SingleApartment";
 import PageNotFound from "./pages/PageNotFound";
 
 const router = new VueRouter({
@@ -22,9 +22,9 @@ const router = new VueRouter({
             component: About
         },
         {
-            path: "/posts/:slug",
-            name: "single-post",
-            component: SinglePost
+            path: "/apartment/:slug",
+            name: "single-apartment",
+            component: SingleApartment
         },
         {
             path: "*",
