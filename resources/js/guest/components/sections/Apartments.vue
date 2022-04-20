@@ -2,7 +2,7 @@
     <section>
         <div class="container-fluid">
             <h2>Le nostre strutture</h2>
-            <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 mx-5">
+            <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 mx-auto">
                 <div class="col my-3" v-for="(apartment, index) in apartments" :key="index">
                     <div class="ms_card">
                         <div class="ms_img mx-auto position-relative">
@@ -13,7 +13,7 @@
                             </div>
                         </div>
                         <div class="ms_text">
-                            <h2 class="ms_title my-2">{{apartment.title}}</h2>
+                            <h2 class="ms_title mt-3">{{apartment.title}}</h2>
                             <h4 class="ms_city mt-3">{{apartment.location.city}}</h4>
                             <p class="ms_address">{{apartment.location.address}}</p>
                             <div class="ms_description2 d-flex justify-content-between mt-3">
@@ -60,7 +60,6 @@ export default {
 
 .container-fluid{
     .ms_card{
-        height: 100%;
         border: 1px solid $primary-grey;
         border-radius: 10px;
         padding: 1rem;
@@ -69,11 +68,11 @@ export default {
     }
 
     .ms_img{
-        margin-right: 10px;
+        width: 100%;
+        height: 20vw;
         overflow: hidden;
         border-radius: 10px;
-        width: 450px;
-        height: 300px;
+        object-fit: contain;
 
         &:hover{
                 cursor: pointer;
@@ -86,6 +85,8 @@ export default {
             transition: transform .2s;
             width: 100%;
             height: 100%;
+            display: block;
+            margin: auto;
             
 
             &:hover{
@@ -97,7 +98,7 @@ export default {
     .ms_shadow{
         border-radius: 0px 0px 10px 10px;
         width: 100%;
-        height: 50%;
+        height: 30%;
         opacity: 1;
         background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgb(0, 0, 0));
         
@@ -114,18 +115,32 @@ export default {
     cursor: default;
     }
 
-    .ms_title{
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis; 
+    .ms_text{
+        height: 45%;
 
-        &:hover{
-                cursor: pointer;
-            }
-    }
-    .ms_address, .ms_description2{
-        color: $primary-grey;
+        .ms_title{
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis; 
+    
+            &:hover{
+                    cursor: pointer;
+                }
+        }
+        .ms_address, .ms_description2{
+            color: $primary-grey;
+        }
     }
 }
 
+@media (max-width: 576px) {
+    .ms_img{
+        height: 200px!important;
+    }
+}
+@media (max-width: 768px){
+    .ms_img{
+        height: 200px!important;
+    }
+}
 </style>
