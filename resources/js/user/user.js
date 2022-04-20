@@ -1,15 +1,13 @@
-window.axios = require('axios');
-
-window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
+require('../bootstrap');
 
 window.Vue = require('vue');
 
-import App from './App.vue';
-import router from './router';
+import LocationApp from './LocationApp.vue';
+// import router from './router';
 
 
-const app = new Vue({
-    el: '#app-2',
-    render: h => h(App),
-    router
+const locationApp = new Vue({
+    el: '#location-app',
+    render: h => h(LocationApp),
+    // router
 });
