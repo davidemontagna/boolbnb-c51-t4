@@ -11,7 +11,7 @@
                         <div v-for="(apartment, index) in apartments" :key="index" class="items_container position-relative center" :class="immagineCorrente(index)">
                             <div class="ms_card">
                                 <div class="ms_img mx-auto position-relative">
-                                    <img :src="apartment.preview" alt="">
+                                    <img :src="'./storage/'+apartment.preview" alt="">
                                     <div class="ms_shadow position-absolute"></div>
                                     <div class="ms_sponsor position-absolute">I nostri preferiti</div>
                                     <div class="ms_description position-absolute">
@@ -33,7 +33,7 @@
                     </div>
                     <div @mouseover="timerStop" @mouseleave="timer" class="d-flex flex-column flex-wrap position-relative z-index-1">
                         <div v-for="(apartment, index) in apartments" :key="index" class="lateral">
-                            <img @click="thumb(index)" :src="apartment.preview" alt="">
+                            <img @click="thumb(index)" :src="'./storage/'+apartment.preview" alt="">
                         </div>
                         <div @click="indietro" class="prev position-absolute fixed-top text-center">&uarr;</div>
                         <div @click="avanti" class="next position-absolute fixed-bottom text-center">&darr;</div>
