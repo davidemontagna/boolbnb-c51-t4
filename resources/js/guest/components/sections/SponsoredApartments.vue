@@ -1,9 +1,13 @@
 <template>
     <section>
         <div class="container-fluid">
-            <h2>Le nostre strutture</h2>
-            <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 mx-5">
-                <div class="col my-3" v-for="(apartment, index) in apartments" :key="index">
+            <h2>In evidenza</h2>
+            <h4>Lasciati guidare dalla curiosità</h4>
+            *appartamenti sponsorizzati*
+
+            
+            <carousel class="ml-3" v-bind:per-page-custom=[[0,1],[576,2],[992,3]]>
+                <slide class="slide" v-for="(apartment, index) in apartments" :key="index">
                     <div class="ms_card">
                         <div class="ms_img mx-auto position-relative">
                                 <img :src="apartment.preview" alt="">
@@ -24,15 +28,20 @@
                             <!-- <router-link :to="{name: 'single-apartment', params:{slug: post.slug}}">Visualizza Appartamento</router-link> -->
                         </div>
                     </div>
-                </div>
-            </div>
+                </slide>
+            </carousel>
         </div>
     </section>
 </template>
 
 <script>
+import { Carousel, Slide } from 'vue-carousel';
 export default {
-    name: 'Apartments',
+        name: 'SponsoredApartment',
+    components: {
+        Carousel,
+        Slide
+    },
     data() {
         return {
             apartments: [],
@@ -52,7 +61,8 @@ export default {
     created() {
         this.getApartments();
     }
-}
+};
+
 </script>
 
 <style lang="scss" scoped>
@@ -60,7 +70,10 @@ export default {
 
 .container-fluid{
     .ms_card{
-        height: 100%;
+        width: 520px;
+        height: 510PX;
+        /* width: 95%;
+        height: 100%; */
         border: 1px solid $primary-grey;
         border-radius: 10px;
         padding: 1rem;
@@ -79,7 +92,7 @@ export default {
                 cursor: pointer;
             }
         &:hover .ms_shadow{
-                display: none;
+                display: none;  
             }
 
         img{
@@ -92,15 +105,23 @@ export default {
                 transform: scale(1.5);
             }
         }
+        
+        .ms_sponsor{
+            top: 10px;
+            left: 10px;
+            background-color: $primary-red;
+            color: $primary-light;
+            border-radius: 5px;
+            padding: 2px 5px;
+            cursor: default;
+        }
     }
 
     .ms_shadow{
         border-radius: 0px 0px 10px 10px;
         width: 100%;
         height: 50%;
-        opacity: 1;
-        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgb(0, 0, 0));
-        
+        background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgb(0, 0, 0))
     }
 
     .ms_description, .ms_shadow{
@@ -127,5 +148,4 @@ export default {
         color: $primary-grey;
     }
 }
-
 </style>

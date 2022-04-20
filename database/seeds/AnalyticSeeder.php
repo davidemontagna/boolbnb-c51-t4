@@ -27,7 +27,7 @@ class AnalyticSeeder extends Seeder
         for ($i=0; $i < 50; $i++) { 
             $newAnalytic = new Analytic();
             
-            $newAnalytic->apartment_id = rand(1, 21) ;
+            $newAnalytic->apartment_id = rand(1, 20) ;
             $newAnalytic->search = 1;
             $newAnalytic->view = 0;
             $newAnalytic->like = 0;
@@ -38,7 +38,7 @@ class AnalyticSeeder extends Seeder
         for ($i=0; $i < 50; $i++) { 
             $newAnalytic = new Analytic();
             
-            $newAnalytic->apartment_id = rand(1, 21) ;
+            $newAnalytic->apartment_id = rand(1, 20) ;
             $newAnalytic->search = 0;
             $newAnalytic->view = 1;
             $newAnalytic->like = 0;
@@ -49,7 +49,7 @@ class AnalyticSeeder extends Seeder
         for ($i=0; $i < 50; $i++) { 
             $newAnalytic = new Analytic();
             
-            $newAnalytic->apartment_id = rand(1, 21) ;
+            $newAnalytic->apartment_id = rand(1, 20) ;
             $newAnalytic->search = 0;
             $newAnalytic->view = 0;
             $newAnalytic->like = 1;
