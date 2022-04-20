@@ -22,7 +22,7 @@ const router = new VueRouter({
             component: About
         },
         {
-            path: "/apartment/:slug",
+            path: "/apartments/:slug",
             name: "single-apartment",
             component: SingleApartment
         },
