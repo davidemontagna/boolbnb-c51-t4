@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
 use App\Apartment;
+use Illuminate\Support\Str;
 
 class ApartmentSeeder extends Seeder
 {
@@ -326,6 +327,7 @@ class ApartmentSeeder extends Seeder
             
             $newApartment->user_id = 1 ;
             $newApartment->title = $apartments[$i]['title'];
+            $newApartment->slug = Str::of($newApartment->title)->slug("-");
             $newApartment->num_rooms = $apartments[$i]['num_rooms'];
             $newApartment->num_beds = $apartments[$i]['num_bed'];
             $newApartment->num_bath = $apartments[$i]['num_bath'];
@@ -343,6 +345,7 @@ class ApartmentSeeder extends Seeder
             
             $newApartment->user_id = 2 ;
             $newApartment->title = $apartments[$i + 10]['title'];
+            $newApartment->slug = Str::of($newApartment->title)->slug("-");
             $newApartment->num_rooms = $apartments[$i + 10]['num_rooms'];
             $newApartment->num_beds = $apartments[$i + 10]['num_bed'];
             $newApartment->num_bath = $apartments[$i + 10]['num_bath'];
