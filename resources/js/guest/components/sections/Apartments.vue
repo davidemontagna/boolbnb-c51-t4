@@ -82,8 +82,7 @@ export default {
         getServices: function() {
             axios.get(`/api/services`)
             .then(apiResponse => {
-                this.allServices = apiResponse.data;
-                console.log(this.allServices)
+                this.allServices = apiResponse.data;                
                 })
             .catch(() => {
                 console.log('error');
@@ -101,12 +100,22 @@ export default {
             });
         }, 
         search(){
+            
             if(this.CheckedServices == ""){
                 this.filteredApartments = this.apartments;
-            }else{
-                this.filteredApartments = this.apartments.filter((apartment) => {
-                    console.log(apartment.services)
-                return this.CheckedServices.includes(apartment.name)
+            }else{                
+                this.filteredApartments = this.apartments.filter((apartment) => {                                  
+                let count = 0;
+                let filterCheck = false;
+                apartment.services.forEach(service => {
+                    if(this.CheckedServices.includes(service.name)){
+                    count++;
+                    }                    
+                });
+                if(count == this.CheckedServices.length){
+                    filterCheck = true;
+                }
+                return filterCheck;              
                 })
             }           
         }
@@ -119,9 +128,8 @@ export default {
         
     },
     computed:{
-        setApartments(){
-            console.log(this.filteredApartments)
-            console.log(this.CheckedServices)
+        setApartments(){     
+            console.log(this.filteredApartments)       
             return this.filteredApartments;
         }
     }
