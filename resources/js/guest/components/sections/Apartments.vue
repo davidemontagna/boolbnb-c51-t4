@@ -9,7 +9,7 @@
                 <div class="services" @click="services()">Services &#x2193;</div>
                 <div class="multiselect-options hidden" id="multiselectOptions">
                     <div v-for="service in allServices" :key="service.id">
-                        <input type="checkbox" :name="service.name" :id="service.name" v-model="CheckedServices" class="checkboxServices">
+                        <input type="checkbox" :name="service.name" :id="service.name" v-model="CheckedServices" :value="service.name" class="checkboxServices">
                         <label for="checkbox1">{{service.name}}</label>
                         <i :class="service.icon"></i>
                     </div>
@@ -19,7 +19,7 @@
             <label for="beds" class="d-none d-sm-block">Beds:</label>
             <input type="number" name="beds" id="beds" value="1" min="1" max="10" class="d-none d-sm-block">
 
-            <input type="submit" value="Submit" id="submit" @click="Search()">
+            <input type="submit" value="Submit" id="submit" @click.prevent="search">
         </div>
     </div>
 
@@ -63,7 +63,8 @@ export default {
             allServices: [],
             searchInput: "",
             searchResponse: [],
-            CheckedServices: [],
+            CheckedServices: [], 
+            filteredApartments: []           
         }
     },
     methods: {
@@ -93,31 +94,35 @@ export default {
             axios.get('/api/apartments')
             .then(apiResponse => {
                 this.apartments = apiResponse.data;
+                this.search();
                 })
             .catch(() => {
                 console.log('error');
             });
         }, 
-        Search(){
-            let allCheckedServices = document.querySelectorAll(".checkboxServices");
-
-            allCheckedServices.forEach(element => {
-                if(element.checked == true){
-                    this.CheckedServices.push(element.name)
-                }
-            });
-            console.log(this.CheckedServices)
+        search(){
+            if(this.CheckedServices == ""){
+                this.filteredApartments = this.apartments;
+            }else{
+                this.filteredApartments = this.apartments.filter((apartment) => {
+                    console.log(apartment.services)
+                return this.CheckedServices.includes(apartment.name)
+                })
+            }           
         }
+        
     },
     created() {
+        
         this.getApartments();
         this.getServices();
+        
     },
     computed:{
         setApartments(){
-            return this.apartments.filter((apartments) => {
-                return apartments.name.includes(this.CheckedServices)
-            })
+            console.log(this.filteredApartments)
+            console.log(this.CheckedServices)
+            return this.filteredApartments;
         }
     }
 }
