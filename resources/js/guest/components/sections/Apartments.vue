@@ -1,9 +1,32 @@
 <template>
     <section>
+
+    <div class="main-searchbar d-flex justify-content-center align-item-center">
+        <div class="form d-flex justify-content-center align-items-center">
+            <input type="text" name="text" id="text" placeholder="search" v-model="searchInput">
+
+            <div class="multiselect justify-content-center align-items-center d-none d-sm-flex" id="multiselect">
+                <div class="services" @click="services()">Services &#x2193;</div>
+                <div class="multiselect-options hidden" id="multiselectOptions">
+                    <div v-for="service in allServices" :key="service.id">
+                        <input type="checkbox" :name="service.name" :id="service.name" v-model="CheckedServices" :value="service.name" class="checkboxServices">
+                        <label for="checkbox1">{{service.name}}</label>
+                        <i :class="service.icon"></i>
+                    </div>
+                </div>
+            </div>
+
+            <label for="beds" class="d-none d-sm-block">Beds:</label>
+            <input type="number" name="beds" id="beds" value="1" min="1" max="10" class="d-none d-sm-block">
+
+            <input type="submit" value="Submit" id="submit" @click.prevent="search">
+        </div>
+    </div>
+
         <div class="container-fluid">
             <h2>Le nostre strutture</h2>
             <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 mx-auto">
-                <div class="col my-3" v-for="(apartment, index) in apartments" :key="index">
+                <div class="col my-3" v-for="(apartment, index) in setApartments" :key="index">
                     <router-link :to="{name: 'single-apartment', params:{slug: apartment.slug}}" class="router-link">
                     <div class="ms_card">
                         <div class="ms_img mx-auto position-relative">
@@ -37,21 +60,70 @@ export default {
     data() {
         return {
             apartments: [],
+            allServices: [],
+            searchInput: "",
+            searchResponse: [],
+            CheckedServices: [], 
+            filteredApartments: []           
         }
     },
     methods: {
+        services(){
+            //funzione per far sparire ed apparire le opzioni checkbox
+
+            let multiselectOptions = document.getElementById("multiselectOptions");
+
+            if(multiselectOptions.classList.contains("hidden")){
+                multiselectOptions.classList.remove("hidden");
+            }else{
+                multiselectOptions.classList.add("hidden");
+            }
+        },
+        getServices: function() {
+            axios.get(`/api/services`)
+            .then(apiResponse => {
+                this.allServices = apiResponse.data;
+                console.log(this.allServices)
+                })
+            .catch(() => {
+                console.log('error');
+                this.$router.push({name: 'page-404'});
+            });
+        },
         getApartments: function() {
             axios.get('/api/apartments')
             .then(apiResponse => {
                 this.apartments = apiResponse.data;
+                this.search();
                 })
             .catch(() => {
                 console.log('error');
             });
-        }  
+        }, 
+        search(){
+            if(this.CheckedServices == ""){
+                this.filteredApartments = this.apartments;
+            }else{
+                this.filteredApartments = this.apartments.filter((apartment) => {
+                    console.log(apartment.services)
+                return this.CheckedServices.includes(apartment.name)
+                })
+            }           
+        }
+        
     },
     created() {
+        
         this.getApartments();
+        this.getServices();
+        
+    },
+    computed:{
+        setApartments(){
+            console.log(this.filteredApartments)
+            console.log(this.CheckedServices)
+            return this.filteredApartments;
+        }
     }
 }
 </script>
@@ -139,14 +211,82 @@ export default {
         height: 200px!important;
     }
 }
-@media (max-width: 768px){
-    .ms_img{
-        height: 200px!important;
-    }
-}
+
 
 .router-link{
     color: black;
     text-decoration: none;
+}
+
+// --- search 
+
+
+.main-searchbar{
+    width: 100%;
+    position: relative;
+    top: -130px;
+    transform: translateY(50%);
+
+    & .form{
+        background-color: $primary-red;
+        width: fit-content;
+        padding: 5px;
+        height: 80px;
+        border-radius: 3rem;
+        overflow: hidden;
+        
+        & > *{
+            border: none;
+            background-color: transparent;
+            color: white;
+        }
+
+        & input#text{ 
+            width: 100px;
+            padding-left: 10px;
+        }
+        & .multiselect{
+            width: 100px;
+            margin: 0 20px;
+        }
+        & input#beds{
+            width: 50px;
+            margin: 0 10px;
+        }
+        & input#submit{
+            background-color: white;
+            color: black;
+            height: 4rem;
+            width: 4rem;
+            border-radius:50% ;
+        }
+    }
+}
+
+label{
+    margin: 0;
+}
+::placeholder{
+    color: white;
+}
+
+.multiselect-options{
+    position: absolute;
+    bottom: -150px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    height: 150px;
+    width: 400px;
+    background-color: white;
+    border: 1px solid gray;
+    padding: 10px;
+    border-radius: 1rem;
+    color: $primary-red;
+}
+.hidden{
+    display: none;
 }
 </style>
