@@ -1,9 +1,15 @@
 <template>
 <div id="location-app">
-  <div class="mb-3">
-    <label for="address" class="form-label">Indirizzo:</label>
-    <input type="text" class="form-control" id="address" name="address" placeholder="Inserisci l'indirizzo da cercare" :value="addresQuery">
-    <button class="btn btn-primary" @click="getAddress">Cerca</button>     
+  <label for="address" class="form-label">Indirizzo:</label>
+  <div class="input-group mb-3">
+    <input type="text" class="form-control" id="address" name="address" @keydown.prevent.enter="getAddresses" placeholder="Inserisci l'indirizzo da cercare" v-model.trim="addressQuery">
+    <div class="input-group-append">
+      <button class="btn btn-outline-secondary" type="button" @click.prevent="getAddresses">Cerca</button>
+    </div>
+    <select class="form-control" v-model="selected">
+      <option value="">Seleziona un indirizzo</option>
+      <option :value="index" v-for="(address, index) in setOption" :key="index">{{address.address.freeformAddress + ', ' + address.address.country}}</option>
+    </select>
   </div>
 </div>
 </template>
@@ -14,27 +20,38 @@ export default {
   name: 'LocationApp',
   data() {
         return {
-            addressList: [],
-            addresQuery: '',
+            addressesList: [],
+            addressQuery: '',
+            oldQuery: '',
+            apiKey: 'LmxBM8DrAJjBA1BQPufxlrTGrO4c4Byh',
+            selected: '',
         }
     },
     methods: {
-        getAddress: function() {
-            axios.get('API DI TOM TOM',
-            {
-              params: {
-                api_key: 'KEY TOM TOM',
-                query: this.addresQuery,
-              }
-            })
-            .then(apiResponse => {
-                this.addressList = apiResponse.data;
-                })
-            .catch(() => {
-                console.log('error');
-            });
-        }  
+        getAddresses: function() {
+            if (this.addressQuery != '' && this.addressQuery != this.oldQuery) {
+              this.oldQuery = this.addressQuery;
+              const apiUrl = 'https://api.tomtom.com/search/2/search/' + this.addressQuery + '.json?minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=' + this.apiKey;
+              axios.get(apiUrl, {transformRequest: (data, headers) => {
+                  delete headers.common['X-Requested-With'];
+                } 
+              })
+              .then(apiResponse => {
+                  this.addressesList = apiResponse.data.results;
+                  // console.log(this.addressList);
+                  })
+              .catch(() => {
+                  console.log('error catch api');
+              });
+            }
+        },  
     },
+    computed: {
+      setOption() {
+        console.log(this.addressesList);
+        return this.addressesList;
+      }
+    }
 }
 </script>
 
