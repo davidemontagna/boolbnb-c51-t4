@@ -3,13 +3,13 @@
 
     <div class="main-searchbar d-flex justify-content-center align-item-center">
         <div class="form d-flex justify-content-center align-items-center">
-            <input type="text" name="text" id="text" placeholder="search">
+            <input type="text" name="text" id="text" placeholder="search" v-model="searchInput">
 
             <div class="multiselect justify-content-center align-items-center d-none d-sm-flex" id="multiselect">
                 <div class="services" @click="services()">Services &#x2193;</div>
                 <div class="multiselect-options hidden" id="multiselectOptions">
                     <div v-for="service in allServices" :key="service.id">
-                        <input type="checkbox" :name="service.name" :id="service.name">
+                        <input type="checkbox" :name="service.name" :id="service.name" v-model="CheckedServices" class="checkboxServices">
                         <label for="checkbox1">{{service.name}}</label>
                         <i :class="service.icon"></i>
                     </div>
@@ -19,14 +19,14 @@
             <label for="beds" class="d-none d-sm-block">Beds:</label>
             <input type="number" name="beds" id="beds" value="1" min="1" max="10" class="d-none d-sm-block">
 
-            <input type="submit" value="Submit" id="submit">
+            <input type="submit" value="Submit" id="submit" @click="Search()">
         </div>
     </div>
 
         <div class="container-fluid">
             <h2>Le nostre strutture</h2>
             <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 mx-auto">
-                <div class="col my-3" v-for="(apartment, index) in apartments" :key="index">
+                <div class="col my-3" v-for="(apartment, index) in setApartments" :key="index">
                     <router-link :to="{name: 'single-apartment', params:{slug: apartment.slug}}" class="router-link">
                     <div class="ms_card">
                         <div class="ms_img mx-auto position-relative">
@@ -61,6 +61,9 @@ export default {
         return {
             apartments: [],
             allServices: [],
+            searchInput: "",
+            searchResponse: [],
+            CheckedServices: [],
         }
     },
     methods: {
@@ -94,11 +97,28 @@ export default {
             .catch(() => {
                 console.log('error');
             });
-        }  
+        }, 
+        Search(){
+            let allCheckedServices = document.querySelectorAll(".checkboxServices");
+
+            allCheckedServices.forEach(element => {
+                if(element.checked == true){
+                    this.CheckedServices.push(element.name)
+                }
+            });
+            console.log(this.CheckedServices)
+        }
     },
     created() {
         this.getApartments();
         this.getServices();
+    },
+    computed:{
+        setApartments(){
+            return this.apartments.filter((apartments) => {
+                return apartments.name.includes(this.CheckedServices)
+            })
+        }
     }
 }
 </script>
