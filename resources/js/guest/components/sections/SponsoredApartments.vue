@@ -3,10 +3,8 @@
         <div class="container">
             <h2>In evidenza</h2>
             <h4>Lasciati guidare dalla curiosità</h4>
-            *appartamenti sponsorizzati*
-
-            <div class="ms_container position-relative" @mouseover="timerStop" @mouseleave="timer">
-                <div class="main position-absolute top-50 start-50 translate-middle d-flex">
+            <div class="ms_container position-relative">
+                <div class="main position-absolute top-50 start-50 translate-middle d-flex" @mouseover="timerStop" @mouseleave="timer">
                     <div class="text-end">
                         <div v-for="(apartment, index) in apartments" :key="index" class="items_container position-relative center" :class="immagineCorrente(index)">
                             <div class="ms_card">
@@ -125,7 +123,6 @@ export default {
         },1000);
         },
         timerStop: function(){
-            console.log("ciao");
             clearInterval(this.tempo);
         }
     },

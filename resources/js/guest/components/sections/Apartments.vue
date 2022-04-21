@@ -224,7 +224,7 @@ export default {
 .main-searchbar{
     width: 100%;
     position: relative;
-    top: -130px;
+    top: -730px;
     transform: translateY(50%);
 
     & .form{
