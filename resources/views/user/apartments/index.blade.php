@@ -5,7 +5,7 @@
 @section('content')
 <section>
     <div class="container">
-        <div class="mb-4">
+        <div class="my-4">
             <a href="{{ route('user.apartments.create') }}" class="btn btn-primary">Aggiungi appartamento</a>
         </div>
         <table class="table">

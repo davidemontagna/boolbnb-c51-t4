@@ -44,6 +44,7 @@
     }
 }
 
+/* home.blade.php */
 .container-profile{
     .profile{
         background-color: $primary-lightgrey;
@@ -55,6 +56,12 @@
         border: none;
         border-radius: 2rem;
         color: white;
+
+        &:hover, &:active{
+            padding: 0 1.1rem;
+            filter: brightness(1.2);
+            box-shadow: 0px 2px 6px 1px rgba(0,0,0,.3);
+        }
     
         a{
             line-height: 30px;
@@ -67,32 +74,61 @@
         }
     }
     
-    .text{
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
+    .dashboard{
+        a{
+            color: $primary-grey;
+        }
     
-}
-
-.dashboard{
-    a{
-        color: $primary-grey;
-    }
-
-    i{
-        color: $secondary-3;
-        
-    }
-    .icon{
         i{
-            top: 0;
-            left: 0;
-            transform: translate(-50% -50%);
+            color: $secondary-3;
+            
+        }
+    
+        .icon{
+            i{
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+        button{
+            &:hover, &:active{
+                box-shadow: 0px 2px 6px 1px rgba(0,0,0,.3);
+            }
+    
+            a{
+                color: $primary-dark;
+                text-decoration: none;
+            }
+        }
+    }
+    @media (min-width: 307px) and (max-width: 413px) {
+        .button-2{
+            margin-top: 0px!important;
+        }
+    }
+    @media (min-width: 396px) {
+        .button{
+            margin-top: 0!important;
+        }
+        .button-2{
+            margin-top: 8px!important;
+        }
+    }
+    @media (min-width: 580px) {
+        .button-2{
+            margin-top: 0!important;
+        }
+    }
+    @media (min-width: 913px) {
+        .button-3{
+            margin-top: 0!important;
         }
     }
 }
+
+
+
 
 
 
