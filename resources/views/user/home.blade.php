@@ -8,72 +8,85 @@
         </div>
         <a href="">
             <button class="announcement-btn text-center mb-3">
-                <i class="fas fa-plus"></i> Pubblica annuncio  
+                <a href="{{ route('user.apartments.create') }}">
+                    <i class="fas fa-plus"></i> 
+                    Pubblica annuncio
+                </a>
             </button>
         </a>
     </div>
-    <div class="dashboard row mx-3 ">
-        <div class="col-4 mx-2 p-3 border rounded">
-            <div class="my-3">
-                <a href="">
-                    <i class="fas fa-comment mx-3"></i>
-                    Tutti i messaggi
-                </a>
-            </div>
-            <div class="my-3">
-                <a href="">
-                    <i class="fas fa-edit mx-3"></i>
-                    Gestisci gli annunci
-                </a>
+    <div class="dashboard row m-4">
+        <div class="col-6 mr-2 p-2 border rounded">
+            <div class="row row-cols-1">
+                <div class="col d-flex flex-column flex-sm-row text-center text-sm-left my-3">
+                    <span class="dashboard-icon mx-3">
+                        <i class="fas fa-comment"></i>
+                    </span>
+                    <a href="{{route("user.messages.index")}}" class="">
+                        Tutti i messaggi
+                    </a>
+                </div>
+                {{-- <div class="col d-flex flex-column flex-sm-row text-center text-sm-left my-3">
+                    <span class="mx-3">
+                        <i class="fas fa-edit"></i>
+                    </span>
+                    <a href="">
+                        Gestisci gli annunci
+                    </a>
+                </div> --}}
             </div>
         </div>
-        <div class="col">
+        <div class="button col mt-2">
             <div class="row">
                 <button class="col mr-2 border rounded">
-                    <div class="row">
-                        <div class="col">
-                            {{-- numero appartamenti totali --}}
-                            10
-                            {{-- {{$apartments->user_id}} --}}
-                            <div>
-                                Annunci
+                    <a href="{{route("user.apartments.index")}}">
+                        <div class="row p-3">
+                            <div class="col text-left">
+                                {{-- numero appartamenti totali --}}
+                                10
+                                {{-- {{$apartments->user_id}} --}}
+                                <div>
+                                    Annunci
+                                </div>
+                            </div>
+                            <div class="icon col position-relative m-3">
+                                <i class="fas fa-home position-absolute"></i>
                             </div>
                         </div>
-                        <div class="icon col position-relative">
-                            <i class="fas fa-home position-absolute"></i>
-                        </div>
-                    </div>
+                    </a>
                 </button>
-                <div class="col mr-2 border rounded">
-                    <div>
-                        <div>
-                            {{-- numero messaggi non letti --}}
-                            1
-                            {{-- {{apartment.user_id}} --}}
+                <button class="button-2 col mt-2 mr-2 border rounded">
+                    <a href="">
+                        <div class="row p-3">
+                            <div class="col text-left">
+                                {{-- numero messaggi non letti --}}
+                                1
+                                {{-- {{apartment.user_id}} --}}
+                                <div>
+                                    Messaggi non letti
+                                </div>
+                            </div>
+                            <div class="icon col position-relative m-3">
+                                <i class="fas fa-envelope position-absolute"></i>
+                            </div>
                         </div>
-                        <div>
-                            Messaggi non letti
-                        </div>
-                    </div>
-                    <div>
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                </div>
-                <div class="col mr-2 border rounded">
-                    <div>
-                        <div>
+                    </a>
+                </button>
+                <button class="button-3 col mt-2 mr-2 border rounded">
+                    <div class="row p-3">
+                        <div class="col text-left">
                             {{-- numero messaggi non letti --}}
                             100
                             {{-- {{analytics.view}} --}}
+                            <div>
+                                Visualizzazioni Totali
+                            </div>
                         </div>
-                        <div>
-                            Visualizzazioni Totali
+                        <div class="icon col position-relative m-3">
+                            <i class="fas fa-eye position-absolute"></i>
                         </div>
                     </div>
-                    <div>
-                        <i class="fas fa-eye"></i>
-                    </div>
-                </div>
+                </button>
             </div>
         </div>
     </div>
@@ -89,7 +102,7 @@
             {{ __('You are logged in!') }}
         </div> --}}
         
-    <a href="{{route("user.apartments.index")}}"><button type="button" class="btn btn-primary">Visualizza gli appartamenti</button></a>
-    <a href="{{route("user.messages.index")}}"><button type="button" class="btn btn-primary">Visualizza i messaggi</button></a>
+    {{-- <a href="{{route("user.apartments.index")}}"><button type="button" class="btn btn-primary">Visualizza gli appartamenti</button></a>
+    <a href="{{route("user.messages.index")}}"><button type="button" class="btn btn-primary">Visualizza i messaggi</button></a> --}}
 </div>
 @endsection
