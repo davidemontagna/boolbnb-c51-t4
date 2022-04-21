@@ -139,11 +139,7 @@ export default {
         height: 200px!important;
     }
 }
-@media (max-width: 768px){
-    .ms_img{
-        height: 200px!important;
-    }
-}
+
 
 .router-link{
     color: black;
