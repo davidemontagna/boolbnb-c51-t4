@@ -2,8 +2,8 @@
 <div id="location-app">
   <div class="mb-3">
     <label for="address" class="form-label">Indirizzo:</label>
-    <input type="text" class="form-control" id="address" name="address" placeholder="Inserisci l'indirizzo da cercare" :value="addresQuery">
-    <button class="btn btn-primary" @click="getAddress">Cerca</button>     
+    <input type="text" class="form-control" id="address" name="address" placeholder="Inserisci l'indirizzo da cercare" v-model="addressQuery">
+    <button class="btn btn-primary" @click.prevent="getAddresses">Cerca</button>     
   </div>
 </div>
 </template>
@@ -14,24 +14,24 @@ export default {
   name: 'LocationApp',
   data() {
         return {
-            addressList: [],
-            addresQuery: '',
+            addressesList: [],
+            addressQuery: '',
+            apiKey: 'LmxBM8DrAJjBA1BQPufxlrTGrO4c4Byh',
         }
     },
     methods: {
-        getAddress: function() {
-            axios.get('API DI TOM TOM',
-            {
-              params: {
-                api_key: 'KEY TOM TOM',
-                query: this.addresQuery,
-              }
+        getAddresses: function() {
+            const apiUrl = 'https://api.tomtom.com/search/2/search/' + this.addressQuery + '.json?minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=' + this.apiKey;
+            axios.get(apiUrl, {transformRequest: (data, headers) => {
+                delete headers.common['X-Requested-With'];
+              } 
             })
             .then(apiResponse => {
-                this.addressList = apiResponse.data;
+                this.addressList = apiResponse.data.results;
+                console.log(this.addressList);
                 })
             .catch(() => {
-                console.log('error');
+                console.log('error catch api');
             });
         }  
     },
