@@ -12,37 +12,65 @@
             </button>
         </a>
     </div>
-    <div class="row mx-3">
-        <div class="dashboard col-4 mx-2 border rounded">
-            <div class="message ">
-                <i class="fas fa-comment"></i>
-                Messaggi
+    <div class="dashboard row mx-3 ">
+        <div class="col-4 mx-2 p-3 border rounded">
+            <div class="my-3">
+                <a href="">
+                    <i class="fas fa-comment mx-3"></i>
+                    Tutti i messaggi
+                </a>
             </div>
-            <div class="">
-                <i class="fas fa-edit"></i>
-                Gestisci gli annunci
+            <div class="my-3">
+                <a href="">
+                    <i class="fas fa-edit mx-3"></i>
+                    Gestisci gli annunci
+                </a>
             </div>
         </div>
         <div class="col">
             <div class="row">
-                <div class="col mr-2 border rounded">
-                    <div>
-                        {{-- {{$apartments->user_id}} --}}
-                        Annunci
-                        <i class="fas fa-home"></i>
+                <button class="col mr-2 border rounded">
+                    <div class="row">
+                        <div class="col">
+                            {{-- numero appartamenti totali --}}
+                            10
+                            {{-- {{$apartments->user_id}} --}}
+                            <div>
+                                Annunci
+                            </div>
+                        </div>
+                        <div class="icon col position-relative">
+                            <i class="fas fa-home position-absolute"></i>
+                        </div>
                     </div>
-                </div>
+                </button>
                 <div class="col mr-2 border rounded">
                     <div>
-                        {{-- {{apartment.user_id}} --}}
-                        Messaggi
+                        <div>
+                            {{-- numero messaggi non letti --}}
+                            1
+                            {{-- {{apartment.user_id}} --}}
+                        </div>
+                        <div>
+                            Messaggi non letti
+                        </div>
+                    </div>
+                    <div>
                         <i class="fas fa-envelope"></i>
                     </div>
                 </div>
                 <div class="col mr-2 border rounded">
                     <div>
-                        {{-- {{analytics.view}} --}}
-                        Visualizzazioni Totali
+                        <div>
+                            {{-- numero messaggi non letti --}}
+                            100
+                            {{-- {{analytics.view}} --}}
+                        </div>
+                        <div>
+                            Visualizzazioni Totali
+                        </div>
+                    </div>
+                    <div>
                         <i class="fas fa-eye"></i>
                     </div>
                 </div>

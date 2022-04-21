@@ -76,6 +76,24 @@
     
 }
 
+.dashboard{
+    a{
+        color: $primary-grey;
+    }
+
+    i{
+        color: $secondary-3;
+        
+    }
+    .icon{
+        i{
+            top: 0;
+            left: 0;
+            transform: translate(-50% -50%);
+        }
+    }
+}
+
 
 
 
