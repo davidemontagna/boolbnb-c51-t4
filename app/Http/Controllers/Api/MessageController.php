@@ -71,7 +71,7 @@ class MessageController extends Controller
             'sender_name' => 'nullable|string|max:50',
             'content' => 'string|required',
             'sender_email' => 'string|max:50|required',
-            'apartment_id' => 'exists:apartment,id',
+            'apartment_id' => 'exists:apartments,id',
         ]);
 
         if ($validator->fails()) {
