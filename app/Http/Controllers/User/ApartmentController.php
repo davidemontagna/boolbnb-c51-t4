@@ -56,6 +56,7 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request['api_address_id']);
         $request->validate($this->validation);
         $request['user_id'] = auth()->id();
         $form_data = $request->all();

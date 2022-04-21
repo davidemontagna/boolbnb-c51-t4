@@ -6,7 +6,7 @@
     <div class="input-group-append">
       <button class="btn btn-outline-secondary" type="button" @click.prevent="getAddresses">Cerca</button>
     </div>
-    <select class="form-control" v-model="selected">
+    <select class="form-control" id="api_address_id" name="api_address_id" v-model="selected">
       <option value="">Seleziona un indirizzo</option>
       <option :value="index" v-for="(address, index) in setOption" :key="index">{{address.address.freeformAddress + ', ' + address.address.country}}</option>
     </select>
