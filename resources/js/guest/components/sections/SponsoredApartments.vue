@@ -1,12 +1,10 @@
 <template>
     <section>
-        <div class="container-fluid">
+        <div class="container">
             <h2>In evidenza</h2>
             <h4>Lasciati guidare dalla curiosità</h4>
-            *appartamenti sponsorizzati*
-
             <div class="ms_container position-relative">
-                <div class="main position-absolute top-50 start-50 translate-middle d-flex">
+                <div class="main position-absolute top-50 start-50 translate-middle d-flex" @mouseover="timerStop" @mouseleave="timer">
                     <div class="text-end">
                         <div v-for="(apartment, index) in apartments" :key="index" class="items_container position-relative center" :class="immagineCorrente(index)">
                             <div class="ms_card">
@@ -31,13 +29,11 @@
                             </div>
                         </div>
                     </div>
-                    <div @mouseover="timerStop" @mouseleave="timer" class="d-flex flex-column flex-wrap position-relative z-index-1">
-                        <div v-for="(apartment, index) in apartments" :key="index" class="lateral">
-                            <img @click="thumb(index)" :src="'../storage/'+apartment.preview" alt="">
+                        <div class="arrows">
+                            <div @click="indietro" class="prev  text-center"><i class="fa-solid fa-chevron-left"></i></div>
+                            <div @click="avanti" class="next text-center"><i class="fa-solid fa-chevron-right"></i></div>
                         </div>
-                        <div @click="indietro" class="prev position-absolute fixed-top text-center">&uarr;</div>
-                        <div @click="avanti" class="next position-absolute fixed-bottom text-center">&darr;</div>
-                    </div>
+
                 </div>
             </div>
 
@@ -127,7 +123,6 @@ export default {
         },1000);
         },
         timerStop: function(){
-            console.log("ciao");
             clearInterval(this.tempo);
         }
     },
@@ -142,10 +137,8 @@ export default {
 <style lang="scss" scoped>
 @import '../../../../sass/variables.scss';
 
-.container-fluid{
+.container{
     .ms_card{
-        /* width: 520px;
-        height: 510PX; */
         max-width: 500px;
         border: 1px solid $primary-grey;
         border-radius: 10px;
@@ -228,77 +221,33 @@ export default {
 
 
 .ms_container{
-    width:100vw;
-    height: 1000px;
-}
-
-.main{
-    width: 1000px;
     height: 500px;
-}
-
-.item{
-    height: 500px;
-    display: none;
-}
-
-.center img{
-    width: 100%;
-    height: 100%;
-}
-
-.lateral{
-    width: 64px;
-    height: 50px;
-}
-
-.lateral img{
-    width: 100%;
-    height: 100%;
-}
-
-.item.active{
-    display: block;
-}
-
-.prev, .next{
-    line-height: 40px;
-    width: 40px;
-    height: 40px;
-    font-size: 30px;
-    font-weight: bold;
-    background-color: rgba(240, 240, 240, 0.5);
-    border-radius: 50%;
-    cursor: pointer;
-    padding: 0 4px;
-    left: 50%;
-    transform: translate(-50%);
-    z-index: 1;
-}
-
-.descrizione{
-    color: white;
-    position: absolute;
-    bottom: 0;
-    right: 20px;
-}
-
-
-.item2{
-    height: calc(100% / 5);
-    width: 100%;
-}
-
-.item2{
-    opacity: 0.5;
-}
-
-.opacity{
-    opacity: 1;
-    border: 2px solid blue;
+    display: flex;
+    justify-content: center;
 }
 
 .none{
     display: none;
+}
+
+.prev, .next{
+    
+}
+.arrows{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 4rem;
+    position: absolute;
+    top: 50%;
+}
+.main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+    position: relative;
 }
 </style>

@@ -17,7 +17,11 @@
             </div>
 
             <label for="beds" class="d-none d-sm-block">Beds:</label>
-            <input type="number" name="beds" id="beds" value="1" min="1" max="10" class="d-none d-sm-block">
+            <input type="number" name="beds" id="beds" v-model="inputBeds"  min="1" max="10" class="d-none d-sm-block">
+            <label for="rooms" class="d-none d-sm-block">Rooms:</label>
+            <input type="number" name="rooms" id="rooms" v-model="inputRooms"  min="1" max="10" class="d-none d-sm-block">
+            <label for="bath" class="d-none d-sm-block">Baths:</label>
+            <input type="number" name="bath" id="bath" v-model="inputBath"  min="1" max="10" class="d-none d-sm-block">
 
             <input type="submit" value="Submit" id="submit" @click.prevent="search">
         </div>
@@ -64,7 +68,10 @@ export default {
             searchInput: "",
             searchResponse: [],
             CheckedServices: [], 
-            filteredApartments: []           
+            filteredApartments: [],
+            inputBeds: 1,
+            inputRooms: 1,           
+            inputBath: 1,           
         }
     },
     methods: {
@@ -82,8 +89,7 @@ export default {
         getServices: function() {
             axios.get(`/api/services`)
             .then(apiResponse => {
-                this.allServices = apiResponse.data;
-                console.log(this.allServices)
+                this.allServices = apiResponse.data;                
                 })
             .catch(() => {
                 console.log('error');
@@ -101,12 +107,22 @@ export default {
             });
         }, 
         search(){
-            if(this.CheckedServices == ""){
+            
+            if(this.CheckedServices == "" && this.inputBeds == 1 && this.inputRooms == 1 && this.inputBath == 1){
                 this.filteredApartments = this.apartments;
-            }else{
-                this.filteredApartments = this.apartments.filter((apartment) => {
-                    console.log(apartment.services)
-                return this.CheckedServices.includes(apartment.name)
+            }else{                
+                this.filteredApartments = this.apartments.filter((apartment) => {                                  
+                let count = 0;
+                let filterCheck = false;
+                apartment.services.forEach(service => {
+                    if(this.CheckedServices.includes(service.name)){
+                    count++;
+                    }                    
+                });
+                if(count == this.CheckedServices.length && this.inputBeds <= apartment.num_beds && this.inputRooms <= apartment.num_rooms && this.inputBath <= apartment.num_bath){
+                    filterCheck = true;
+                }
+                return filterCheck;              
                 })
             }           
         }
@@ -119,9 +135,8 @@ export default {
         
     },
     computed:{
-        setApartments(){
-            console.log(this.filteredApartments)
-            console.log(this.CheckedServices)
+        setApartments(){     
+            console.log(this.filteredApartments)       
             return this.filteredApartments;
         }
     }
@@ -224,7 +239,7 @@ export default {
 .main-searchbar{
     width: 100%;
     position: relative;
-    top: -130px;
+    top: -730px;
     transform: translateY(50%);
 
     & .form{

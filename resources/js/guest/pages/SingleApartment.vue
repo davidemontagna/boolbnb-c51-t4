@@ -59,11 +59,23 @@
     </div>
     <section>
         <h3>Contatta l'Host</h3>
-        <div class="form">
-            <input type="text" placeholder="Inserisci il tuo nome">
-            <input type="email" placeholder="Inserisci il tuo indirizzo mail">
-            <textarea name="" id="" cols="30" rows="10" placeholder="Inserisci i dettagli"></textarea>
-            <input type="submit" class="button">
+        <form @submit.prevent="sendMessage()" class="form">
+            <input type="text" id="sender_name" placeholder="Inserisci il tuo nome" v-model="formData.sender_name">
+            <input type="email" id="sender_email" placeholder="Inserisci il tuo indirizzo mail" v-model="formData.sender_email">
+            <textarea id="content" cols="30" rows="10" placeholder="Inserisci i dettagli" v-model="formData.content"></textarea>
+
+            <div v-if="formErrors.content">
+                <ul>
+                    <li v-for="(error, index) in formErrors.content" :key="index">
+                        {{error}}
+                    </li>
+                </ul>
+            </div>
+
+            <button type="submit" class="button">Invia messaggio</button>
+        </form>
+        <div v-show="commentSent">
+            Messaggio inviato! Grazie!
         </div>
     </section>
 </div>
@@ -76,6 +88,14 @@ export default {
     data() {
         return {
             apartment: {},
+            formData: {
+                    sender_name: "",
+                    content: "",
+                    sender_email: "",
+                    apartment_id: null,
+                },
+                commentSent: false,
+                formErrors: {}
         }
     },
     methods: {
@@ -83,6 +103,7 @@ export default {
             axios.get(`/api/apartments/${this.$route.params.slug}`)
             .then(apiResponse => {
                 this.apartment = apiResponse.data;
+                this.formData.apartment_id = this.apartment.id;
                 console.log(this.apartment)
                 })
             .catch(() => {
@@ -92,12 +113,29 @@ export default {
         },
         descriptionFunc: function(){
             let aDescription = document.querySelector(".apartment-description");
+            let button = document.querySelector(".a-d-button");
 
             if(aDescription.classList.contains("show")){
                 aDescription.classList.remove("show")
+                button.classList.remove("active")
             }else{
                 aDescription.classList.add("show")
+                button.classList.add("active")
             }
+        },
+        sendMessage() {
+            axios
+            .post(`/api/messages/`, this.formData)
+            .then((response)=> {
+                this.formData.sender_name = "";
+                this.formData.sender_email = "";
+                this.formData.content = "";
+                this.commentSent = true; 
+            })
+            .catch( (error) => {
+                this.formErrors = error.response.data.errors;
+                console.log(error.response);
+            })
         }
     },
     created() {
@@ -142,13 +180,18 @@ export default {
 .description-section{
     background-color: $primary-light;
     display: flex;
-    align-items: flex-start;
+    align-items: flex-end;
+
+    .fa-chevron-up{
+        display: none;
+    }
     .apartment-description{
         position: relative;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         width: 90%;
+
 
         &::after{
             content: "";
@@ -183,6 +226,9 @@ export default {
         }
         .a-d-button:hover, .a-d-button:active{
             opacity: .6;
+        }
+        .a-d-button.active{
+            transform: rotate(180deg);
         }
     }
 }
