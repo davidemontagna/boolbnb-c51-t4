@@ -17,7 +17,11 @@
             </div>
 
             <label for="beds" class="d-none d-sm-block">Beds:</label>
-            <input type="number" name="beds" id="beds" value="1" min="1" max="10" class="d-none d-sm-block">
+            <input type="number" name="beds" id="beds" v-model="inputBeds"  min="1" max="10" class="d-none d-sm-block">
+            <label for="rooms" class="d-none d-sm-block">Rooms:</label>
+            <input type="number" name="rooms" id="rooms" v-model="inputRooms"  min="1" max="10" class="d-none d-sm-block">
+            <label for="bath" class="d-none d-sm-block">Baths:</label>
+            <input type="number" name="bath" id="bath" v-model="inputBath"  min="1" max="10" class="d-none d-sm-block">
 
             <input type="submit" value="Submit" id="submit" @click.prevent="search">
         </div>
@@ -64,7 +68,10 @@ export default {
             searchInput: "",
             searchResponse: [],
             CheckedServices: [], 
-            filteredApartments: []           
+            filteredApartments: [],
+            inputBeds: 1,
+            inputRooms: 1,           
+            inputBath: 1,           
         }
     },
     methods: {
@@ -101,7 +108,7 @@ export default {
         }, 
         search(){
             
-            if(this.CheckedServices == ""){
+            if(this.CheckedServices == "" && this.inputBeds == 1 && this.inputRooms == 1 && this.inputBath == 1){
                 this.filteredApartments = this.apartments;
             }else{                
                 this.filteredApartments = this.apartments.filter((apartment) => {                                  
@@ -112,7 +119,7 @@ export default {
                     count++;
                     }                    
                 });
-                if(count == this.CheckedServices.length){
+                if(count == this.CheckedServices.length && this.inputBeds <= apartment.num_beds && this.inputRooms <= apartment.num_rooms && this.inputBath <= apartment.num_bath){
                     filterCheck = true;
                 }
                 return filterCheck;              
