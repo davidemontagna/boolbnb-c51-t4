@@ -39,17 +39,6 @@ export default {
         }
     },
     methods: {
-        services(){
-            //funzione per far sparire ed apparire le opzioni checkbox
-
-            let multiselectOptions = document.getElementById("multiselectOptions");
-
-            if(multiselectOptions.classList.contains("hidden")){
-                multiselectOptions.classList.remove("hidden");
-            }else{
-                multiselectOptions.classList.add("hidden");
-            }
-        },
         onScroll(e) {
             let headerScr = document.querySelector(".header-scrolled-bg");
             if(window.scrollY > 350){
