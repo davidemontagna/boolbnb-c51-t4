@@ -1,7 +1,5 @@
 <template>
 <header>
-    <div class="wrapper">
-    </div>
     <nav class="fixed-top header-scrolled-bg">
         <div class="container">
             <div class="row ">
@@ -70,7 +68,6 @@ header{
 }
 .wrapper{
     position: absolute;
-    width: 100%;
     height: 100%;
     background-color: rgba(#fff,.3);
 }
