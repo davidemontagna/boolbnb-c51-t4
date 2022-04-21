@@ -14,8 +14,11 @@
                         @csrf
             
                         <div id="location-app">
-                            
+                                
                         </div>
+                        @error('address_obj')
+                              <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror 
 
                         <div class="mb-3">
                           <label for="title" class="form-label">Titolo:</label>
