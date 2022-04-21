@@ -8,13 +8,10 @@
             <div class="multiselect justify-content-center align-items-center d-none d-sm-flex" id="multiselect">
                 <div class="services" @click="services()">Services &#x2193;</div>
                 <div class="multiselect-options hidden" id="multiselectOptions">
-                    <div>
-                        <input type="checkbox" name="checkbox1" id="">
-                        <label for="checkbox1">1</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" name="checkbox2" id="">
-                        <label for="checkbox2">2</label>
+                    <div v-for="service in allServices" :key="service.id">
+                        <input type="checkbox" :name="service.name" :id="service.name">
+                        <label for="checkbox1">{{service.name}}</label>
+                        <i :class="service.icon"></i>
                     </div>
                 </div>
             </div>
@@ -63,6 +60,7 @@ export default {
     data() {
         return {
             apartments: [],
+            allServices: [],
         }
     },
     methods: {
@@ -77,6 +75,17 @@ export default {
                 multiselectOptions.classList.add("hidden");
             }
         },
+        getServices: function() {
+            axios.get(`/api/services`)
+            .then(apiResponse => {
+                this.allServices = apiResponse.data;
+                console.log(this.allServices)
+                })
+            .catch(() => {
+                console.log('error');
+                this.$router.push({name: 'page-404'});
+            });
+        },
         getApartments: function() {
             axios.get('/api/apartments')
             .then(apiResponse => {
@@ -89,6 +98,7 @@ export default {
     },
     created() {
         this.getApartments();
+        this.getServices();
     }
 }
 </script>
@@ -237,12 +247,14 @@ label{
 
 .multiselect-options{
     position: absolute;
-    bottom: -50px;
+    bottom: -150px;
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
-    width: 100px;
+    height: 150px;
+    width: 400px;
     background-color: white;
     border: 1px solid gray;
     padding: 10px;
