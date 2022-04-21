@@ -92,11 +92,14 @@ export default {
         },
         descriptionFunc: function(){
             let aDescription = document.querySelector(".apartment-description");
+            let button = document.querySelector(".a-d-button");
 
             if(aDescription.classList.contains("show")){
                 aDescription.classList.remove("show")
+                button.classList.remove("active")
             }else{
                 aDescription.classList.add("show")
+                button.classList.add("active")
             }
         }
     },
@@ -142,13 +145,18 @@ export default {
 .description-section{
     background-color: $primary-light;
     display: flex;
-    align-items: flex-start;
+    align-items: flex-end;
+
+    .fa-chevron-up{
+        display: none;
+    }
     .apartment-description{
         position: relative;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
         width: 90%;
+
 
         &::after{
             content: "";
@@ -183,6 +191,9 @@ export default {
         }
         .a-d-button:hover, .a-d-button:active{
             opacity: .6;
+        }
+        .a-d-button.active{
+            transform: rotate(180deg);
         }
     }
 }
