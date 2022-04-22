@@ -4,11 +4,10 @@
 
 @section('content')    
     
-    <section>
+    <section class="ms_container_create_apartment">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-12">
-                    
+                <div class="col-md-12 mt-3">
                     <h3>Inserisci un nuovo appartamento</h3>
                     <form action="{{ route("user.apartments.store") }}" method="POST" enctype="multipart/form-data">
                         @csrf
@@ -17,15 +16,15 @@
                                 
                         </div>
                         @error('address_obj')
-                              <div class="alert alert-danger">{{ $message }}</div>
+                            <div class="alert alert-danger">{{ $message }}</div>
                         @enderror 
 
                         <div class="mb-3">
-                          <label for="title" class="form-label">Titolo:</label>
-                          <input type="text" class="form-control @error('title') is-invalid @enderror" value="{{old('title')}}" id="title" name="title" placeholder="Inserisci il titolo">   
-                          @error('title')
-                              <div class="alert alert-danger">{{ $message }}</div>
-                          @enderror         
+                            <label for="title" class="form-label">Titolo:</label>
+                            <input type="text" class="form-control @error('title') is-invalid @enderror" value="{{old('title')}}" id="title" name="title" placeholder="Inserisci il titolo">   
+                            @error('title')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror         
                         </div>
 
                         <div class="mb-3">
@@ -37,11 +36,11 @@
                         </div>
                         
                         <div class="mb-3">
-                          <label for="num_rooms" class="form-label">Numero di stanze:</label>
-                          <input type="number" min="1" max="30" class="form-control @error('num_rooms') is-invalid @enderror" id="num_rooms" name="num_rooms"> 
-                          @error('num_rooms')
-                              <div class="alert alert-danger">{{ $message }}</div>
-                          @enderror       
+                            <label for="num_rooms" class="form-label">Numero di stanze:</label>
+                            <input type="number" min="1" max="30" class="form-control @error('num_rooms') is-invalid @enderror" id="num_rooms" name="num_rooms"> 
+                            @error('num_rooms')
+                                <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror       
                         </div>
 
                         <div class="mb-3">
@@ -90,7 +89,7 @@
                                 <option name="visible" value="1">Si</option>
                                 <option name="visible" value="0">No</option>
                             </select>
-                               
+                            
                             @error('visible')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror         
@@ -98,7 +97,7 @@
 
                         <div class="mb-3">
                             <label for="description" class="form-label">Descrizione</label>
-                            <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" placeholder="Inserisci la descrizione">{{old('description')}}</textarea>    
+                            <textarea rows="13" type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" placeholder="Inserisci la descrizione">{{old('description')}}</textarea>    
                             @error('description')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror       
@@ -106,31 +105,31 @@
 
                         <div class="form-group">
                             <label>Servizi</label>
-                            @foreach ($services as $service)
-                                <div class="form-check">
-                                  <input type="checkbox" name="services[]" class="form-check-input" value="{{$service->id}}" id="{{$service->id}}" {{ old('services') && in_array($service->id, old('services')) ? " checked" : "" }}>
-                                  <label class="form-check-label" for="{{$service->id}}" >{{$service->name}}</label>
-                                </div>
-                            @endforeach
-                            @error('service_id')
-                              <div class="invalid-feedback">{{ $message }}</div>
-                            @enderror
+                            <div class="row row-cols-4">
+                                @foreach ($services as $service)
+                                    <div class="col">
+                                        <div class="form-check">
+                                            <input type="checkbox" name="services[]" class="form-check-input" value="{{$service->id}}" id="{{$service->id}}" {{ old('services') && in_array($service->id, old('services')) ? " checked" : "" }}>
+                                            <label class="form-check-label" for="{{$service->id}}" >{{$service->name}}</label>
+                                        </div> 
+                                    </div>   
+                                @endforeach
+                                @error('service_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
                         </div>
-
-                        
-                        
-                        <a href="{{ route("user.apartments.index") }}"><button type="submit" class="btn btn-primary">Submit</button></a>
+                        <a href="{{ route("user.apartments.index") }}"><button type="submit" class="mb-4 btn">Submit</button></a>
                     </form>
             
                     @if ($errors->any())
-                      <div class="alert alert-danger">
-                        <ul>
-                          @foreach ($errors->all() as $error)
-                              <li>{{$error}}</li>
-                          @endforeach
-                        </ul>
-                      </div>
-                        
+                        <div class="alert alert-danger">
+                            <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{$error}}</li>
+                            @endforeach
+                            </ul>
+                        </div>                      
                     @endif
                 </div>
             </div>

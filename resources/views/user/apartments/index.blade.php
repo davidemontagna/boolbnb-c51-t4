@@ -11,12 +11,12 @@
         <h4 class="m-3">
             Inserisci, visualizza, modifica o cancella gli annunci che hai inserito 
         </h4>
-        <button class="announcement-btn text-center my-3 p-3">
-            <a href="{{ route('user.apartments.create') }}">
+        <a href="{{ route('user.apartments.create') }}">
+            <button class="announcement-btn text-center my-3 p-3">
                 <i class="fas fa-plus"></i> 
                 Aggiungi appartamento
-            </a>
-        </button>
+            </button>
+        </a>
         {{-- <table class="table">
             <thead>
             <tr>
@@ -42,11 +42,11 @@
                                                         Mostra appartamento
                                                     </button>
                                                 </a>
-                                                <a href="{{route("user.apartments.edit", $apartment->id)}}">
+                                                {{-- <a href="{{route("user.apartments.edit", $apartment->id)}}">
                                                     <button class="dropdown-item border-bottom" type="button">
                                                         Modifica
                                                     </button>
-                                                </a>
+                                                </a> --}}
                                                 <form class="m-2" action="{{route("user.apartments.destroy", $apartment->id)}}" method="POST">
                                                         @csrf
                                                         @method("DELETE")
