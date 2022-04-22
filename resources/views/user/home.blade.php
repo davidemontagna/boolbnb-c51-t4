@@ -3,94 +3,57 @@
 @section('content')
 <div class="container-profile">
     <div class="profile px-5 py-4">
-        <div class="mb-3">
+        <h2 class="mb-3">
             Bentornato, {{ Auth::user()->name }} {{ Auth::user()->surname }}
-        </div>
-        <button class="announcement-btn text-center mb-3">
+        </h2>
+        <button class="announcement-btn text-center my-3 p-3">
             <a href="{{ route('user.apartments.create') }}">
                 <i class="fas fa-plus"></i> 
                 Pubblica annuncio
             </a>
         </button>
     </div>
-    <div class="dashboard text-center">
-        <div class="row row-cols-2 row-cols-lg-4 p-2">
-            <div class="col">
+    <div class="dashboard text-center mt-3">
+        <div class="row justify-content-between m-2">
+            <div class="col-12 col-md-6">
                 <button class="border rounded">
                     <a href="{{route("user.apartments.index")}}">
-                        <div class="row p-3">
-                            <div class="col">
-                                {{-- numero appartamenti totali --}}
-                                {{ count($apartments) }}
-                                {{-- {{$apartments->user_id}} --}}
-                                <div>
+                        <div class="d-flex justify-content-around align-items-center p-3">
+                            <div>
+                                <h3 class="text-left font-weight-bold">
+                                    {{ count($apartments) }}
+                                </h3>
+                                <h5>
                                     Appartamenti
-                                </div>
+                                </h5>
                             </div>
-                            <div class="col m-3">
+                            <div class="ms_icon">
                                 <i class="fas fa-home"></i>
                             </div>
                         </div>
                     </a>
                 </button>
             </div>
-            <div class="col">
+            <div class="col-12 col-md-4 col-xl-3 mt-3 mt-md-0">
                 <button class="border rounded">
                     <a href="{{route("user.messages.index")}}">
-                        <div class="row row-cols-sm-12 p-3">
-                            <div class="col">
-                                {{-- numero appartamenti totali --}}
-                                {{ count($messages) }} 
-                                @if (count($notVisualized) >0 )
-                                <span>({{ count($notVisualized) }}  da leggere)</span>
-                                @endif
-                                {{-- {{$user->messages}} --}}
-                                <div>
+                        <div class="d-flex justify-content-around align-items-center p-3">
+                            <div>
+                                <h3 class="text-left font-weight-bold">
+                                    @if (count($notVisualized) >0 )
+                                        <span>{{ count($notVisualized) }}  Non letti</span>
+                                    @endif  
+                                </h3>
+                                {{-- {{ count($messages) }}  --}}
+                                <h5>
                                     Tutti i messaggi
-                                </div>
+                                </h5>
                             </div>
-                            <div class="col m-3">
+                            <div class="ms_icon">
                                 <i class="fas fa-comment"></i>
                             </div>
                         </div>
                     </a>
-                </button>
-                
-            </div>
-            <div class="col mt-3 mt-lg-0">
-                <button class="border rounded">
-                    <a href="">
-                        <div class="row row-cols-sm-12 p-3">
-                            <div class="col">
-                                {{-- numero messaggi non letti --}}
-                                {{ count($notVisualized) }}
-                                {{-- {{apartment.user_id}} --}}
-                                <div>
-                                    Messaggi non letti
-                                </div>
-                            </div>
-                            <div class="col m-3">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                        </div>
-                    </a>
-                </button>
-            </div>
-            <div class="col mt-3 mt-lg-0">
-                <button class="border rounded">
-                    <div class="row row-cols-sm-12 p-3">
-                        <div class="col">
-                            {{-- numero messaggi non letti --}}
-                            100
-                            {{-- {{analytics.view}} --}}
-                            <div>
-                                Visualizzazioni Totali
-                            </div>
-                        </div>
-                        <div class="col m-3">
-                            <i class="fas fa-eye"></i>
-                        </div>
-                    </div>
                 </button>
             </div>
         </div>
