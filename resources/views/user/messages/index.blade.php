@@ -58,9 +58,9 @@
         <div class="col-12 text-center">Messaggi visualizzati</div>
         <div class="row d-flex justify-content-start align-items-start m-4">
             @foreach ($messages as $message)
-                @if ($message->visualized == 0)
+                @if ($message->visualized == 1)
                 <a href="{{route('user.messages.show', $message->id)}}" class="text-decoration-none text-dark">
-                    <div class="card col-12 col-md-6 col-xl-3 {{ ($message->visualized == 1) ? 'text-white bg-dark' : '' }}" style="width: 20rem !important; height:600px; border: 3px solid white; border-radius: 1rem; box-shadow: inset 0 0 0 3px rgb(216, 216, 216)">
+                    <div class="card col-12 col-md-6 col-xl-3 {{ ($message->visualized == 0) ? 'text-white bg-dark' : '' }}" style="width: 20rem !important; height:600px; border: 3px solid white; border-radius: 1rem; box-shadow: inset 0 0 0 3px rgb(216, 216, 216)">
                         <img src="{{ asset("storage/{$message->apartment->preview}")}}" class="card-img-top mt-3" alt="..." style="max-height:350px">
                         <div class="card-body">
                             <p class="card-text d-flex justify-content-between">{{$message->created_at}} <i class="fa-solid fa-comments" style="{{ ($message->answered == 0) ? 'color: red' : 'color: #9fff6b' }}"></i></p>

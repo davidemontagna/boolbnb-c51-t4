@@ -6,10 +6,9 @@
         <div class="container">
             <div class="row ">
                 <div class="col-6 col-md-4">
-                    <h1 class="logo">BBNB</h1>
+                    <router-link :to="{name: 'home'}" class="text-secondary ruouter-link"> <h1 class="logo">BBNB</h1></router-link>
                 </div>
                 <div class="header-routes col-4 justify-content-center align-items-center d-none d-md-flex ">
-                    <li class="pr-4"><router-link :to="{name: 'home'}" class="text-secondary ruouter-link">HOME</router-link></li>
                     <li><router-link :to="{name: 'about'}" class="text-secondary ruouter-link">CHI SIAMO</router-link></li>
                 </div>
                 <div class="col-6 col-md-4 d-flex justify-content-end align-items-center">
@@ -98,7 +97,6 @@ header{
     color: white;
 
     &:hover, &:active{
-        padding: 0 1.1rem;
         filter: brightness(1.2);
         box-shadow: 0px 2px 6px 1px rgba(0,0,0,.3);
     }
