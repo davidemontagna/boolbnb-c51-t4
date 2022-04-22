@@ -21,7 +21,7 @@ class ApartmentController extends Controller
         'num_guest'=>'required|int',
         'price'=>'required|numeric|between:0.00,9999.99',
         'square_footage'=>'required|int',
-        'preview'=>'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'preview'=>'nullable|mimes:jpeg,jpg,png,gif,svg|max:2048',
         'visible'=>'required|boolean',
         'description'=>'nullable',
         'address_obj' => 'required',        
