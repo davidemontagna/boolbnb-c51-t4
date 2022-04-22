@@ -1,13 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
-    <title>Test</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('title', 'Create')
+
+@section('content')
+<section>
     <div class="container">
         <table class="table">
             <thead>
@@ -40,7 +36,22 @@
                         <form action="{{route('user.messages.destroy', $message->id)}}" method="POST">
                             @csrf
                             @method("DELETE")
-                            <button type="submit" class="btn btn-danger">Elimina</button>
+                            <input class="btn btn-danger" type="button" value="Elimina" data-toggle="modal" data-target="#ModalDelete{{$message->id}}">
+                            
+                            <div class="modal modal-danger fade" id="ModalDelete{{$message->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                  <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="myModalLabel">Elimina:</h5>                                      
+                                    </div>
+                                    <div class="modal-body">Sei sicuro di voler eliminare il messaggio?</div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                                        <input type="submit" class="btn btn-danger" value="Elimina">
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
                           </form>
                       </td> 
                 </tr>
@@ -49,5 +60,5 @@
             </tbody>
         </table>
     </div>
-</body>
-</html>
+</section>
+@endsection
