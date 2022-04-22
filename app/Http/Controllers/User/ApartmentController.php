@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Apartment;
 use App\Service;
+use App\Location;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -20,9 +21,10 @@ class ApartmentController extends Controller
         'num_guest'=>'required|int',
         'price'=>'required|numeric|between:0.00,9999.99',
         'square_footage'=>'required|int',
-        'preview'=>'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        'preview'=>'nullable|mimes:jpeg,jpg,png,gif,svg|max:2048',
         'visible'=>'required|boolean',
-        'description'=>'nullable',        
+        'description'=>'nullable',
+        'address_obj' => 'required',        
 
         'services' => 'exists:services,id',        
     ];
@@ -56,7 +58,9 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request['api_address_id']);
+        $jObj = json_decode($request['address_obj']);
+        // dd($request['services']);
+        // dd($jObj);
         $request->validate($this->validation);
         $request['user_id'] = auth()->id();
         $form_data = $request->all();
