@@ -6,14 +6,12 @@
         <div class="mb-3">
             Bentornato, {{ Auth::user()->name }} {{ Auth::user()->surname }}
         </div>
-        <a href="">
-            <button class="announcement-btn text-center mb-3">
-                <a href="{{ route('user.apartments.create') }}">
-                    <i class="fas fa-plus"></i> 
-                    Pubblica annuncio
-                </a>
-            </button>
-        </a>
+        <button class="announcement-btn text-center mb-3">
+            <a href="{{ route('user.apartments.create') }}">
+                <i class="fas fa-plus"></i> 
+                Pubblica annuncio
+            </a>
+        </button>
     </div>
     <div class="dashboard text-center">
         <div class="row row-cols-2 row-cols-lg-4 p-2">

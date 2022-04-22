@@ -4,11 +4,20 @@
 
 @section('content')
 <section>
-    <div class="container">
-        <div class="my-4">
-            <a href="{{ route('user.apartments.create') }}" class="btn btn-primary">Aggiungi appartamento</a>
-        </div>
-        <table class="table">
+    <div class="ms_container_index_apartment container-fluid">
+        <h2 class="m-3">
+            I tuoi annunci
+        </h2>
+        <h4 class="m-3">
+            Inserisci, visualizza, modifica o cancella gli annunci che hai inserito 
+        </h4>
+        <button class="announcement-btn text-center my-3 p-3">
+            <a href="{{ route('user.apartments.create') }}">
+                <i class="fas fa-plus"></i> 
+                Aggiungi appartamento
+            </a>
+        </button>
+        {{-- <table class="table">
             <thead>
             <tr>
                 <th scope="col">#</th>
@@ -17,9 +26,52 @@
                 <th scope="col">Azioni</th>
             </tr>
             </thead>
-            <tbody>
-                @foreach ($apartments as $apartment)
-                <tr>
+            <tbody> --}}
+                <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 mx-auto">
+                    @foreach ($apartments as $apartment)
+                        <div class="col my-3">
+                            <div class="ms_card">
+                                <div class="ms_img mx-auto position-relative">
+                                        <div class="ms_dropdown dropdown position-absolute">
+                                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                Azioni
+                                            </button>
+                                            <div class="dropdown-menu " aria-labelledby="dropdownMenu2">
+                                                <a href="{{route("user.apartments.show", $apartment->id)}}">
+                                                    <button class="dropdown-item" type="button">
+                                                        Mostra appartamento
+                                                    </button>
+                                                </a>
+                                                <a href="{{route("user.apartments.edit", $apartment->id)}}">
+                                                    <button class="dropdown-item border-bottom" type="button">
+                                                        Modifica
+                                                    </button>
+                                                </a>
+                                                <form class="m-2" action="{{route("user.apartments.destroy", $apartment->id)}}" method="POST">
+                                                        @csrf
+                                                        @method("DELETE")
+                                                        <input class="btn ms_delete" type="submit" value="Elimina Appartamneto" onclick="return confirm('Vuoi eliminare questo appartamento?')">
+                                                </form>
+                                            </div>
+                                        </div>
+                                        <img src="{{ asset("storage/{$apartment->preview}")}}" alt="">
+                                        <div class="ms_shadow position-absolute"></div>
+                                    <div class="ms_description position-absolute">
+                                        <p class="ms_beds mx-2">Numero di letti: {{$apartment->num_beds}}</p>
+                                    </div>
+                                </div>
+                                <div class="ms_text">
+                                    <h2 class="ms_title mt-3">{{$apartment->title}}</h2>
+                                    <h4 class="ms_city mt-3">{{$apartment->location->city}}</h4>
+                                    <p class="ms_address">{{$apartment->location->address}}</p>
+                                    <div class="ms_description2 d-flex justify-content-between mt-3">
+                                        <p class="ms_rooms">Stanze: {{$apartment->num_rooms}}</p>
+                                        <p class="ms_bath">Bagni: {{$apartment->num_bath}}</p>
+                                        <p class="ms_square">Mq: {{$apartment->square_footage}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                {{-- <tr>
                     <td scope="row">{{$apartment->id}}</td>
                     <td>{{$apartment->user_id}}</td>
                     <td>{{$apartment->title}}</td>
@@ -33,11 +85,13 @@
                             <input class="btn btn-danger" type="submit" value="Delete" onclick="return confirm('Vuoi eliminare questo appartamento?')">
                         </form>
                     </td>
-                </tr>
-                @endforeach
+                </tr> --}}
+                        </div>
+                    @endforeach
+                </div>
             
-            </tbody>
-        </table>
+         {{--    </tbody>
+        </table> --}}
     </div>
 </section>
 @endsection

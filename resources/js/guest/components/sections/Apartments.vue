@@ -160,7 +160,7 @@ export default {
         height: 20vw;
         overflow: hidden;
         border-radius: 10px;
-        object-fit: contain;
+        object-fit: cover;
 
         &:hover{
                 cursor: pointer;
