@@ -2,12 +2,12 @@
 <div id="location-app">
   <label for="address" class="form-label">Indirizzo:</label>
   <div class="input-group mb-3">
-    <input type="text" class="form-control" id="address" name="address" @keydown.prevent.enter="getAddresses" placeholder="Inserisci l'indirizzo da cercare" v-model.trim="addressQuery">
+    <input type="text" class="form-control" id="address" name="address" @keydown.prevent.enter="getAddresses" placeholder="Inserisci l'indirizzo completo compreso di civico da cercare" v-model.trim="addressQuery">
     <div class="input-group-append">
       <button class="btn btn-outline-secondary" type="button" @click.prevent="getAddresses">Cerca</button>
     </div>
     <select class="form-control" id="address_obj" name="address_obj" v-model="selected">
-      <option>Seleziona un indirizzo</option>
+      <option value="old">Seleziona un indirizzo compreso di civico</option>
       <option :value="stringObj(index)" v-for="(address, index) in setOption" :key="index">{{address.address.freeformAddress + ', ' + address.address.country}}</option>
     </select>
   </div>
@@ -25,7 +25,7 @@ export default {
             addressQuery: '',
             oldQuery: '',
             apiKey: 'LmxBM8DrAJjBA1BQPufxlrTGrO4c4Byh',
-            selected: '',
+            selected: 'old',
         }
     },
   methods: {
@@ -53,7 +53,9 @@ export default {
   computed: {
     setOption() {
       console.log(this.addressesList);
-      return this.addressesList;
+      return this.addressesList.filter((apiOjb) => {
+        return (apiOjb.type == 'Point Address');
+      });
     }
   }
 }

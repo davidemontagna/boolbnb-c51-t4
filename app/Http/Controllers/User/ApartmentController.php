@@ -58,9 +58,10 @@ class ApartmentController extends Controller
      */
     public function store(Request $request)
     {
-        $jObj = json_decode($request['address_obj']);
-        // dd($request['services']);
-        // dd($jObj);
+        if($request['address_obj'] == 'old'){
+            $request['address_obj'] = ''; 
+        };
+
         $request->validate($this->validation);
         $request['user_id'] = auth()->id();
         $form_data = $request->all();
@@ -86,6 +87,21 @@ class ApartmentController extends Controller
             $new_apartment->services()->sync($form_data['services']);
         }
 
+
+        $locationObj = json_decode($form_data['address_obj'], true);
+        $dataLocation = [
+            'apartment_id' => $new_apartment['id'],
+            'address' => $locationObj['address']['streetName'].', '.$locationObj['address']['streetNumber'],
+            'city' => $locationObj['address']['municipality'],
+            'country' => $locationObj['address']['country'],
+            'lat' => $locationObj['position']['lat'],
+            'lon' => $locationObj['position']['lon'],
+        ];
+
+        $new_location = new Location();
+        $new_location->fill($dataLocation);
+        $new_location->save();
+        
         return redirect()->route('user.apartments.index');
 
     }
@@ -113,7 +129,8 @@ class ApartmentController extends Controller
     public function edit(Apartment $apartment)
     {
         $services = Service::all();
-        return view('user.apartments.edit', compact('apartment', 'services'));
+        $location = Location::where('apartment_id', $apartment['id'])->first();
+        return view('user.apartments.edit', compact('apartment', 'services', 'location'));
     }
 
     /**
@@ -149,6 +166,23 @@ class ApartmentController extends Controller
         $apartment->update($form_data);
 
         $apartment->services()->sync(isset($form_data['services']) ? $form_data['services'] : []);
+
+        if ($form_data['address_obj'] != 'old') {
+            $locationObj = json_decode($form_data['address_obj'], true);
+    
+            $dataLocation = [
+                'apartment_id' => $apartment['id'],
+                'address' => $locationObj['address']['streetName'].', '.$locationObj['address']['streetNumber'],
+                'city' => $locationObj['address']['municipality'],
+                'country' => $locationObj['address']['country'],
+                'lat' => $locationObj['position']['lat'],
+                'lon' => $locationObj['position']['lon'],
+            ];
+    
+            $location = Location::where('apartment_id', $apartment['id'])->first();
+            $location->update($dataLocation);
+        }
+
         return redirect()->route('user.apartments.index');
     }
 

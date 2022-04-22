@@ -15,6 +15,19 @@
                         <form action="{{ route("user.apartments.update", $apartment->id) }}" method="POST" enctype="multipart/form-data">                        
                             @csrf
                             @method('PUT')
+
+                            <div class="mb-3">
+                                <label class="form-label">Vecchio indirizzo:</label>
+                                <input type="text" class="form-control" readonly value="{{$location->address.', '.$location->city.', '.$location->country}}" >        
+                            </div>
+
+                            <div id="location-app">
+                                
+                            </div>
+                            @error('address_obj')
+                              <div class="alert alert-danger">{{ $message }}</div>
+                            @enderror 
+
                 
                             <div class="mb-3">
                             <label for="title" class="form-label">Titolo:</label>
