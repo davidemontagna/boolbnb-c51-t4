@@ -10,7 +10,7 @@
                 <div class="col-md-12">
                     <!-- Controllo per vedere se l'utente e' autorizzato a visualizzare quel determinato messaggio -->
                     @if ($message->apartment->user_id == auth()->id())
-                    <div class="card text-center" style="border: 3px solid #ff385c">
+                    <div class="card text-center" style="border: none">
                         <div class="card-header">
                           Da: {{$message->sender_name}} - {{$message->sender_email}}
                         </div>
