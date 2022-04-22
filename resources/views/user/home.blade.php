@@ -21,7 +21,7 @@
                         <div class="row p-3">
                             <div class="col">
                                 {{-- numero appartamenti totali --}}
-                                10
+                                {{ count($apartments) }}
                                 {{-- {{$apartments->user_id}} --}}
                                 <div>
                                     Appartamenti
@@ -40,7 +40,10 @@
                         <div class="row row-cols-sm-12 p-3">
                             <div class="col">
                                 {{-- numero appartamenti totali --}}
-                                10
+                                {{ count($messages) }} 
+                                @if (count($notVisualized) >0 )
+                                <span>({{ count($notVisualized) }}  da leggere)</span>
+                                @endif
                                 {{-- {{$user->messages}} --}}
                                 <div>
                                     Tutti i messaggi
@@ -60,7 +63,7 @@
                         <div class="row row-cols-sm-12 p-3">
                             <div class="col">
                                 {{-- numero messaggi non letti --}}
-                                1
+                                {{ count($notVisualized) }}
                                 {{-- {{apartment.user_id}} --}}
                                 <div>
                                     Messaggi non letti
