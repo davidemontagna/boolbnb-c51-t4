@@ -53,8 +53,8 @@ export default {
   computed: {
     setOption() {
       console.log(this.addressesList);
-      return this.addressesList.filter((apiOjb) => {
-        return (apiOjb.type == 'Point Address');
+      return this.addressesList.filter((apiObj) => {
+        return (apiObj.type == 'Point Address');
       });
     }
   }

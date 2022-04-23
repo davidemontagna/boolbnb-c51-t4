@@ -3,7 +3,14 @@
 
     <div class="main-searchbar d-flex justify-content-center align-item-center">
         <div class="form d-flex justify-content-center align-items-center">
-            <input type="text" name="text" id="text" placeholder="search" v-model="searchInput">
+            <!-- <input type="text" name="text" id="text" placeholder="search" v-model.trim="searchInput"> -->
+            
+            <input type="text" id="address" name="address" @keydown.prevent.enter="getLocations" placeholder="Cerca località" v-model.trim="searchInput">
+            <select class="form-control" v-model="selectedLocation">
+                <option disabled> Seleziona una località </option>
+                <option :value="index" v-for="(location, index) in setOption" :key="index">{{location.address.freeformAddress + ', ' + location.address.country}}</option>
+            </select>
+            
 
             <div class="multiselect justify-content-center align-items-center d-none d-sm-flex" id="multiselect">
                 <div class="services" @click="services()">Services &#x2193;</div>
@@ -23,7 +30,7 @@
             <label for="bath" class="d-none d-sm-block">Baths:</label>
             <input type="number" name="bath" id="bath" v-model="inputBath"  min="1" max="10" class="d-none d-sm-block">
 
-            <input type="submit" value="Submit" id="submit" @click.prevent="search">
+            <input type="submit" value="Submit" id="submit" @click.prevent="getApartments">
         </div>
     </div>
 
@@ -65,13 +72,17 @@ export default {
         return {
             apartments: [],
             allServices: [],
-            searchInput: "",
             searchResponse: [],
             CheckedServices: [], 
             filteredApartments: [],
             inputBeds: 1,
             inputRooms: 1,           
             inputBath: 1,           
+            searchInput: "",
+            oldSearchInput: "",
+            selectedLocation: 0,
+            locationList: [],
+            apiKey: 'LmxBM8DrAJjBA1BQPufxlrTGrO4c4Byh',
         }
     },
     methods: {
@@ -92,22 +103,41 @@ export default {
                 this.allServices = apiResponse.data;                
                 })
             .catch(() => {
-                console.log('error');
+                console.log('errore chiamata servizi');
                 this.$router.push({name: 'page-404'});
             });
         },
         getApartments: function() {
-            axios.get('/api/apartments')
+            const dataLatLon = {
+                lat : null,
+                lon : null,
+                range: 20,
+            };
+            console.log(this.locationList.length > 0);
+
+            if (this.locationList.length > 0) {
+                dataLatLon.lat = this.locationList[this.selectedLocation].position.lat;
+                dataLatLon.lon = this.locationList[this.selectedLocation].position.lon;
+            }
+            console.log(dataLatLon);
+            axios.get('/api/apartments',
+            {
+                params: {
+                    lat: dataLatLon.lat,
+                    lon: dataLatLon.lon,
+                    range: 20,
+            }
+            })
             .then(apiResponse => {
+                console.log(apiResponse.data);
                 this.apartments = apiResponse.data;
                 this.search();
                 })
             .catch(() => {
-                console.log('error');
+                console.log('errore chiamata agli appartamenti');
             });
         }, 
         search(){
-            
             if(this.CheckedServices == "" && this.inputBeds == 1 && this.inputRooms == 1 && this.inputBath == 1){
                 this.filteredApartments = this.apartments;
             }else{                
@@ -125,16 +155,39 @@ export default {
                 return filterCheck;              
                 })
             }           
-        }
+        },
+        getLocations: function() {
+          if (this.searchInput != '' && this.searchInput != this.oldSearchInput) {
+            this.oldSearchInput = this.searchInput;
+            const apiUrl = 'https://api.tomtom.com/search/2/search/' + this.searchInput + '.json?typeahead=true&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=' + this.apiKey;
+            axios.get(apiUrl, {transformRequest: (data, headers) => {
+                delete headers.common['X-Requested-With'];
+              } 
+            })
+            .then(apiResponse => {
+                this.locationList = apiResponse.data.results;
+                // console.log(this.locationList);
+                })
+            .catch(() => {
+                console.log('error api location');
+            });
+          }
+        },
+        stringObj: function(index) {
+            return JSON.stringify(this.locationList[index]);
+        },
         
     },
     created() {
-        
-        this.getApartments();
         this.getServices();
+        this.getApartments();
         
     },
     computed:{
+        setOption() {
+            console.log(this.locationList);
+            return this.locationList;
+        },
         setApartments(){     
             console.log(this.filteredApartments)       
             return this.filteredApartments;

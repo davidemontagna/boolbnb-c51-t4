@@ -20,10 +20,10 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::namespace('Api')->name('api.')->group(function() {
-    Route::get('/apartments', 'ApartmentController@index')->name('apartments');
+    Route::get('/apartments', 'ApartmentController@index');
 
     // Inserire slug negli appartamenti
     Route::get('/apartments/{slug}', 'ApartmentController@show')->name('apartments.show');
     Route::post('/messages', 'MessageController@store')->name('messages.store');
-    Route::get('/services', 'ServiceController@index')->name('services');
+    Route::get('/services', 'ServiceController@index');
 });

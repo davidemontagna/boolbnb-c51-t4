@@ -84,6 +84,17 @@ export default {
     },
     methods: {
         getApartments: function() {
+            const dataLatLon = {
+                lat : null,
+                lon : null,
+                range: 20,
+            };
+            axios.get('/api/apartments',
+            {
+                params: {
+                    query: dataLatLon,
+            }
+            })
             axios.get('/api/apartments')
             .then(apiResponse => {
                 this.apartments = apiResponse.data;

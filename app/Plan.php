@@ -9,6 +9,6 @@ class Plan extends Model
     protected $fillable = ['price', 'duration', 'title'];
     
     public function apartments() {
-        return $this->belongsToMany('App\Apartment');
+        return $this->belongsToMany('App\Apartment')->withPivot('date_start', 'date_end');
     }
 }
