@@ -5,13 +5,13 @@
 @section('content')    
     
     <section>
-        <div class="container">
+        <div class="ms_container_edit_apartment container">
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <!-- Controllo per vedere se l'utente e' autorizzato a editare quel determinato appartamento -->
                     @if ($apartment->user_id == auth()->id())
 
-                        <h3>Modifica Appartamento</h3>
+                        <h3 class="mt-3">Modifica Appartamento</h3>
                         <form action="{{ route("user.apartments.update", $apartment->id) }}" method="POST" enctype="multipart/form-data">                        
                             @csrf
                             @method('PUT')
@@ -85,7 +85,7 @@
                                 @enderror       
                             </div>
 
-                            <div class="mb-3">
+                            <div class="ms_selectimg mb-3">
                                 <label for="preview" class="form-label">Immagine preview:</label>
                                 <input type="file" class="form-control-file @error('preview') is-invalid @enderror" value="{{ old('preview', $apartment->preview) }}" id="preview" name="preview" placeholder="Inserisci il titolo">   
                                 @error('preview')
@@ -107,7 +107,7 @@
 
                             <div class="mb-3">
                                 <label for="description" class="form-label">Descrizione</label>
-                                <textarea type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" placeholder="Insert the content">{{ old('description', $apartment->description) }}</textarea>    
+                                <textarea rows="13" type="text" class="form-control @error('description') is-invalid @enderror" id="description" name="description" placeholder="Insert the content">{{ old('description', $apartment->description) }}</textarea>    
                                 @error('description')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror       
@@ -115,29 +115,29 @@
                             
                             <div class="form-group">
                                 <label>Servizi</label>
-                                @foreach ($services as $service)
-                                    <div class="form-check">
-                                    <input type="checkbox" name="services[]" class="form-check-input" value="{{$service->id}}" id="{{$service->id}}" 
-    
-                                    @if($errors->any())
-                                        {{ in_array($service->id, old('services', [])) ? " checked" : "" }}                                
-                                        
-                                    @else
-                                        
-                                    {{ $apartment->services->contains($service) ? " checked" : "" }}                                    
-                                    @endif>
-    
-                                    <label class="form-check-label" for="{{$service->id}}" >{{$service->name}}</label>
-                                    </div>
-                                @endforeach
-                                @error('service_id')
-                                <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                                <div class="row row-cols-4">
+                                    @foreach ($services as $service)
+                                        <div class="col">
+                                            <div class="form-check">
+                                                <input type="checkbox" name="services[]" class="form-check-input" value="{{$service->id}}" id="{{$service->id}}"
+                                                    @if($errors->any())
+                                                        {{ in_array($service->id, old('services', [])) ? " checked" : "" }}                                
+                                                        
+                                                    @else
+                                                        
+                                                    {{ $apartment->services->contains($service) ? " checked" : "" }}                                    
+                                                    @endif
+                                                >
+                                                <label class="form-check-label" for="{{$service->id}}" >{{$service->name}}</label>
+                                            </div> 
+                                        </div>   
+                                    @endforeach
+                                    @error('service_id')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
                             </div>
-
-                    
-                            
-                            <a href="{{ route("user.apartments.index") }}"><button type="submit" class="btn btn-primary">Submit</button></a>
+                            <a href="{{ route("user.apartments.index") }}"><button type="submit" class="mb-4 btn">Modifica</button></a>
                         </form>
                 
                         @if ($errors->any())

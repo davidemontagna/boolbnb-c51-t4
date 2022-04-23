@@ -26,7 +26,7 @@ class MessageController extends Controller
 
     public function index()
     {
-        $messages = Message::with("apartment")->get();
+        $messages = Message::with("apartment")->orderBy("created_at", "desc")->get();
         $newMessages = [];
         foreach ($messages as $message) {
             if(!in_array($message, $newMessages)){

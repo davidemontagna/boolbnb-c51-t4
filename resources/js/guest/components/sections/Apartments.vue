@@ -12,7 +12,7 @@
             </select>
             
 
-            <div class="multiselect justify-content-center align-items-center d-none d-sm-flex" id="multiselect">
+            <div class="multiselect justify-content-center align-items-center d-sm-flex" id="multiselect">
                 <div class="services" @click="services()">Services &#x2193;</div>
                 <div class="multiselect-options hidden" id="multiselectOptions">
                     <div v-for="service in allServices" :key="service.id">
@@ -23,14 +23,15 @@
                 </div>
             </div>
 
-            <label for="beds" class="d-none d-sm-block">Beds:</label>
-            <input type="number" name="beds" id="beds" v-model="inputBeds"  min="1" max="10" class="d-none d-sm-block">
-            <label for="rooms" class="d-none d-sm-block">Rooms:</label>
-            <input type="number" name="rooms" id="rooms" v-model="inputRooms"  min="1" max="10" class="d-none d-sm-block">
-            <label for="bath" class="d-none d-sm-block">Baths:</label>
-            <input type="number" name="bath" id="bath" v-model="inputBath"  min="1" max="10" class="d-none d-sm-block">
+            <label for="beds" class=""><i class="fa-solid fa-bed"></i></label>
+            <input type="number" name="beds" id="beds" v-model="inputBeds"  min="1" max="10" class="">
+            <label for="rooms" class="">Rooms:</label>
+            <input type="number" name="rooms" id="rooms" v-model="inputRooms"  min="1" max="10" class="">
+            <label for="bath" class=""><i class="fa-solid fa-shower"></i></label>
+            <input type="number" name="bath" id="bath" v-model="inputBath"  min="1" max="10" class="">
 
             <input type="submit" value="Submit" id="submit" @click.prevent="getApartments">
+            <!-- <button type="submit" value="Search" id="submit" @click.prevent="search"><i class="fa-solid fa-magnifying-glass"></i></button> -->
         </div>
     </div>
 
@@ -138,6 +139,7 @@ export default {
             });
         }, 
         search(){
+            window.scrollTo(0,1000)
             if(this.CheckedServices == "" && this.inputBeds == 1 && this.inputRooms == 1 && this.inputBath == 1){
                 this.filteredApartments = this.apartments;
             }else{                
@@ -213,7 +215,7 @@ export default {
         height: 20vw;
         overflow: hidden;
         border-radius: 10px;
-        object-fit: contain;
+        object-fit: cover;
 
         &:hover{
                 cursor: pointer;
@@ -292,7 +294,7 @@ export default {
 .main-searchbar{
     width: 100%;
     position: relative;
-    top: -730px;
+    top: -710px;
     transform: translateY(50%);
 
     & .form{
@@ -312,6 +314,10 @@ export default {
         & input#text{ 
             width: 100px;
             padding-left: 10px;
+            transition: all 250ms ease;
+            &:active, &:focus{
+                width: 200px;
+            }
         }
         & .multiselect{
             width: 100px;
@@ -321,17 +327,17 @@ export default {
             width: 50px;
             margin: 0 10px;
         }
-        & input#submit{
+        & #submit{
             background-color: white;
             color: black;
             height: 4rem;
             width: 4rem;
             border-radius:50% ;
+            font-size: 2rem;
+            color: rgb(183, 183, 183);
         }
     }
-}
-
-label{
+    label{
     margin: 0;
 }
 ::placeholder{
@@ -357,4 +363,13 @@ label{
 .hidden{
     display: none;
 }
+}
+@media (max-width: 576px) {
+    
+}
+
+#submit:active{
+
+}
+
 </style>

@@ -51,7 +51,7 @@
     <div class="services">
         Cosa troverai
         <div class="row row-cols-3 mx-3">
-            <div class="my-3" v-for="(service, index) in apartment.services" :key="index">
+            <div class="col my-3" v-for="(service, index) in apartment.services" :key="index">
                 <i :class="service.icon"></i>
                 {{service.name}}
             </div>

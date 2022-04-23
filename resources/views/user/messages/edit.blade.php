@@ -27,9 +27,10 @@
       
       
       
-      <button type="submit" class="btn btn-warning my-3">Salva</button>
+      <button type="submit" class="btn my-3 msg-button p-3">Salva</button>
+
   </form>
-  <a href="{{route('user.messages.index')}}"><button type="button" class="btn btn-dark">Back</button></a> 
+  <a href="{{route('user.messages.index')}}"><button type="button" class="btn msg-button p-3">Back</button></a> 
   @else
         <div class="container">
             <div class="row justify-content-center">

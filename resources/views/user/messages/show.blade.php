@@ -5,28 +5,34 @@
 @section('content')    
     
     <section>
-        <div class="container">
+        <div class="container mt-3">
             <div class="row justify-content-center">
                 <div class="col-md-12">
                     <!-- Controllo per vedere se l'utente e' autorizzato a visualizzare quel determinato messaggio -->
                     @if ($message->apartment->user_id == auth()->id())
-                    <div class="card" style="width: 18rem;">
-                        <div class="card-body">
-                        <h3 class="card-title">Messaggio</h3>
-                        <h5 class="card-text">ID: {{$message->id}}</h5>
-                        <h5 class="card-text">ID Appartmento: {{$message->apartment_id}}</h5>
-                        <h5>Email mittente: {{$message->sender_email}}</h5>
-                        <h5>Nome mittente: {{$message->sender_name}}</h5>
-                        <p>{{$message->content}}</p>
-                        <h5>Visualizzato: {{$message->visualized}}</h5>
-                        <h5>Risposto:{{$message->answered}}</h5>
-                        <h5>User id:{{$message->apartment->user_id}}</h5>
+                    <div class="card text-center" style="border: none">
+                        <div class="card-header">
+                          Da: {{$message->sender_name}} - {{$message->sender_email}}
                         </div>
                         <div class="card-body">
-                            <a href="{{route("user.messages.index")}}" class="card-link"><button type="button" class="btn btn-info">Torna ai Messaggi</button></a>
-                        
+                            <img src="{{ asset("storage/{$message->apartment->preview}")}}" class="card-img-top m-4" alt="..." style="width: 35vw">
+                            <h5 class="card-title">{{$message->apartment->title}}</h5>
+                            <p class="card-text text-left">
+                                <div class="card">
+                                    <div class="card-header">Messaggio :</div>
+                                    <div class="card-body text-secondary">
+                                      <h5 class="card-title">Secondary card title</h5>
+                                      <p class="card-text">{{$message->content}}</p>
+                                    </div>
+                                    <i class="fa-solid fa-comments" style="{{ ($message->answered == 0) ? 'color: red' : 'color: #9fff6b' }}; font-size: 2rem; margin-bottom: 2rem"></i>
+                                  </div>
+                            </p>
+                            <a href="{{route('user.messages.edit', $message->id)}}" class="d-inline-block mr-2"><button type="button" class="btn btn-danger">Edit</button></a>
                         </div>
-                    </div>
+                        <div class="card-footer text-muted">
+                            {{$message->created_at}} 
+                        </div>
+                      </div>
                     @else
                         <div class="container">
                             <div class="row justify-content-center">
