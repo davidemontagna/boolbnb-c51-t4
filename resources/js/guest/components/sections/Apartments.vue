@@ -23,6 +23,8 @@
                 </div>
             </div>
 
+            <label for="range" class=""><i class="fa-solid fa-circle-nodes"></i>km: {{inputRange}}</label>
+            <input type="range" name="range" id="range" step="20" v-model="inputRange"  min="20" max="200" class="">
             <label for="beds" class=""><i class="fa-solid fa-bed"></i></label>
             <input type="number" name="beds" id="beds" v-model="inputBeds"  min="1" max="10" class="">
             <label for="rooms" class="">Rooms:</label>
@@ -78,7 +80,8 @@ export default {
             filteredApartments: [],
             inputBeds: 1,
             inputRooms: 1,           
-            inputBath: 1,           
+            inputBath: 1,
+            inputRange: 20,           
             searchInput: "",
             oldSearchInput: "",
             selectedLocation: 0,
@@ -112,9 +115,8 @@ export default {
             const dataLatLon = {
                 lat : null,
                 lon : null,
-                range: 20,
+                range: this.inputRange,
             };
-            console.log(this.locationList.length > 0);
 
             if (this.locationList.length > 0) {
                 dataLatLon.lat = this.locationList[this.selectedLocation].position.lat;
@@ -126,11 +128,10 @@ export default {
                 params: {
                     lat: dataLatLon.lat,
                     lon: dataLatLon.lon,
-                    range: 20,
+                    range: dataLatLon.range,
             }
             })
             .then(apiResponse => {
-                console.log(apiResponse.data);
                 this.apartments = apiResponse.data;
                 this.search();
                 })
@@ -156,7 +157,8 @@ export default {
                 }
                 return filterCheck;              
                 })
-            }           
+            }
+            this.orderBySponsorized();          
         },
         getLocations: function() {
           if (this.searchInput != '' && this.searchInput != this.oldSearchInput) {
@@ -168,7 +170,6 @@ export default {
             })
             .then(apiResponse => {
                 this.locationList = apiResponse.data.results;
-                // console.log(this.locationList);
                 })
             .catch(() => {
                 console.log('error api location');
@@ -177,6 +178,30 @@ export default {
         },
         stringObj: function(index) {
             return JSON.stringify(this.locationList[index]);
+        },
+        orderBySponsorized: function() {
+            let sponsorized = [];
+            let notSponsorized = [];
+
+            const today = new Date();
+
+            this.filteredApartments.forEach(apartment => {
+                let numSponsorships = apartment.plans.length;
+                let first = true;
+                apartment.plans.forEach(plan => {
+                    if (Date.parse(plan.pivot.date_end) >= Date.parse(today) && first) {
+                        first = false;
+                        sponsorized.push(apartment);
+                    } else {
+                        numSponsorships--;
+                    }
+                });
+                if (numSponsorships == 0) {
+                    notSponsorized.push(apartment);
+                }
+            });
+            console.log(sponsorized.length, notSponsorized.length);
+            this.filteredApartments = sponsorized.concat(notSponsorized);
         },
         
     },
@@ -187,11 +212,9 @@ export default {
     },
     computed:{
         setOption() {
-            console.log(this.locationList);
             return this.locationList;
         },
-        setApartments(){     
-            console.log(this.filteredApartments)       
+        setApartments(){            
             return this.filteredApartments;
         }
     }
