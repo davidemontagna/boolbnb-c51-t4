@@ -138,7 +138,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <a href="{{ route("user.apartments.index") }}"><button type="submit" class="mb-4 btn">Modifica</button></a>
+                            <a href="{{route("user.apartments.show", $apartment->id)}}"><button type="submit" class="mb-4 btn">Modifica</button></a>
                         </form>
                 
                         @if ($errors->any())

@@ -278,14 +278,13 @@
     }
     
     .apartment-img{
-        width: 80%;
-        height: 70vh;
+        width: 50%;
         margin-bottom: 1rem;
         border-radius: 3vw;
         overflow: hidden;
     
         img{
-            object-fit:cover;
+            object-fit: contain;
             width: 100%;
             height: 100%;
         }
@@ -350,6 +349,23 @@
     }
 }
 
+
+/* index.blade.php messages */
+.ms_container_index_messages{
+    .messaggio{
+        width: 300px;
+        height: 450px;
+
+        .card-img{
+            width: 250px;
+            height: 200px;
+        }
+    }
+    .card-body{
+        overflow-y: scroll;
+    }
+}
+
 // messages
 
 .msg-card-ellipsis {
@@ -369,34 +385,5 @@
     &:hover, &:active{
         filter: brightness(1.2);
         box-shadow: 0px 2px 6px 1px rgba(0,0,0,.3);
-    }
-}
-
-/* index.blade.php messages */
-.ms_container_index_messages{
-    .msg-da-leggere{
-        width: 100%; 
-        border: 3px solid $primary-grey; 
-        border-radius: 1rem;
-        
-        .ms_img{
-            width: 50%;
-            
-            img{
-                object-fit: contain;
-                height: 100%;
-                width: 100%;
-            }
-        }
-        .ms_text{
-            overflow: hidden;
-            text-overflow: ellipsis; 
-        }
-    }
-
-    .ms_break-word{
-        white-space: pre-line;
-        word-wrap: break-word;
-        hyphens: auto;
     }
 }
