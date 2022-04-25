@@ -6,13 +6,13 @@
 <section>
     <div class="container-fluid ms_container_index_messages mt-2" id="messages">
         <a href="{{route('login')}}" class="d-inline-block mr-2">
-            <button class="announcement-btn text-center my-3 p-3">
+            <button class="my-3 p-3 msg-button">
                 <i class="fas fa-chevron-left"></i>
                 Indietro
             </button>
         </a>                    
-        <div class="row d-flex justify-content-center align-items-center m-4">
-            <h1 class="container">Messaggi da leggere</h1>
+        <div class="row d-flex justify-content-start align-items-start m-4">
+            <h4 class="container col-12">Messaggi da leggere</h4>
             @foreach ($messages as $message)
                 @if ($message->visualized == 0)
                 <a href="{{route('user.messages.show', $message->id)}}" class="text-decoration-none text-light">
@@ -50,7 +50,7 @@
                 </a> 
                 @endif
             @endforeach
-            <h1 class="container">Messaggi già letti</h1>
+            <h4 class="container col-12">Messaggi già letti</h4>
             @foreach ($messages as $message)
                 @if ($message->visualized == 1)
                 <a href="{{route('user.messages.show', $message->id)}}" class="text-decoration-none text-dark">
