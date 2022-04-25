@@ -3,13 +3,13 @@
 
 @section('content')
 <div class="content">
-    <form method="post" id="payment-form" action="{{ route('user.checkout', [$apartment_id, $plan->id])}}">
+    <form method="POST" id="payment-form" action="{{ route('user.checkout', [$apartment_id, $plan->id])}}">
         @csrf
         <section>
             <label for="amount">
                 <span class="input-label">Amount</span>
                 <div class="input-wrapper amount-wrapper">
-                    <input id="amount" name="amount" type="number" disabled value="{{$plan->price}}">
+                    <input id="amount" name="amount" type="number" readonly value="{{$plan->price}}">
                 </div>
             </label>
 
