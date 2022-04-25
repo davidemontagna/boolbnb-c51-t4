@@ -150,7 +150,7 @@ export default {
 
 .container{
     .ms_card{
-        max-width: 500px;
+        width: 350px;
         border: 1px solid $primary-grey;
         border-radius: 10px;
         padding: 1rem;
@@ -160,7 +160,7 @@ export default {
 
     .ms_img{
         width: 100%;
-        height: 20vw;
+        height: 300px;
         overflow: hidden;
         border-radius: 10px;
         object-fit: contain;
@@ -232,7 +232,7 @@ export default {
 
 
 .ms_container{
-    height: 500px;
+    height: 600px;
     display: flex;
     justify-content: center;
 }
@@ -261,4 +261,5 @@ export default {
     flex-direction: column;
     position: relative;
 }
+
 </style>

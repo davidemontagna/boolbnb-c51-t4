@@ -5,7 +5,7 @@
         <div>{{apartment.title}}</div>
         <div>{{apartment.location.city}}</div>
     </div>
-    <div class="apartment-img">
+    <div class="apartment-img mx-auto">
         <img :src="'../storage/'+apartment.preview" alt="Missing Preview">
     </div>
     <div class="structure row row-cols-3 text-center border-top border-bottom">
@@ -73,10 +73,17 @@
             </div>
 
             <button type="submit" class="button">Invia messaggio</button>
+            <div v-show="commentSent">
+                <div class="alert alert-success alert-dismissible fade show mt-4" role="alert">
+                    <strong>Messaggio inviato!</strong>
+                    <hr>
+                    <p class="mb-0">Grazie, il tuo messaggio è stato inviato correttamente.</p>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            </div>
         </form>
-        <div v-show="commentSent">
-            Messaggio inviato! Grazie!
-        </div>
     </section>
 </div>
 </template>
@@ -164,7 +171,7 @@ export default {
 }
 
 .apartment-img{
-    width: 100%;
+    width: 80%;
     height: 70vh;
     margin-bottom: 1rem;
     border-radius: 3vw;
@@ -260,7 +267,7 @@ export default {
     color: white;
 
     &:hover, &:active{
-        padding: 0 1.1rem;
+        
         filter: brightness(1.2);
         box-shadow: 0px 2px 6px 1px rgba(0,0,0,.3);
     }

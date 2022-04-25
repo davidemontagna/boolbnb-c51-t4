@@ -1,9 +1,9 @@
-{{-- @extends('layouts.app')
+@extends('layouts.app')
 
 @section('title', 'Create')
 
 @section('content')
-<section>
+{{-- <section>
     <div class="container">
         <table class="table">
             <thead>
@@ -40,7 +40,7 @@
                             
                             <div class="modal modal-danger fade" id="ModalDelete{{$message->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                 <div class="modal-dialog" role="document">
-                                  <div class="modal-content">
+                                    <div class="modal-content">
                                     <div class="modal-header">
                                         <h5 class="modal-title" id="myModalLabel">Elimina:</h5>                                      
                                     </div>
@@ -49,11 +49,11 @@
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
                                         <input type="submit" class="btn btn-danger" value="Elimina">
                                     </div>
-                                  </div>
+                                    </div>
                                 </div>
                             </div>
-                          </form>
-                      </td> 
+                        </form>
+                    </td> 
                 </tr>
                 @endforeach
             
@@ -63,16 +63,7 @@
 </section>
 @endsection --}}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
-    <title>Messaggi</title>
-</head>
-<body>
+<section>
     
     <div class="col col-md-3">
         <a href="{{route("login")}}">
@@ -83,39 +74,102 @@
         </a>
     </div>
 
-    <div class="container col-12 mt-2" id="messages">
-        <div class="col-12 text-center">Messaggi non visualizzati</div>
-        <div class="row d-flex justify-content-start align-items-start m-4">
+    <div class="container-fluid ms_container_index_messages mt-2" id="messages">
+        <div class="m-4">
             @foreach ($messages as $message)
-                @if ($message->visualized == 0)
-                <a href="{{route('user.messages.show', $message->id)}}" class="text-decoration-none text-light">
-                    <div class="card col-12 col-md-6 col-xl-3 msg-da-leggere {{ ($message->visualized == 0) ? 'text-white bg-dark' : '' }}" style="width: 20rem !important; height:600px; border: 3px solid white; border-radius: 1rem">
-                        <img src="{{ asset("storage/{$message->apartment->preview}")}}" class="card-img-top mt-3" alt="..." style="max-height:350px">
-                        <div class="card-body">
-                            <p class="card-text d-flex justify-content-between">{{$message->created_at}} <i class="fa-solid fa-comments" style="{{ ($message->answered == 0) ? 'color: red' : 'color: #9fff6b' }}"></i></p>
-                            <h5 class="card-title msg-card-ellipsis mt-xl-3">{{$message->apartment->title}}</h5>
-                            <p class="card-text msg-card-ellipsis mb-3 mt-xl-2">{{$message->content}}</p>
-                            <div class="d-flex justify-content-center align-intems-center mt-xl-3">
-                                <div class="col-6 text-center">
-                                    <a href="{{route('user.messages.edit', $message->id)}}">
-                                        <button class="announcement-btn text-center my-3 p-3 msg-button" style="width: 6rem">
-                                            Edit
-                                        </button>
-                                    </a>
+                <div class="msg-da-leggere mt-3 row row-cols-1 row-cols-md-2 align-items-start">
+                    <div class="ms_img col p-3">
+                        <img src="{{ asset("storage/{$message->apartment->preview}")}}" alt="">
+                    </div>
+                    <div class="col">
+                        <h2>
+                            {{$message->apartment->title}}
+                        </h2>
+                        <h3 class="d-inline-block">
+                            {{$message->apartment->location->city}} -
+                        </h3>
+                        <h5 class="d-inline-block">
+                            {{$message->apartment->location->address}}
+                        </h5>
+
+                        <div class="ms_text p-3">
+                            <div class="row">
+                                @if ($message->visualized == 0)
+                                    <div class="col">
+                                        Messaggi da leggere
+                                        {{-- @foreach ($messages as $message) --}}
+                                            <div class="card my-1">
+                                                <div class="d-flex justify-content-between m-1">
+                                                    <i class="fa-solid fa-comments" style="{{ ($message->answered == 0) ? 'color: red' : 'color: #9fff6b' }}"></i>
+                                                    <div class="row row-cols-2 justify-content-center align-intems-center my-1">
+                                                        <div class="col text-center">
+                                                            <a href="{{route('user.messages.edit', $message->id)}}">
+                                                                <button class="announcement-btn text-center msg-button" style="width: 6rem">
+                                                                    Edit
+                                                                </button>
+                                                            </a>
+                                                        </div>
+                                                        <div class="col text-center">
+                                                            <form action="{{route('user.messages.destroy', $message->id)}}" method="POST">
+                                                                @csrf
+                                                                @method("DELETE")
+                                                                <button type="submit" class="announcement-btn text-center msg-button" style="width: 6rem">Elimina</button>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <p class="mb-3 ms_break-word">{{$message->content}}</p>
+                                                <p class="mb-3 ms_break-word">Messaggio inviato da: {{$message->sender_email}}</p>
+                                                <p class="">alle: {{$message->created_at}}</p>
+                                                
+                                                
+                                            </div>
+                                        {{-- @endforeach --}}
+                                    </div>
+                                @endif
+                            </div>
+                            @if ($message->visualized == 1)
+                                <div>
+                                    Messaggi letti
                                 </div>
-                                <div class="col-6 text-center">
-                                    <form action="{{route('user.messages.destroy', $message->id)}}" method="POST">
-                                        @csrf
-                                        @method("DELETE")
-                                        <button type="submit" class="announcement-btn text-center my-3 p-3 msg-button" style="width: 6rem">Elimina</button>
-                                    </form>
+                            @endif
+                        </div>
+                    </div>
+                    
+                </div>
+                @endforeach
+
+
+
+
+                    {{-- <a href="{{route('user.messages.show', $message->id)}}" class="text-decoration-none text-light">
+                        <div class="card col-12 col-md-6 col-xl-3 msg-da-leggere {{ ($message->visualized == 0) ? 'text-white bg-dark' : '' }}" style="width: 20rem !important; height:600px; border: 3px solid white; border-radius: 1rem">
+                            <img src="{{ asset("storage/{$message->apartment->preview}")}}" class="card-img-top mt-3" alt="..." style="max-height:350px">
+                            <div class="card-body">
+                                <p class="card-text d-flex justify-content-between">{{$message->created_at}} <i class="fa-solid fa-comments" style="{{ ($message->answered == 0) ? 'color: red' : 'color: #9fff6b' }}"></i></p>
+                                <h5 class="card-title msg-card-ellipsis mt-xl-3">{{$message->apartment->title}}</h5>
+                                <p class="card-text msg-card-ellipsis mb-3 mt-xl-2">{{$message->content}}</p>
+                                <div class="d-flex justify-content-center align-intems-center mt-xl-3">
+                                    <div class="col-6 text-center">
+                                        <a href="{{route('user.messages.edit', $message->id)}}">
+                                            <button class="announcement-btn text-center my-3 p-3 msg-button" style="width: 6rem">
+                                                Edit
+                                            </button>
+                                        </a>
+                                    </div>
+                                    <div class="col-6 text-center">
+                                        <form action="{{route('user.messages.destroy', $message->id)}}" method="POST">
+                                            @csrf
+                                            @method("DELETE")
+                                            <button type="submit" class="announcement-btn text-center my-3 p-3 msg-button" style="width: 6rem">Elimina</button>
+                                        </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-               </a> 
-                @endif
-            @endforeach
+                    </a>
+                @endif 
+            @endforeach --}}
         </div>
     </div>
 
@@ -149,13 +203,13 @@
                             </div>
                         </div>
                     </div>
-               </a> 
+                </a> 
                 @endif
             @endforeach
         </div>
     </div>
-</body>
-</html>
+</section>
+@endsection
 
 {{-- @foreach ($messages as $message)
 @if ($message->visualized == 1)
