@@ -113,7 +113,22 @@
                                                             <form action="{{route('user.messages.destroy', $message->id)}}" method="POST">
                                                                 @csrf
                                                                 @method("DELETE")
-                                                                <button type="submit" class="announcement-btn text-center msg-button" style="width: 6rem">Elimina</button>
+                                                                <input class="announcement-btn text-center msg-button" style="width: 6rem" type="button" value="Elimina" data-toggle="modal" data-target="#ModalDelete{{$message->id}}">
+                                                                
+                                                                <div class="modal modal-danger fade" id="ModalDelete{{$message->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                                    <div class="modal-dialog" role="document">
+                                                                        <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="myModalLabel">Elimina:</h5>                                      
+                                                                        </div>
+                                                                        <div class="modal-body">Sei sicuro di voler eliminare il messaggio?</div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                                                                            <input type="submit" class="btn btn-danger" value="Elimina">
+                                                                        </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             </form>
                                                         </div>
                                                     </div>
@@ -194,10 +209,26 @@
                                     </a>
                                 </div>
                                 <div class="col-6 text-center">
+                                    
                                     <form action="{{route('user.messages.destroy', $message->id)}}" method="POST">
                                         @csrf
                                         @method("DELETE")
-                                        <button type="submit" class="announcement-btn text-center my-3 p-3 msg-button" style="width: 6rem">Elimina</button>
+                                        <input class="announcement-btn text-center my-3 p-3 msg-button" style="width: 6rem" type="button" value="Elimina" data-toggle="modal" data-target="#ModalDelete{{$message->id}}">
+                                        
+                                        <div class="modal modal-danger fade" id="ModalDelete{{$message->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="myModalLabel">Elimina:</h5>                                      
+                                                </div>
+                                                <div class="modal-body">Sei sicuro di voler eliminare il messaggio?</div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                                                    <input type="submit" class="btn btn-danger" value="Elimina">
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </form>
                                 </div>
                             </div>

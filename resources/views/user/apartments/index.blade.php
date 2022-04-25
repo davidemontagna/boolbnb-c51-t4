@@ -57,18 +57,34 @@
                                             Sponsorizza appartamento
                                         </button>
                                     </a>
+                                    <input class="btn ms_delete m-2" type="button" value="Elimina Appartamento" data-toggle="modal" data-target="#ModalDelete{{$apartment->id}}">
+
                                     {{-- <a href="{{route("user.apartments.edit", $apartment->id)}}">
                                         <button class="dropdown-item border-bottom" type="button">
                                             Modifica
                                         </button>
                                     </a> --}}
-                                    <form class="m-2" action="{{route("user.apartments.destroy", $apartment->id)}}" method="POST">
-                                            @csrf
-                                            @method("DELETE")
-                                            <input class="btn ms_delete" type="submit" value="Elimina Appartamneto" onclick="return confirm('Vuoi eliminare questo appartamento?')">
-                                    </form>
                                 </div>
                             </div>
+                            <form action="{{route("user.apartments.destroy", $apartment->id)}}" method="POST">
+                                @csrf
+                                @method("DELETE")
+                                
+                                <div class="modal modal-danger fade" id="ModalDelete{{$apartment->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="myModalLabel">Elimina:</h5>                                      
+                                            </div>
+                                            <div class="modal-body">Sei sicuro di voler eliminare {{$apartment->title}}?</div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                                                <input type="submit" class="btn btn-danger" value="Elimina">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                             <a href="{{route("user.apartments.show", $apartment->id)}}">
                                 <img src="{{ asset("storage/{$apartment->preview}")}}" alt="">
                             </a>
