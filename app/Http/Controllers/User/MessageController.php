@@ -26,7 +26,7 @@ class MessageController extends Controller
 
     public function index()
     {   
-        $apartments = Apartment::whit("message")->where('user_id', auth()->user()->id)->get();
+        $apartments = Apartment::with("message")->where('user_id', auth()->user()->id)->get();
         $messages = Message::with("apartment")->orderBy("created_at", "desc")->get();
         $newMessages = [];
         foreach ($messages as $message) {
