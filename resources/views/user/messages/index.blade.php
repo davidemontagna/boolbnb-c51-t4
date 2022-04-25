@@ -18,11 +18,26 @@
                             <h5 class="card-title msg-card-ellipsis">{{$message->apartment->title}}</h5>
                             <p class="card-text msg-card-ellipsis mb-3">{{$message->content}}</p>
                             <div class="d-flex justify-content-center align-intems-center">
-                                <a href="{{route('user.messages.edit', $message->id)}}" class="d-inline-block mr-2"><button type="button" class="btn btn-primary">Edit</button></a>                    
+                                <a href="{{route('user.messages.edit', $message->id)}}" class="d-inline-block mr-2"><button type="button" class="nnouncement-btn text-center msg-button" style="width: 6rem">Edit</button></a>                    
                                 <form action="{{route('user.messages.destroy', $message->id)}}" method="POST">
                                     @csrf
                                     @method("DELETE")
-                                    <button type="submit" class="btn btn-danger">Elimina</button>
+                                    <input class="announcement-btn text-center msg-button" style="width: 6rem" type="button" value="Elimina" data-toggle="modal" data-target="#ModalDelete{{$message->id}}">
+                                    
+                                    <div class="modal modal-danger fade" id="ModalDelete{{$message->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title text-dark" id="myModalLabel">Elimina:</h5>                                      
+                                            </div>
+                                            <div class="modal-body text-dark">Sei sicuro di voler eliminare il messaggio?</div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                                                <input type="submit" class="btn btn-danger" value="Elimina">
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
@@ -41,11 +56,26 @@
                             <h5 class="card-title msg-card-ellipsis">{{$message->apartment->title}}</h5>
                             <p class="card-text msg-card-ellipsis mb-3">{{$message->content}}</p>
                             <div class="d-flex justify-content-center align-intems-center">
-                                <a href="{{route('user.messages.edit', $message->id)}}" class="d-inline-block mr-2"><button type="button" class="btn btn-primary">Edit</button></a>                    
+                                <a href="{{route('user.messages.edit', $message->id)}}" class="d-inline-block mr-2"><button type="button" class="nnouncement-btn text-center msg-button" style="width: 6rem">Edit</button></a>                    
                                 <form action="{{route('user.messages.destroy', $message->id)}}" method="POST">
                                     @csrf
                                     @method("DELETE")
-                                    <button type="submit" class="btn btn-danger">Elimina</button>
+                                    <input class="announcement-btn text-center msg-button" style="width: 6rem" type="button" value="Elimina" data-toggle="modal" data-target="#ModalDelete{{$message->id}}">
+                                    
+                                    <div class="modal modal-danger fade" id="ModalDelete{{$message->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title text-dark" id="myModalLabel">Elimina:</h5>                                      
+                                            </div>
+                                            <div class="modal-body text-dark">Sei sicuro di voler eliminare il messaggio?</div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                                                <input type="submit" class="btn btn-danger" value="Elimina">
+                                            </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </form>
                             </div>
                         </div>
