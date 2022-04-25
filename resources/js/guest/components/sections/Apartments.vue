@@ -2,41 +2,57 @@
     <section>
 
     <div class="main-searchbar d-flex justify-content-center align-item-center">
-        <div class="form d-flex justify-content-center align-items-center">
+        <div class="form">
             <!-- <input type="text" name="text" id="text" placeholder="search" v-model.trim="searchInput"> -->
-            
-            <input type="text" id="address" name="address" @keydown.prevent.enter="getLocations" placeholder="Cerca località" v-model.trim="searchInput">
-            <select class="form-control" v-model="selectedLocation">
-                <option disabled> Seleziona una località </option>
-                <option :value="index" v-for="(location, index) in setOption" :key="index">{{location.address.freeformAddress + ', ' + location.address.country}}</option>
-            </select>
-            
+            <div class="d-flex search-main-section">
+                <input type="text" id="address" name="address" @keyup.prevent="getLocations" placeholder="Cerca località" v-model.trim="searchInput">
+                <select class="form-control" v-model="selectedLocation">
+                    <option disabled> Seleziona una località </option>
+                    <option :value="index" v-for="(location, index) in setOption" :key="index">{{location.address.freeformAddress + ', ' + location.address.country}}</option>
+                </select>
+                <p>
+                    <button class="btn-filtri" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                        <i class="fa-solid fa-filter"></i>
+                    </button>
+                </p>
+                <button type="submit" value="Submit" id="submit" class="d-flex justify-content-center align-items-center" @click.prevent="getApartments"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
+            <div class="collapse" id="collapseExample">
+                    <div class="card card-body rounded-pill">
+                        <div class=" input-item-container d-flex">
+                        <div class="multiselect" id="multiselect">
+                            <div class="services" @click="services()">Servizi<i class="fa-solid fa-arrow-down"></i></div>
+                            <div class="multiselect-options hidden" id="multiselectOptions">
+                                <div v-for="service in allServices" :key="service.id">
+                                    <input type="checkbox" :name="service.name" :id="service.name" v-model="CheckedServices" :value="service.name" class="checkboxServices">
+                                    <label for="checkbox1">{{service.name}}</label>
+                                    <i :class="service.icon"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="input-item">
+                            <label for="range" class="range-label"><i class="fa-solid fa-circle-nodes"></i>km: {{inputRange}}</label>
+                            <input type="range" name="range" id="range" step="20" v-model="inputRange"  min="20" max="200" class="">
+                        </div>
+                        <div class="input-item">
+                            <label for="beds" class=""><i class="fa-solid fa-bed"></i></label>
+                            <input type="number" name="beds" id="beds" v-model="inputBeds"  min="1" max="10" class="">
+                        </div>
+                        <div class="input-item">
+                            <label for="rooms" class="">Rooms:</label>
+                            <input type="number" name="rooms" id="rooms" v-model="inputRooms"  min="1" max="10" class="">
+                        </div>
+                        <div class="input-item">
+                            <label for="bath" class=""><i class="fa-solid fa-shower"></i></label>
+                            <input type="number" name="bath" id="bath" v-model="inputBath"  min="1" max="10" class="">
+                        </div>
 
-            <div class="multiselect justify-content-center align-items-center d-sm-flex" id="multiselect">
-                <div class="services" @click="services()">Services &#x2193;</div>
-                <div class="multiselect-options hidden" id="multiselectOptions">
-                    <div v-for="service in allServices" :key="service.id">
-                        <input type="checkbox" :name="service.name" :id="service.name" v-model="CheckedServices" :value="service.name" class="checkboxServices">
-                        <label for="checkbox1">{{service.name}}</label>
-                        <i :class="service.icon"></i>
+                        <!-- <button type="submit" value="Search" id="submit" @click.prevent="search"><i class="fa-solid fa-magnifying-glass"></i></button> -->
+                        </div>
                     </div>
                 </div>
-            </div>
-
-            <label for="range" class=""><i class="fa-solid fa-circle-nodes"></i>km: {{inputRange}}</label>
-            <input type="range" name="range" id="range" step="20" v-model="inputRange"  min="20" max="200" class="">
-            <label for="beds" class=""><i class="fa-solid fa-bed"></i></label>
-            <input type="number" name="beds" id="beds" v-model="inputBeds"  min="1" max="10" class="">
-            <label for="rooms" class="">Rooms:</label>
-            <input type="number" name="rooms" id="rooms" v-model="inputRooms"  min="1" max="10" class="">
-            <label for="bath" class=""><i class="fa-solid fa-shower"></i></label>
-            <input type="number" name="bath" id="bath" v-model="inputBath"  min="1" max="10" class="">
-
-            <input type="submit" value="Submit" id="submit" @click.prevent="getApartments">
-            <!-- <button type="submit" value="Search" id="submit" @click.prevent="search"><i class="fa-solid fa-magnifying-glass"></i></button> -->
         </div>
     </div>
-
         <div class="container-fluid">
             <h2>Le nostre strutture</h2>
             <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 mx-auto">
@@ -140,7 +156,7 @@ export default {
             });
         }, 
         search(){
-            window.scrollTo(0,1000)
+            window.scrollTo(0,1200)
             if(this.CheckedServices == "" && this.inputBeds == 1 && this.inputRooms == 1 && this.inputBath == 1){
                 this.filteredApartments = this.apartments;
             }else{                
@@ -312,98 +328,210 @@ export default {
 }
 
 // --- search 
+*{
+    transition: all 250ms ease;
+}
 
-
+    label{
+        margin: 0;
+    }
 .main-searchbar{
-    width: 100%;
+    width: fit-content;
     position: relative;
-    top: -814px;
-    transform: translateY(50%);
+    top: -824px;
+    left: 50%;
+    transform: translateX(-50%);
+    input{
+        border: none;
 
-    & .form{
-        background-color: $primary-red;
-        width: fit-content;
-        padding: 5px;
-        height: 80px;
-        border-radius: 3rem;
-        overflow: hidden;
-        
-        & > *{
-            border: none;
-            background-color: transparent;
-            color: white;
-        }
-
-        & input#text{ 
-            width: 100px;
-            padding-left: 10px;
-            transition: all 250ms ease;
-            &:active, &:focus{
-                width: 200px;
-            }
-        }
-        & .multiselect{
-            width: 100px;
-            margin: 0 20px;
-        }
-        & input#beds{
-            width: 50px;
-            margin: 0 10px;
-        }
-               & #submit{
-            background-color: white;
+        ::placeholder{
             color: black;
-            height: 4rem;
-            min-width: 4rem;
-            border-radius:50% ;
-            font-size: 1rem;
-            color: rgb(183, 183, 183);
-            transition: all 250ms ease;
-
-            &:hover{
-                background-color: #f2f2f2;
-                color: rgb(40, 40, 40);
-            }
-
-            &:active{
-                font-weight: bold;
-                box-shadow: inset 2px 0 5px 1px rgba(0, 0, 0, .5);
-            }
         }
     }
-    label{
-    margin: 0;
+    #submit{
+        margin-left: 1rem;
+        min-width: 2.5rem;
+        min-height: 2.5rem;
+        border: none;
+        border-radius: 3rem;
+        background-color: $primary-red;
+        color: white;
+        transition: all 300ms ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #submit:active, #submit:focus{
+        box-shadow: inset 0 0 5px 1px rgba(0, 0, 0, .4);
+        font-size: 1.2rem;
+    }
+    .btn-filtri{
+        margin-left: 1rem;
+        min-width: 2.5rem;
+        min-height: 2.5rem;
+        border: none;
+        border-radius: 3rem;
+        color: white;
+        transition: all 300ms ease;
+        background-color: rgb(129, 197, 238);
+            display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+     .btn-filtri:active, .btn-filtri:focus{
+         box-shadow: inset 0 0 5px 1px rgba(0, 0, 0, .4);
+        font-size: 1.2rem;
+    }
+    .search-main-section{
+        background-color: white;
+        padding: .9rem;
+        height: 4rem;
+        border-radius: 3rem;
+    }
+    input#address{
+        margin: 0 10px;
+        border-bottom: 1px solid rgb(180, 180, 180);
+    }
+    .collapse{
+        .multiselect{
+            margin-right: 10px;
+        }
+        input#range{
+            margin-right: 10px;
+        }
+        .range-label{
+            min-width: 80px;
+        }
+         & .card div> *{
+            padding: 3px;
+        }
+        & .card div> *:hover:not(.multiselect-options){
+            background-color: rgb(226, 226, 226);
+            border-radius: 2rem;
+        }
+    }
+    .form-control{
+        width: 300px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .input-item{
+        display: flex;
+        align-items: center;
+    }
 }
-::placeholder{
-    color: white;
-}
+
 
 .multiselect-options{
     position: absolute;
-    bottom: -150px;
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: flex-start;
-    height: 150px;
-    width: 400px;
+    top: 4rem;
     background-color: white;
-    border: 1px solid gray;
-    padding: 10px;
-    border-radius: 1rem;
-    color: $primary-red;
+    overflow: hidden;
+    overflow-y: auto ;
+    height: 100px;
+    width: 100%;
+    left: 0;
+    padding: 1rem;
+    border: 1px solid #c2c2c2;
 }
 .hidden{
     display: none;
 }
-}
-@media (max-width: 576px) {
-    
-}
+@media (max-width: 650px) {
+    .main-searchbar{
+    position: relative;
+    top: -824px;
+    left: 50%;
+    transform: translateX(-50%);
 
-#submit:active{
+    input{
+        border: none;
 
+        ::placeholder{
+            color: black;
+        }
+    }
+    #submit{
+        margin-left: 1rem;
+        min-width: 2.5rem;
+        min-height: 2.5rem;
+        border: none;
+        border-radius: 3rem;
+        background-color: $primary-red;
+        color: white;
+        transition: all 300ms ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    #submit:active, #submit:focus{
+        box-shadow: inset 0 0 5px 1px rgba(0, 0, 0, .4);
+        font-size: 1.2rem;
+    }
+    .btn-filtri{
+        margin-left: 1rem;
+        min-width: 2.5rem;
+        min-height: 2.5rem;
+        border: none;
+        border-radius: 3rem;
+        color: white;
+        transition: all 300ms ease;
+        background-color: rgb(129, 197, 238);
+            display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+     .btn-filtri:active, .btn-filtri:focus{
+         box-shadow: inset 0 0 5px 1px rgba(0, 0, 0, .4);
+        font-size: 1.2rem;
+    }
+    .search-main-section{
+        background-color: white;
+        padding: .9rem;
+        height: 4rem;
+        border-radius: 3rem;
+    }
+    input#address{
+        width: 80px;
+        margin: 0 10px;
+        border-bottom: 1px solid rgb(180, 180, 180);
+    }
+    .form-control{
+        width: 80px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .collapse{
+        .input-item-container{
+        flex-wrap: wrap !important;
+        width: 400px !important;
+        justify-content: space-between;
+        align-items: center;
+        }
+        .multiselect{
+            margin-right: 10px;
+        }
+        input#range{
+            margin-right: 10px;
+        }
+        .range-label{
+            min-width: 80px;
+        }
+         & .card div> *{
+            padding: 3px;
+        }
+        & .card div> *:hover:not(.multiselect-options){
+            background-color: rgb(226, 226, 226);
+            border-radius: 2rem;
+        }
+    }
+    .input-item{
+        display: flex;
+        align-items: center;
+    }
+}
 }
 
 </style>
