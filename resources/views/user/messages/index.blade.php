@@ -5,7 +5,12 @@
 @section('content')
 <section>
     <div class="container-fluid ms_container_index_messages mt-2" id="messages">
-        <a href="{{route('login')}}" class="d-inline-block mr-2"><button type="button" class="btn btn-danger">back</button></a>                    
+        <a href="{{route('login')}}" class="d-inline-block mr-2">
+            <button class="announcement-btn text-center my-3 p-3">
+                <i class="fas fa-chevron-left"></i>
+                Indietro
+            </button>
+        </a>                    
         <div class="row d-flex justify-content-center align-items-center m-4">
             <h1 class="container">Messaggi da leggere</h1>
             @foreach ($messages as $message)
@@ -18,7 +23,7 @@
                             <h5 class="card-title msg-card-ellipsis">{{$message->apartment->title}}</h5>
                             <p class="card-text msg-card-ellipsis mb-3">{{$message->content}}</p>
                             <div class="d-flex justify-content-center align-intems-center">
-                                <a href="{{route('user.messages.edit', $message->id)}}" class="d-inline-block mr-2"><button type="button" class="nnouncement-btn text-center msg-button" style="width: 6rem">Edit</button></a>                    
+                                <a href="{{route('user.messages.edit', $message->id)}}" class="d-inline-block mr-2"><button type="button" class="announcement-btn text-center msg-button" style="width: 6rem">Edit</button></a>                    
                                 <form action="{{route('user.messages.destroy', $message->id)}}" method="POST">
                                     @csrf
                                     @method("DELETE")
@@ -56,7 +61,7 @@
                             <h5 class="card-title msg-card-ellipsis">{{$message->apartment->title}}</h5>
                             <p class="card-text msg-card-ellipsis mb-3">{{$message->content}}</p>
                             <div class="d-flex justify-content-center align-intems-center">
-                                <a href="{{route('user.messages.edit', $message->id)}}" class="d-inline-block mr-2"><button type="button" class="nnouncement-btn text-center msg-button" style="width: 6rem">Edit</button></a>                    
+                                <a href="{{route('user.messages.edit', $message->id)}}" class="d-inline-block mr-2"><button type="button" class="announcement-btn text-center msg-button" style="width: 6rem">Edit</button></a>                    
                                 <form action="{{route('user.messages.destroy', $message->id)}}" method="POST">
                                     @csrf
                                     @method("DELETE")
