@@ -87,7 +87,8 @@
 
                             <div class="ms_selectimg mb-3">
                                 <label for="preview" class="form-label">Immagine preview:</label>
-                                <input type="file" class="form-control-file @error('preview') is-invalid @enderror" value="{{ old('preview', $apartment->preview) }}" id="preview" name="preview" placeholder="Inserisci il titolo">   
+                                <input type="file" class="form-control-file @error('preview') is-invalid @enderror" value="{{ old('preview', $apartment->preview) }}" id="imgInp" name="preview" placeholder="Inserisci il titolo">   
+                                <img id="previewImg" src="{{ (asset("storage/{$apartment->preview}")) }}" style="visibility:visible" width="100" height="100">
                                 @error('preview')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror         
@@ -163,6 +164,16 @@
                 </div>
             </div>
         </div>
+
+        <script>
+            imgInp.onchange = evt => {
+                const [file] = imgInp.files
+                if(file) {
+                   previewImg.style.visibility = 'visible';
+                   previewImg.src = URL.createObjectURL(file);
+                }
+            }
+       </script>
     </section>
     
     
