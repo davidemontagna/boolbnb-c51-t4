@@ -25,7 +25,8 @@ class MessageController extends Controller
     ];
 
     public function index()
-    {
+    {   
+        $apartments = Apartment::where('user_id', auth()->user()->id)->get();
         $messages = Message::with("apartment")->orderBy("created_at", "desc")->get();
         $newMessages = [];
         foreach ($messages as $message) {
@@ -36,7 +37,7 @@ class MessageController extends Controller
             }
         }
         $messages = $newMessages;
-        return view('user.messages.index', compact('messages'));
+        return view('user.messages.index', compact('messages', 'apartments'));
     }
 
     /**
