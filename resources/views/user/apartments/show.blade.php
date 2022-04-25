@@ -5,32 +5,31 @@
 @section('content')    
     
     <section class="ms_container_show_apartment">
-        <div class="row justify-content-between mx-3 mt-3">
-            <div class="col col-md-3">
-                <a href="{{route("user.apartments.index")}}">
-                    <button class="announcement-btn text-center my-3 p-3">
-                        <i class="fas fa-chevron-left"></i>
-                        Indietro
-                    </button>
-                </a>
-            </div>
-            <div class="col col-md-3">
-                <a href="{{route("user.apartments.edit", $apartment->id)}}">
-                    <button class="announcement-btn text-center my-3 p-3">
-                        <i class="fas fa-pencil-alt"></i>
-                        Modifica
-                    </button>
-                </a>
-            </div>
-        </div>
         <div class="container-fluid">
+            <div class="row justify-content-between mx-3 mt-3">
+                <div class="col col-lg-3">
+                    <a href="{{route("user.apartments.index")}}">
+                        <button class="announcement-btn text-center my-3 p-3">
+                            <i class="fas fa-chevron-left"></i>
+                            Indietro
+                        </button>
+                    </a>
+                </div>
+            </div>
             @if ($apartment->user_id == auth()->id())
-                <div class="title">
+                <div class="title mx-5">
                     <div>{{$apartment->title}}</div>
-                    <div>{{$apartment->location->city}}</div>
+                    <div class="row align-items-end">
+                        <div class="col-3">
+                            {{$apartment->location->city}}
+                        </div>
+                        <div class="col-4">
+                            {{$apartment->location->address}}
+                        </div>
+                    </div>
                 </div>
                 @if ($apartment->preview)
-                    <div class="apartment-img">
+                    <div class="apartment-img my-5 mx-auto">
                         <img src="{{ asset("storage/{$apartment->preview}")}}" alt="{{$apartment->title}}">
                     </div>
                 @endif 
@@ -85,15 +84,19 @@
                         @endforeach
                     </div>
                 </div>
-            @else
-                <div class="container">
-                    <div class="row justify-content-center">
-                        <div class="col-md-12">
-                            <h3>Non sei autorizzato a visualizzare questo appartamento.</h3>
-                            <a href="{{ route("user.apartments.index") }}"><button type="submit" class="btn btn-primary">Torna alla Dashboard</button></a>
-                        </div>
-                    </div>
+                <div class="col col-lg-3 my-3 mx-auto">
+                    <a href="{{route("user.apartments.edit", $apartment->id)}}">
+                        <button class="announcement-btn text-center my-3 p-3">
+                            <i class="fas fa-pencil-alt"></i>
+                            Modifica
+                        </button>
+                    </a>
                 </div>
+            @else
+                    <div class="text-center mt-3">
+                        <h3>Non sei autorizzato a visualizzare questo appartamento.</h3>
+                        {{-- <a href="{{ route("user.apartments.index") }}"><button type="submit" class="btn btn-primary">Torna alla Dashboard</button></a> --}}
+                    </div>
             @endif
         </div>
 
