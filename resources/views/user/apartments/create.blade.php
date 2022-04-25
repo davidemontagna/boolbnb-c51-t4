@@ -77,8 +77,8 @@
 
                         <div class="mb-3">
                             <label for="preview" class="form-label">Immagine preview:</label>
-                            <input type="file" class="form-control-file @error('preview') is-invalid @enderror" value="{{old('preview')}}" id="imgInp" name="preview" placeholder="Inserisci la preview">   
-                            <img id="previewImg" src="" style="visibility:hidden" width="100" height="100">
+                            <input type="file" class="d-inline form-control-file @error('preview') is-invalid @enderror" value="{{old('preview')}}" id="imgInp" name="preview" placeholder="Inserisci la preview" style="width: 30%">   
+                            <img id="previewImg" src="" style="visibility:hidden" height="100">
                             
                             @error('preview')
                                 <div class="alert alert-danger">{{ $message }}</div>

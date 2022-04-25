@@ -87,8 +87,8 @@
 
                             <div class="ms_selectimg mb-3">
                                 <label for="preview" class="form-label">Immagine preview:</label>
-                                <input type="file" class="form-control-file @error('preview') is-invalid @enderror" value="{{ old('preview', $apartment->preview) }}" id="imgInp" name="preview" placeholder="Inserisci il titolo">   
-                                <img id="previewImg" src="{{ (asset("storage/{$apartment->preview}")) }}" style="visibility:visible" width="100" height="100">
+                                <input type="file" class="d-inline form-control-file @error('preview') is-invalid @enderror" value="{{ old('preview', $apartment->preview) }}" id="imgInp" name="preview" placeholder="Inserisci il titolo" style="width: 30%">   
+                                <img  id="previewImg" src="{{ (asset("storage/{$apartment->preview}")) }}" style="visibility:visible" height="100">
                                 @error('preview')
                                     <div class="alert alert-danger">{{ $message }}</div>
                                 @enderror         
