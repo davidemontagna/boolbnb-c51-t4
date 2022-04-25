@@ -230,7 +230,7 @@ export default {
                     check = true;
                 }
             });
-                    console.log(check)
+
             return check;
         }
         

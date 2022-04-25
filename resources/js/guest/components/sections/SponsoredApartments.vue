@@ -7,7 +7,7 @@
                 <div class="main position-absolute top-50 start-50 translate-middle d-flex" @mouseover="timerStop" @mouseleave="timer">
                     <div class="text-end">
                         <div v-for="(apartment, index) in apartments" :key="index" class="items_container position-relative center" :class="immagineCorrente(index)">
-                            <div class="ms_card" v-if="checkSponsorized(apartment)">
+                            <div class="ms_card">
                                 <div class="ms_img mx-auto position-relative">
                                     <img :src="'../storage/'+apartment.preview" alt="">
                                     <div class="ms_shadow position-absolute"></div>
@@ -60,7 +60,7 @@ export default {
             const dataLatLon = {
                 lat : null,
                 lon : null,
-                range: 20,
+                range: null,
             };
             axios.get('/api/apartments',
             {
@@ -71,10 +71,27 @@ export default {
             axios.get('/api/apartments')
             .then(apiResponse => {
                 this.apartments = apiResponse.data;
+                this.orderBySponsorized(); 
                 })
             .catch(() => {
                 console.log('error');
             });
+        },
+        orderBySponsorized: function() {
+            let sponsorized = [];
+            const today = new Date();
+
+            this.apartments.forEach(apartment => {
+                let first = true;
+                apartment.plans.forEach(plan => {
+                    if (Date.parse(plan.pivot.date_end) >= Date.parse(today) && first) {
+                        first = false;
+                        sponsorized.push(apartment);
+                    }
+                });
+            });
+            console.log(sponsorized.length);
+            this.apartments = sponsorized;
         },
 
         checkSponsorized: function(apartment){  
