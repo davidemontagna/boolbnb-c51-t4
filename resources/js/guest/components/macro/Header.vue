@@ -12,16 +12,19 @@
                     <li><router-link :to="{name: 'about'}" class="text-secondary ruouter-link">CHI SIAMO</router-link></li>
                 </div>
                 <div class="col-6 col-md-4 d-flex justify-content-end align-items-center">
-                        <a class="login" href="http://127.0.0.1:8000/login">
-                            <button class="login-btn">
-                                <div>Login</div>
-                            </button>
-                        </a>
-                        <a class="login" href="http://127.0.0.1:8000/register">
-                            <button class="login-btn">
-                                <div>Register</div>
-                            </button>
-                        </a>
+                    <div class="text-secondary">
+                        Sei un host?
+                    </div>
+                    <a class="login" href="http://127.0.0.1:8000/login">
+                        <button class="login-btn">
+                            <div>Login</div>
+                        </button>
+                    </a>
+                    <a class="login" href="http://127.0.0.1:8000/register">
+                        <button class="login-btn">
+                            <div>Register</div>
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>
