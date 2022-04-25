@@ -392,8 +392,8 @@ export default {
         align-items: center;
         justify-content: center;
     }
-     .btn-filtri:active, .btn-filtri:focus{
-         box-shadow: inset 0 0 5px 1px rgba(0, 0, 0, .4);
+    .btn-filtri:active, .btn-filtri:focus{
+        box-shadow: inset 0 0 5px 1px rgba(0, 0, 0, .4);
         font-size: 1.2rem;
     }
     .search-main-section{

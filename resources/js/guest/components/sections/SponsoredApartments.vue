@@ -7,7 +7,7 @@
                 <div class="main position-absolute top-50 start-50 translate-middle d-flex" @mouseover="timerStop" @mouseleave="timer">
                     <div class="text-end">
                         <div v-for="(apartment, index) in apartments" :key="index" class="items_container position-relative center" :class="immagineCorrente(index)">
-                            <div class="ms_card">
+                            <div class="ms_card" v-if="checkSponsorized(apartment)">
                                 <div class="ms_img mx-auto position-relative">
                                     <img :src="'../storage/'+apartment.preview" alt="">
                                     <div class="ms_shadow position-absolute"></div>
@@ -36,33 +36,6 @@
 
                 </div>
             </div>
-
-
-
-            <!-- <carousel v-bind:per-page-custom=[[0,1],[576,2],[992,3]]>
-                <div v-for="(apartment, index) in apartments" :key="index">
-                    <div class="ms_card">
-                        <div class="ms_img mx-auto position-relative">
-                            <img :src="apartment.preview" alt="">
-                            <div class="ms_shadow position-absolute"></div>
-                            <div class="ms_sponsor position-absolute">I nostri preferiti</div>
-                            <div class="ms_description position-absolute">
-                                <p class="ms_beds mx-2">Numero di letti: {{apartment.num_beds}}</p>
-                            </div>
-                        </div>
-                        <div class="ms_text">
-                            <h2 class="ms_title my-2">{{apartment.title}}</h2>
-                            <h4 class="ms_city mt-3">{{apartment.location.city}}</h4>
-                            <p class="ms_address">{{apartment.location.address}}</p>
-                            <div class="ms_description2 d-flex justify-content-between mt-3">
-                                <p class="ms_rooms">Stanze: {{apartment.num_rooms}}</p>
-                                <p class="ms_bath">Bagni: {{apartment.num_bath}}</p>
-                                <p class="ms_square">Mq: {{apartment.square_footage}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </carousel> -->
         </div>
     </section>
 </template>
@@ -102,6 +75,20 @@ export default {
             .catch(() => {
                 console.log('error');
             });
+        },
+
+        checkSponsorized: function(apartment){  
+            const today = new Date();
+
+            let check = false;
+
+            apartment.plans.forEach(plan => {   
+                if (Date.parse(plan.pivot.date_end) >= Date.parse(today)) {
+                    check = true;
+                }
+            });
+                    console.log(check)
+            return check;
         },
         
         
