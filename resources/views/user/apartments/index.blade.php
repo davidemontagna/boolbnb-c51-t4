@@ -52,6 +52,11 @@
                                             Mostra appartamento
                                         </button>
                                     </a>
+                                    <a href="{{route("user.plans", $apartment->id)}}">
+                                        <button class="dropdown-item" type="button">
+                                            Sponsorizza appartamento
+                                        </button>
+                                    </a>
                                     {{-- <a href="{{route("user.apartments.edit", $apartment->id)}}">
                                         <button class="dropdown-item border-bottom" type="button">
                                             Modifica
