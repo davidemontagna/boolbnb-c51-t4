@@ -84,6 +84,98 @@
                         @endforeach
                     </div>
                 </div>
+                <div>   
+                    Messaggi da leggere
+                    @foreach ($messages as $message)
+                        @if ($message->visualized == 0)
+                            <div class="card my-1 p-3">
+                                <div class="d-flex justify-content-between m-1">
+                                    <i class="fa-solid fa-comments" style="{{ ($message->answered == 0) ? 'color: red' : 'color: #9fff6b' }}"></i>
+                                    <div class="row row-cols-2 justify-content-center align-intems-center my-1">
+                                        <div class="col text-center">
+                                            <a href="{{route('user.messages.edit', $message->id)}}">
+                                                <button class="announcement-btn text-center msg-button" style="width: 6rem">
+                                                    Edit
+                                                </button>
+                                            </a>
+                                        </div>
+                                        <div class="col text-center">
+                                            <form action="{{route('user.messages.destroy', $message->id)}}" method="POST">
+                                                @csrf
+                                                @method("DELETE")
+                                                <input class="announcement-btn text-center msg-button" style="width: 6rem" type="button" value="Elimina" data-toggle="modal" data-target="#ModalDelete{{$message->id}}">
+                                                
+                                                <div class="modal modal-danger fade" id="ModalDelete{{$message->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="myModalLabel">Elimina:</h5>                                      
+                                                        </div>
+                                                        <div class="modal-body">Sei sicuro di voler eliminare il messaggio?</div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                                                            <input type="submit" class="btn btn-danger" value="Elimina">
+                                                        </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="mb-3 ms_break-word">{{$message->content}}</p>
+                                <p class="mb-3 ms_break-word">Messaggio inviato da: {{$message->sender_email}}</p>
+                                <p class="">alle: {{$message->created_at}}</p>
+                            </div>
+                        @endif
+                    @endforeach
+                    <div>
+                        Messaggi letti
+                    </div>
+                    @foreach ($messages as $message)
+                        @if ($message->visualized == 1)
+                        <div class="card my-1 p-3">
+                            <div class="d-flex justify-content-between m-1">
+                                <i class="fa-solid fa-comments" style="{{ ($message->answered == 0) ? 'color: red' : 'color: #9fff6b' }}"></i>
+                                <div class="row row-cols-2 justify-content-center align-intems-center my-1">
+                                    <div class="col text-center">
+                                        <a href="{{route('user.messages.edit', $message->id)}}">
+                                            <button class="announcement-btn text-center msg-button" style="width: 6rem">
+                                                Edit
+                                            </button>
+                                        </a>
+                                    </div>
+                                    <div class="col text-center">
+                                        <form action="{{route('user.messages.destroy', $message->id)}}" method="POST">
+                                            @csrf
+                                            @method("DELETE")
+                                            <input class="announcement-btn text-center msg-button" style="width: 6rem" type="button" value="Elimina" data-toggle="modal" data-target="#ModalDelete{{$message->id}}">
+                                            
+                                            <div class="modal modal-danger fade" id="ModalDelete{{$message->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="myModalLabel">Elimina:</h5>                                      
+                                                    </div>
+                                                    <div class="modal-body">Sei sicuro di voler eliminare il messaggio?</div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Chiudi</button>
+                                                        <input type="submit" class="btn btn-danger" value="Elimina">
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <p class="mb-3 ms_break-word">{{$message->content}}</p>
+                            <p class="mb-3 ms_break-word">Messaggio inviato da: {{$message->sender_email}}</p>
+                            <p class="">alle: {{$message->created_at}}</p>
+                        </div>
+                        @endif
+                    @endforeach
+                </div>
                 <div class="col col-lg-3 my-3 mx-auto">
                     <a href="{{route("user.apartments.edit", $apartment->id)}}">
                         <button class="announcement-btn text-center my-3 p-3">

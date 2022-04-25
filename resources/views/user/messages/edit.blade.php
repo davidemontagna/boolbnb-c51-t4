@@ -2,12 +2,12 @@
 
 @section('content')
 <div class="container my-5">
-  <h1>EMAIL</h1> 
-  @if ($message->apartment->user_id == auth()->id())
-  <form action="{{route("user.messages.update", $message->id)}}" method="POST">
-      
-      @csrf
-      @method('PUT')
+    <h1>EMAIL</h1> 
+    @if ($message->apartment->user_id == auth()->id())
+    <form action="{{route("user.messages.update", $message->id)}}" method="POST">
+        
+        @csrf
+        @method('PUT')
 
         <div class="form-group">
             <label>Visualizzato</label>
@@ -24,14 +24,11 @@
             </select>
         </div>
         
-      
-      
-      
-      <button type="submit" class="btn my-3 msg-button p-3">Salva</button>
 
-  </form>
-  <a href="{{route('user.messages.index')}}"><button type="button" class="btn msg-button p-3">Back</button></a> 
-  @else
+    <button type="submit" class="btn mr-3 msg-button p-3">Salva</button>
+    <a href="{{route("user.apartments.show", $message->apartment->id)}}"><button type="button" class="btn msg-button p-3">Indietro</button></a> 
+    </form>
+    @else
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-12">
@@ -42,6 +39,5 @@
         </div>
     @endif
 
-  
 </div>
 @endsection

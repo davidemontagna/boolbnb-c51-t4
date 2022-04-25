@@ -5,7 +5,7 @@
         <div>{{apartment.title}}</div>
         <div>{{apartment.location.city}}</div>
     </div>
-    <div class="apartment-img mx-auto">
+    <div class="apartment-img mx-auto col-12 col-sm-8 col-md-5">
         <img :src="'../storage/'+apartment.preview" alt="Missing Preview">
     </div>
     <div class="structure row row-cols-3 text-center border-top border-bottom">
@@ -171,13 +171,12 @@ export default {
 }
 
 .apartment-img{
-    width: 80%;
-    height: 70vh;
+    width: 100%;
     margin-bottom: 1rem;
-    border-radius: 3vw;
     overflow: hidden;
 
     img{
+        border-radius: 2vw;
         object-fit:cover;
         width: 100%;
         height: 100%;

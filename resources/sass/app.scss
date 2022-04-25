@@ -389,6 +389,8 @@
             }
         }
         .ms_text{
+            width: 50%;
+            white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis; 
         }
@@ -399,4 +401,7 @@
         word-wrap: break-word;
         hyphens: auto;
     }
+}
+*{
+    scroll-behavior: smooth;
 }

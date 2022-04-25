@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Apartment;
 use App\Service;
 use App\Location;
+use App\Message;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -114,10 +115,12 @@ class ApartmentController extends Controller
      */
     public function show(Apartment $apartment)
     {
+
+        $messages = Message::where('apartment_id', $apartment['id'])->get();
         if(!$apartment){
             abort(404);
         }
-        return view('user.apartments.show', compact('apartment'));
+        return view('user.apartments.show', compact('apartment', 'messages'));
     }
 
     /**
