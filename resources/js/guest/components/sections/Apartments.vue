@@ -1,6 +1,5 @@
 <template>
     <section>
-
     <div class="main-searchbar d-flex justify-content-center align-item-center">
         <div class="form">
             <!-- <input type="text" name="text" id="text" placeholder="search" v-model.trim="searchInput"> -->
@@ -58,7 +57,8 @@
             <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 mx-auto">
                 <div class="col my-3" v-for="(apartment, index) in setApartments" :key="index">
                     <router-link :to="{name: 'single-apartment', params:{slug: apartment.slug}}" class="router-link">
-                    <div class="ms_card">
+                    <div class="ms_card" :class="checkSponsorized(apartment) ? 'sponsorized-card' : ''">
+                        <div class="sponzorized-tag" :class="checkSponsorized(apartment) ? '' : 'hidden'">Uno dei nostri preferiti <i class="fa-solid fa-crown"></i></div>
                         <div class="ms_img mx-auto position-relative">
                                 <img :src="'../storage/'+apartment.preview" alt="">
                                 <div class="ms_shadow position-absolute"></div>
@@ -75,6 +75,7 @@
                                 <p class="ms_bath">Bagni: {{apartment.num_bath}}</p>
                                 <p class="ms_square">Mq: {{apartment.square_footage}}</p>
                             </div>
+                            <p v-if="checkSponsorized(apartment)" class="sponsorized-text">Post sponsorizzato</p>
                         </div>
                     </div>
                     </router-link>
@@ -219,6 +220,19 @@ export default {
             console.log(sponsorized.length, notSponsorized.length);
             this.filteredApartments = sponsorized.concat(notSponsorized);
         },
+        checkSponsorized: function(apartment){  
+            const today = new Date();
+
+            let check = false;
+
+            apartment.plans.forEach(plan => {   
+                if (Date.parse(plan.pivot.date_end) >= Date.parse(today)) {
+                    check = true;
+                }
+            });
+                    console.log(check)
+            return check;
+        }
         
     },
     created() {
@@ -534,4 +548,31 @@ export default {
 }
 }
 
+//sponzorized
+
+.ms_card.sponsorized-card{
+    border: 3px solid rgb(255, 139, 180);
+}
+
+.sponzorized-tag{
+    position: absolute;
+    font-size: clamp(.7rem, 1vw, 2rem);
+    top: 2rem;
+    left: 3rem;
+    background-color: $primary-red;
+    z-index: 3;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.sponsorized-text{
+    color: $primary-grey;
+    font-size: .6rem;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
 </style>
