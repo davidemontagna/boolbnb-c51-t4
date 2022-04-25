@@ -327,14 +327,25 @@ export default {
             width: 50px;
             margin: 0 10px;
         }
-        & #submit{
+               & #submit{
             background-color: white;
             color: black;
             height: 4rem;
-            width: 4rem;
+            min-width: 4rem;
             border-radius:50% ;
-            font-size: 2rem;
+            font-size: 1rem;
             color: rgb(183, 183, 183);
+            transition: all 250ms ease;
+
+            &:hover{
+                background-color: #f2f2f2;
+                color: rgb(40, 40, 40);
+            }
+
+            &:active{
+                font-weight: bold;
+                box-shadow: inset 2px 0 5px 1px rgba(0, 0, 0, .5);
+            }
         }
     }
     label{
