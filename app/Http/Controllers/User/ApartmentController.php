@@ -116,7 +116,7 @@ class ApartmentController extends Controller
     public function show(Apartment $apartment)
     {
 
-        $messages = Message::where('apartment', $apartment['id'])->first();
+        $messages = Message::where('apartment_id', $apartment['id'])->first();
         if(!$apartment){
             abort(404);
         }
