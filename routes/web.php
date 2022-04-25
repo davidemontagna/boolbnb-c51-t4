@@ -26,16 +26,10 @@ Route::middleware('auth')
         ->name('home');
         Route::resource('/apartments', ApartmentController::class);
         Route::resource('/messages', MessageController::class);
-        // Route::resource('/altra_rotta', Altra_rotta_Controller::class);
+        Route::get('/apartments/{apartment:id}/sponsorship/plans', 'PaymentController@plans')->name('plans');
+        Route::get('/apartments/{apartment:id}/sponsorship/{plan:id}/payment', 'PaymentController@index')->name('payment');
+        Route::post('/apartments/{apartment:id}/sponsorship/{plan:id}/checkout', 'PaymentController@checkout')->name('checkout');
 });
-
-// Route::middleware('auth')
-//     ->namespace('User')
-//     ->name('user.')
-//     ->prefix('user')
-//     ->group(function(){
-//         Route::get("{any?}", 'HomeController@index')->where("any", ".*")->name('home');
-// });
 
 Route::get("{any?}", function() {
     return view('guest.home');
