@@ -9,6 +9,7 @@
             <div class="row justify-content-center">
                 <div class="col-md-12 mt-3">
                     <h3>Inserisci un nuovo appartamento</h3>
+                    <a href="{{route("user.apartments.index")}}"><button type="submit" class="mb-4 btn">Torna alla Dashboard</button></a>
                     <form action="{{ route("user.apartments.store") }}" method="POST" enctype="multipart/form-data">
                         @csrf
             

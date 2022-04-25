@@ -12,6 +12,7 @@
                     @if ($apartment->user_id == auth()->id())
 
                         <h3 class="mt-3">Modifica Appartamento</h3>
+                        <a href="{{route("user.apartments.show", $apartment->id)}}"><button type="submit" class="mb-4 btn">Torna all'appartamento</button></a>
                         <form action="{{ route("user.apartments.update", $apartment->id) }}" method="POST" enctype="multipart/form-data">                        
                             @csrf
                             @method('PUT')
