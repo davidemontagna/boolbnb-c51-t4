@@ -77,7 +77,9 @@
 
                         <div class="mb-3">
                             <label for="preview" class="form-label">Immagine preview:</label>
-                            <input type="file" class="form-control-file @error('preview') is-invalid @enderror" value="{{old('preview')}}" id="preview" name="preview" placeholder="Inserisci la preview">   
+                            <input type="file" class="form-control-file @error('preview') is-invalid @enderror" value="{{old('preview')}}" id="imgInp" name="preview" placeholder="Inserisci la preview">   
+                            <img id="previewImg" src="" style="visibility:hidden" width="100" height="100">
+                            
                             @error('preview')
                                 <div class="alert alert-danger">{{ $message }}</div>
                             @enderror         
@@ -134,6 +136,16 @@
                 </div>
             </div>
         </div>
+
+        <script>
+             imgInp.onchange = evt => {
+                 const [file] = imgInp.files
+                 if(file) {
+                    previewImg.style.visibility = 'visible';
+                    previewImg.src = URL.createObjectURL(file);
+                 }
+             }
+        </script>
     </section>
     
     
