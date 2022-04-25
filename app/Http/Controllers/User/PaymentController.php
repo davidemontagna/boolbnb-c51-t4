@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use DateInterval;
+
 use DateTime;
+
 
 use App\Apartment;
 use App\Plan;
@@ -38,10 +40,16 @@ class PaymentController extends Controller
         return view('user.sponsorship.index', ['token' => $token, 'user' => $apartment->id_user, 'plan' => $plan, 'apartment_id' => $apartment->id]);
     }
 
-    public function checkout(Request $request, Apartment $apartment, $plan_id)
+    public function checkout(Request $request, $apartment_id, $plan_id)
     {
-
+        $apartment = Apartment::where('id', $apartment_id)->with('plans')->first();
         $plan = Plan::where('id', $plan_id)->first();
+
+        if ($apartment->user_id != auth()->id() || $plan->price != $request->amount) {
+            return redirect()->route('user.apartments.index');
+        }
+
+        $user = User::where('id', auth()->id())->first();
 
         $gateway = new \Braintree\Gateway([
             'environment' => config('services.braintree.environment'),
@@ -66,26 +74,28 @@ class PaymentController extends Controller
             ]
         ]);
 
-        // $request->validate( [
-        //     'sponsorship_id' => 'required|integer|exists:sponsorships,id',
-        // ]);
-
-        // $data = $request->all();
-
-        
-        // $nuovaSponsorship = new Sponsorship();
-
-        // $sponsorshipLength = Sponsorship::where('id', $data['sponsorship_id'])->pluck('length')->first(); // pluck restituisce il solo valore e non anche la chiave! la first va usata perché è [value]
-        // $start = new DateTime();
-        // $expiration = $start->add(new DateInterval('PT'.$sponsorshipLength.'H'));  //aggiunte ore della sponsorship
-
-        // $user->sponsorships()->attach($data['sponsorship_id'], array('start_date'=>$start,'expiration'=>$expiration));
 
         if ($result->success) {
             $transaction = $result->transaction;
 
+            $dateCreation = new DateTime();
 
-            return back()->with('success_message', 'Transaction successful');
+            $dateStart = $dateCreation;
+            
+            foreach ($apartment->plans as $sponsorship) {
+                $tempDate = DateTime::createFromFormat('Y-m-d H:i:s', $sponsorship->pivot->date_end);
+                if ($tempDate > $dateStart) {
+                    $dateStart = $tempDate;
+                }
+            }
+            
+            $hours = $plan->duration;
+            $dateEnd = (clone $dateStart)->add(new DateInterval("PT{$hours}H"));
+
+            $apartment->plans()->attach($plan->id, array('date_start' => $dateStart, 'date_end' => $dateEnd, 'created_at' => $dateCreation, 'updated_at' => $dateCreation));
+
+            return redirect()->route("user.apartments.show", $apartment->id);
+
         } else {
             $errorString = "";
 
