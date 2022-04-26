@@ -44,7 +44,18 @@ class ApartmentController extends Controller
      */
     public function index()
     {
-        $apartments = Apartment::where('user_id', auth()->user()->id)->with('plans')->get();
+        $apartments = Apartment::where('user_id', auth()->user()->id)->with('plans', 'messages')->get();
+
+        $newMessages = [];
+        foreach ($apartments as $index => $apartment) {
+            $counter = 0; 
+            foreach ($apartment->messages as $message) {
+                if(!$message->visualized){
+                    $counter++;
+                }
+            }
+            $newMessages[$index] = [ 'counter' => $counter];
+        }
 
         $today= new DateTime();
         $dataSponsorships = [];
@@ -66,7 +77,7 @@ class ApartmentController extends Controller
             }
         }
         
-        return view('user.apartments.index', compact('apartments', 'dataSponsorships'));
+        return view('user.apartments.index', compact('apartments', 'dataSponsorships', 'newMessages'));
     }
 
     /**
