@@ -76,7 +76,9 @@
         </nav>
     </div>
     <main>
-        @yield('content')
+        <div class="container">
+            @yield('content')
+        </div>
     </main>
     <script src="{{asset("js/user.js")}}"></script>
 </body>
