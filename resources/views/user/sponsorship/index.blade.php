@@ -2,14 +2,21 @@
 
 
 @section('content')
+
 <div class="content">
     <form method="POST" id="payment-form" action="{{ route('user.checkout', [$apartment_id, $plan->id])}}">
         @csrf
-        <section>
-            <label for="amount">
-                <span class="input-label">Amount</span>
+        <section class="mt-3">
+            <label for="amount ">
+                <h3 class="input-label ">Riepilogo piano:</h3>
+                <div class="mt-3">
+                    <h2 class="mb-3">{{$plan->title}}</h2>
+                    <h5 class="d-inline">Prezzo: {{$plan->price}} &euro;</h5>
+                    <h5 class="ml-5 d-inline">Valido: {{$plan->duration}} ore</h5> 
+                </div>
+                   
                 <div class="input-wrapper amount-wrapper">
-                    <input id="amount" name="amount" type="number" readonly value="{{$plan->price}}">
+                    <input id="amount" name="amount" type="hidden" readonly value="{{$plan->price}}">
                 </div>
             </label>
 
@@ -19,7 +26,10 @@
         </section>
 
         <input id="nonce" name="payment_method_nonce" type="hidden" />
-        <button class="button" type="submit"><span>Test Transaction</span></button>
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3 mt-3 mb-5 p-0 ">
+            <button class="dm-button " type="submit"><span>Procedi all'acquisto</span></button>
+            <a href="{{route("user.apartments.index")}}" class=""><button type="submit" class="mt-4 mb-4 dm-button">Torna ai tuoi appartamenti</button></a>
+        </div>
     </form>
 </div>
 </div>
