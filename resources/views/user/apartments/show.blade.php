@@ -18,15 +18,20 @@
             </div>
             @if ($apartment->user_id == auth()->id())
                 <div class="title mx-5">
-                    <div>{{$apartment->title}}</div>
-                    <div class="row align-items-end">
-                        <div class="col-3">
-                            {{$apartment->location->city}}
-                        </div>
-                        <div class="col-4">
-                            {{$apartment->location->address}}
+                    <div class="row">
+                        <div class="col-12">
+                            <h1>{{$apartment->title}}</h1>
                         </div>
                     </div>
+                    <div class="row">
+                        <h2 class="col-2">
+                            {{$apartment->location->city}}
+                        </h2>
+                        <h2 class="col-10">
+                            {{$apartment->location->address}}
+                        </h2>
+                    </div>
+                    
                 </div>
                 @if ($apartment->preview)
                     <div class="apartment-img my-5 mx-auto">

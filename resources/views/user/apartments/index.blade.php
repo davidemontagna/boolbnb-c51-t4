@@ -4,7 +4,7 @@
 
 @section('content')
 <section>
-    <div class="ms_container_index_apartment container-fluid">
+    <div class="ms_container_index_apartment">
         <div class="row mt-2">
             <div class="col col-md-3 col-xl-2">
                 <a href="{{route("login")}}">
@@ -27,18 +27,9 @@
                 Aggiungi appartamento
             </button>
         </a>
-        {{-- <table class="table">
-            <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">User id</th>
-                <th scope="col">Titolo</th>
-                <th scope="col">Azioni</th>
-            </tr>
-            </thead>
-            <tbody> --}}
+
         <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 mx-auto">
-            @foreach ($apartments as $apartment)
+            @foreach ($apartments as $index => $apartment)
                 <div class="col my-3">
                     <div class="ms_card">
                         <div class="ms_img mx-auto position-relative">
@@ -58,14 +49,20 @@
                                         </button>
                                     </a>
                                     <input class="btn ms_delete m-2" type="button" value="Elimina Appartamento" data-toggle="modal" data-target="#ModalDelete{{$apartment->id}}">
-
-                                    {{-- <a href="{{route("user.apartments.edit", $apartment->id)}}">
-                                        <button class="dropdown-item border-bottom" type="button">
-                                            Modifica
-                                        </button>
-                                    </a> --}}
                                 </div>
                             </div>
+                            
+                                <div class="ms_dropdown-2 dropdown position-absolute">
+                                    <button class="btn msg-button dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Sponsorizzato
+                                    </button>
+                                    <div class="dropdown-menu p-1" aria-labelledby="dropdownMenu3">
+                                        <p>Piano :</p>
+                                        <p>Scadenza : </p>
+                                    </div>
+                                </div>
+                            
+
                             <form action="{{route("user.apartments.destroy", $apartment->id)}}" method="POST">
                                 @csrf
                                 @method("DELETE")
