@@ -1,60 +1,63 @@
 <template>
     <section>
-    <div class="main-searchbar d-flex justify-content-center align-item-center">
-        <div class="form">
-            <!-- <input type="text" name="text" id="text" placeholder="search" v-model.trim="searchInput"> -->
-            <div class="d-flex search-main-section">
-                <input type="text" id="address" name="address" @keyup.prevent="getLocations" placeholder="Cerca località" v-model.trim="searchInput">
-                <select class="form-control" v-model="selectedLocation">
-                    <option disabled> Seleziona una località </option>
-                    <option :value="index" v-for="(location, index) in setOption" :key="index">{{location.address.freeformAddress + ', ' + location.address.country}}</option>
-                </select>
-                <p>
-                    <button class="btn-filtri" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                        <i class="fa-solid fa-filter"></i>
-                    </button>
-                </p>
-                <button type="submit" value="Submit" id="submit" class="d-flex justify-content-center align-items-center" @click.prevent="getApartments"><i class="fa-solid fa-magnifying-glass"></i></button>
-            </div>
-            <div class="collapse" id="collapseExample">
-                    <div class="card card-body rounded-pill">
-                        <div class=" input-item-container d-flex">
-                        <div class="multiselect" id="multiselect">
-                            <div class="services" @click="services()">Servizi<i class="fa-solid fa-arrow-down"></i></div>
-                            <div class="multiselect-options hidden" id="multiselectOptions">
-                                <div v-for="service in allServices" :key="service.id">
-                                    <input type="checkbox" :name="service.name" :id="service.name" v-model="CheckedServices" :value="service.name" class="checkboxServices">
-                                    <label for="checkbox1">{{service.name}}</label>
-                                    <i :class="service.icon"></i>
+        <div class="main-searchbar d-flex justify-content-center align-item-center">
+            <div class="form">
+                <!-- <input type="text" name="text" id="text" placeholder="search" v-model.trim="searchInput"> -->
+                <div class="d-flex search-main-section">
+                    <input class="ms_address" type="text" id="address" name="address" @keyup.prevent="getLocations" placeholder="Cerca località" v-model.trim="searchInput">
+                    <select class="form-control" v-model="selectedLocation">
+                        <option disabled> Seleziona una località </option>
+                        <option :value="index" v-for="(location, index) in setOption" :key="index">{{location.address.freeformAddress + ', ' + location.address.country}}</option>
+                    </select>
+                    <p>
+                        <button class="btn-filtri" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            <i class="fa-solid fa-filter"></i>
+                        </button>
+                    </p>
+                    <button type="submit" value="Submit" id="submit" class="d-flex justify-content-center align-items-center" @click.prevent="getApartments"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+                <div class="collapse" id="collapseExample">
+                        <div class="card card-body rounded-pill">
+                            <div class=" input-item-container d-flex">
+                            <div class="multiselect" id="multiselect">
+                                <div class="services" @click="services()">Servizi<i class="fa-solid fa-arrow-down"></i></div>
+                                <div class="multiselect-options hidden" id="multiselectOptions">
+                                    <div v-for="service in allServices" :key="service.id">
+                                        <input type="checkbox" :name="service.name" :id="service.name" v-model="CheckedServices" :value="service.name" class="checkboxServices">
+                                        <label for="checkbox1">{{service.name}}</label>
+                                        <i :class="service.icon"></i>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="input-item">
-                            <label for="range" class="range-label"><i class="fa-solid fa-circle-nodes"></i>km: {{inputRange}}</label>
-                            <input type="range" name="range" id="range" step="20" v-model="inputRange"  min="20" max="200" class="">
-                        </div>
-                        <div class="input-item">
-                            <label for="beds" class=""><i class="fa-solid fa-bed"></i></label>
-                            <input type="number" name="beds" id="beds" v-model="inputBeds"  min="1" max="10" class="">
-                        </div>
-                        <div class="input-item">
-                            <label for="rooms" class="">Rooms:</label>
-                            <input type="number" name="rooms" id="rooms" v-model="inputRooms"  min="1" max="10" class="">
-                        </div>
-                        <div class="input-item">
-                            <label for="bath" class=""><i class="fa-solid fa-shower"></i></label>
-                            <input type="number" name="bath" id="bath" v-model="inputBath"  min="1" max="10" class="">
-                        </div>
+                            <div class="input-item">
+                                <label for="range" class="range-label"><i class="fa-solid fa-circle-nodes"></i>km: {{inputRange}}</label>
+                                <input type="range" name="range" id="range" step="20" v-model="inputRange"  min="20" max="200" class="">
+                            </div>
+                            <div class="input-item">
+                                <label for="beds" class=""><i class="fa-solid fa-bed"></i></label>
+                                <input type="number" name="beds" id="beds" v-model="inputBeds"  min="1" max="10" class="">
+                            </div>
+                            <div class="input-item">
+                                <label for="rooms" class="">Rooms:</label>
+                                <input type="number" name="rooms" id="rooms" v-model="inputRooms"  min="1" max="10" class="">
+                            </div>
+                            <div class="input-item">
+                                <label for="bath" class=""><i class="fa-solid fa-shower"></i></label>
+                                <input type="number" name="bath" id="bath" v-model="inputBath"  min="1" max="10" class="">
+                            </div>
 
-                        <!-- <button type="submit" value="Search" id="submit" @click.prevent="search"><i class="fa-solid fa-magnifying-glass"></i></button> -->
+                            <!-- <button type="submit" value="Search" id="submit" @click.prevent="search"><i class="fa-solid fa-magnifying-glass"></i></button> -->
+                            </div>
                         </div>
                     </div>
-                </div>
+            </div>
         </div>
-    </div>
-        <div class="container-fluid">
+
+
+        
+        <div class="ms_apartment">
             <h2>Le nostre strutture</h2>
-            <div class="row row-cols-xs-1 row-cols-sm-2 row-cols-md-2 row-cols-lg-3 mx-auto">
+            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mx-auto p-3">
                 <div class="col my-3" v-for="(apartment, index) in setApartments" :key="index">
                     <router-link :to="{name: 'single-apartment', params:{slug: apartment.slug}}" class="router-link">
                     <div class="ms_card" :class="checkSponsorized(apartment) ? 'sponsorized-card' : ''">
@@ -178,20 +181,20 @@ export default {
             this.orderBySponsorized();          
         },
         getLocations: function() {
-          if (this.searchInput != '' && this.searchInput != this.oldSearchInput) {
-            this.oldSearchInput = this.searchInput;
-            const apiUrl = 'https://api.tomtom.com/search/2/search/' + this.searchInput + '.json?typeahead=true&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=' + this.apiKey;
-            axios.get(apiUrl, {transformRequest: (data, headers) => {
-                delete headers.common['X-Requested-With'];
-              } 
-            })
-            .then(apiResponse => {
-                this.locationList = apiResponse.data.results;
+            if (this.searchInput != '' && this.searchInput != this.oldSearchInput) {
+                this.oldSearchInput = this.searchInput;
+                const apiUrl = 'https://api.tomtom.com/search/2/search/' + this.searchInput + '.json?typeahead=true&minFuzzyLevel=1&maxFuzzyLevel=2&view=Unified&relatedPois=off&key=' + this.apiKey;
+                axios.get(apiUrl, {transformRequest: (data, headers) => {
+                    delete headers.common['X-Requested-With'];
+                } 
                 })
-            .catch(() => {
-                console.log('error api location');
-            });
-          }
+                .then(apiResponse => {
+                    this.locationList = apiResponse.data.results;
+                    })
+                .catch(() => {
+                    console.log('error api location');
+                });
+            }
         },
         stringObj: function(index) {
             return JSON.stringify(this.locationList[index]);
@@ -254,8 +257,10 @@ export default {
 <style lang="scss" scoped>
 @import '../../../../sass/variables.scss';
 
-.container-fluid{
+section{
     .ms_card{
+        width: 100%;
+        height: 500px;
         border: 1px solid $primary-grey;
         border-radius: 10px;
         padding: 1rem;
@@ -265,7 +270,7 @@ export default {
 
     .ms_img{
         width: 100%;
-        height: 20vw;
+        height: 50%;
         overflow: hidden;
         border-radius: 10px;
         object-fit: cover;
@@ -329,11 +334,11 @@ export default {
     }
 }
 
-@media (max-width: 576px) {
+/* @media (max-width: 576px) {
     .ms_img{
         height: 200px!important;
     }
-}
+} */
 
 
 .router-link{
@@ -352,9 +357,8 @@ export default {
 .main-searchbar{
     width: fit-content;
     position: relative;
-    top: -824px;
-    left: 50%;
-    transform: translateX(-50%);
+    margin: auto;
+    top: -30px;
     input{
         border: none;
 
@@ -397,6 +401,7 @@ export default {
         font-size: 1.2rem;
     }
     .search-main-section{
+        border: 1px solid $primary-grey;
         background-color: white;
         padding: .9rem;
         height: 4rem;
@@ -452,12 +457,10 @@ export default {
 .hidden{
     display: none;
 }
-@media (max-width: 650px) {
+@media (max-width: 768px) {
     .main-searchbar{
     position: relative;
-    top: -824px;
-    left: 50%;
-    transform: translateX(-50%);
+    top: -30px;
 
     input{
         border: none;
@@ -574,5 +577,8 @@ export default {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
+}
+.ms_address{
+    margin-bottom: -3px!important;
 }
 </style>

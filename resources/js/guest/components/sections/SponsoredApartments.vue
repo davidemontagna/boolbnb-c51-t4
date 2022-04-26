@@ -1,10 +1,10 @@
 <template>
     <section>
-        <div class="container">
-            <h2>In evidenza</h2>
-            <h4>Lasciati guidare dalla curiosità</h4>
-            <div class="ms_container position-relative">
-                <div class="main position-absolute top-50 start-50 translate-middle d-flex" @mouseover="timerStop" @mouseleave="timer">
+        <!-- <div class="row">
+            <div class="col-12">
+                <h2 class="mt-5">In evidenza</h2>
+                <h4 class="mb-4">Lasciati guidare dalla curiosità</h4>
+                <div class="p-3" @mouseover="timerStop" @mouseleave="timer">
                     <div class="text-end">
                         <div v-for="(apartment, index) in apartments" :key="index" class="items_container position-relative center" :class="immagineCorrente(index)">
                             <div class="ms_card">
@@ -29,14 +29,13 @@
                             </div>
                         </div>
                     </div>
-                        <div class="arrows">
-                            <div @click="indietro" class="prev  text-center"><i class="fa-solid fa-chevron-left"></i></div>
-                            <div @click="avanti" class="next text-center"><i class="fa-solid fa-chevron-right"></i></div>
-                        </div>
-
+                    <div class="arrows">
+                        <div @click="indietro" class="prev  text-center"><i class="fa-solid fa-chevron-left"></i></div>
+                        <div @click="avanti" class="next text-center"><i class="fa-solid fa-chevron-right"></i></div>
+                    </div>
                 </div>
             </div>
-        </div>
+        </div> -->
     </section>
 </template>
 
@@ -152,9 +151,10 @@ export default {
 <style lang="scss" scoped>
 @import '../../../../sass/variables.scss';
 
-.container{
+section{
     .ms_card{
-        width: 350px;
+        width: 100%;
+        height: 500px;
         border: 1px solid $primary-grey;
         border-radius: 10px;
         padding: 1rem;
@@ -164,12 +164,10 @@ export default {
 
     .ms_img{
         width: 100%;
-        height: 300px;
+        height: 50%;
         overflow: hidden;
         border-radius: 10px;
-        object-fit: contain;
-
-        
+        object-fit: cover;
 
         &:hover{
                 cursor: pointer;
@@ -232,22 +230,10 @@ export default {
     }
 }
 
-
-
-
-.ms_container{
-    height: 600px;
-    display: flex;
-    justify-content: center;
-}
-
 .none{
     display: none;
 }
 
-.prev, .next{
-    
-}
 .arrows{
     display: flex;
     align-items: center;
@@ -257,13 +243,4 @@ export default {
     position: absolute;
     top: 50%;
 }
-.main{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    flex-direction: column;
-    position: relative;
-}
-
 </style>

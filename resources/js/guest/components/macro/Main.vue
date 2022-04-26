@@ -16,6 +16,7 @@ export default {
 <style lang="scss" scoped>
 @import '../../../../sass/variables.scss';
 main{
-    background-color: $primary-light;
+    background-color: $primary-lightgrey;
 }
+
 </style>

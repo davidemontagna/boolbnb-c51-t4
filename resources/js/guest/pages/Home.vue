@@ -1,10 +1,7 @@
 <template>
 <div>
+    <Apartments/>
     <SponsoredApartment/>
-
-    <div class="ms_background">
-        <Apartments/>
-    </div>
 </div>
 </template>
 
@@ -24,7 +21,5 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../../sass/variables.scss';
-.ms_background{
-    background-color: $primary-lightgrey;
-}
+
 </style>
