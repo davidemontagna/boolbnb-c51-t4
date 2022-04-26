@@ -5,7 +5,7 @@
 @section('content')    
     
     <section>
-        <a href="{{route("user.messages.index")}}" class="d-inline-block mt-2 mr-2">
+        <a href="{{url()->previous()}}" class="d-inline-block mt-2 mr-2">
             <button class="my-3 p-3 msg-button">
                 <i class="fas fa-chevron-left"></i>
                 Indietro
@@ -27,12 +27,12 @@
                                 <h6 class="card-title">Struttura: {{$message->apartment->title}}</h6>
                                 <img src="{{ asset("storage/{$message->apartment->preview}")}}" class="card-img-top mb-3" alt="...">
                                 <div>
-                                    <form action="{{route("user.messages.update", $message->id)}}" method="POST">
+                                    <form action="{{route("user.messages.update", $message->id)}}" method="POST" class="d-inline-block">
         
                                         @csrf
                                         @method('PUT')
                                 
-                                        <div class="form-group">
+                                        <div class="form-group text-center">
                                             <label>Visualizzato</label>
                                             <select name="visualized" class="form-control">
                                                 <option value=1 {{$message->visualized == 1 ? 'selected' : ''}}>Si</option>
@@ -48,14 +48,13 @@
                                         </div>
                                         
                                 
-                                    <button type="submit" class="btn mr-3 msg-button p-3">Salva</button>
-                                    <a href="{{route("user.apartments.show", $message->apartment->id)}}"><button type="button" class="btn msg-button p-3">Indietro</button></a> 
+                                    <button type="submit" class="announcement-btn text-center msg-button" style="width: 6rem">Salva</button> 
+                                    <input class="announcement-btn text-center msg-button" style="width: 6rem" type="button" value="Elimina" data-toggle="modal" data-target="#ModalDelete{{$message->id}}">
+
                                     </form>
                                     <form action="{{route('user.messages.destroy', $message->id)}}" method="POST" class="d-inline-block">
                                         @csrf
-                                        @method("DELETE")
-                                        <input class="announcement-btn text-center msg-button" style="width: 6rem" type="button" value="Elimina" data-toggle="modal" data-target="#ModalDelete{{$message->id}}">
-                                        
+                                        @method("DELETE")                                        
                                         <div class="modal modal-danger fade" id="ModalDelete{{$message->id}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
@@ -70,7 +69,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </form>                    
+                                    </form> 
                                 </div>
                             </div>
                             <div class="card-footer text-muted ms_data">
