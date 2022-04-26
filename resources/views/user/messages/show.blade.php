@@ -5,7 +5,7 @@
 @section('content')    
     
     <section>
-        <a href="{{url()->previous()}}" class="d-inline-block mt-2 mr-2">
+        <a href="{{route("user.apartments.show", $message->apartment_id)}}" class="d-inline-block mt-2 mr-2">
             <button class="my-3 p-3 msg-button">
                 <i class="fas fa-chevron-left"></i>
                 Indietro

@@ -105,7 +105,7 @@ class MessageController extends Controller
         $message->update($form_data);
 
 
-        return redirect()->route("user.messages.index");
+        return redirect()->route("user.apartments.show", $message->apartment_id);
     }
 
     /**
