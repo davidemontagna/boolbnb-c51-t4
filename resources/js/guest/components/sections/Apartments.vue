@@ -5,7 +5,7 @@
                 <div class="main-searchbar d-flex justify-content-center align-item-center">
                     <div class="form">
                         <div class="d-flex search-main-section justify-content-between">
-                            <input class="ms_address" type="text" id="address" name="address" @keyup.prevent="getLocations" placeholder="Cerca" v-model.trim="searchInput">
+                            <input class="ms_address" type="text" id="address" name="address"  @keyup.prevent="getLocations" placeholder="Cerca" v-model.trim="searchInput">
                             <select class="form-control" v-model="selectedLocation">
                                 <option disabled> Seleziona una località </option>
                                 <option :value="index" v-for="(location, index) in setOption" :key="index">{{location.address.freeformAddress + ', ' + location.address.country}}</option>
@@ -15,7 +15,7 @@
                                     <i class="fa-solid fa-filter"></i>
                                 </button>
                             </p>
-                            <button type="submit" value="Submit" id="submit" class="d-flex justify-content-center align-items-center" @click.prevent="getApartments" @click="addClass = !addClass" ><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <button type="submit" value="Submit" id="submit" class="d-flex justify-content-center align-items-center" @click.prevent="getApartments" ><i class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
                         <div class="collapse" id="collapseExample">
                             <div class="card card-body rounded-pill">
@@ -56,37 +56,38 @@
 
 
         
-        <div class="ms_apartment" id="apartment" :class="{ ms_active: addClass }">
-            <h2>Le nostre strutture</h2>
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mx-auto p-3">
-                <div class="col my-3" v-for="(apartment, index) in setApartments" :key="index">
-                    <router-link :to="{name: 'single-apartment', params:{slug: apartment.slug}}" class="router-link">
-                        <div class="ms_card" :class="checkSponsorized(apartment) ? 'sponsorized-card' : ''">
-                            <div class="sponzorized-tag" :class="checkSponsorized(apartment) ? '' : 'hidden'">Uno dei nostri preferiti <i class="fa-solid fa-crown"></i></div>
-                            <div class="ms_img mx-auto position-relative">
-                                    <img :src="'../storage/'+apartment.preview" alt="">
-                                    <div class="ms_shadow position-absolute"></div>
-                                <div class="ms_description position-absolute">
-                                    <p class="ms_beds mx-2">Numero di letti: {{apartment.num_beds}}</p>
-                                </div>
-                            </div>
-                            <div class="ms_text">
-                                <h2 class="ms_title mt-3">{{apartment.title}}</h2>
-                                <h4 class="ms_city mt-3">{{apartment.location.city}}</h4>
-                                <p class="ms_address">{{apartment.location.address}}</p>
-                                <div class="ms_description2 d-flex justify-content-between mt-3">
-                                    <p class="ms_rooms">Stanze: {{apartment.num_rooms}}</p>
-                                    <p class="ms_bath">Bagni: {{apartment.num_bath}}</p>
-                                    <p class="ms_square">Mq: {{apartment.square_footage}}</p>
-                                </div>
-                                <p v-if="checkSponsorized(apartment)" class="sponsorized-text">Post sponsorizzato</p>
+        <h2>Le nostre strutture</h2>
+
+        <p v-if="filteredApartments.length == 0">Effettua una ricerca o prova a cambiare i filtri</p>
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mx-auto p-3">
+            <div class="col my-3" v-for="(apartment, index) in setApartments" :key="index">
+                <router-link :to="{name: 'single-apartment', params:{slug: apartment.slug}}" class="router-link">
+                    <div class="ms_card" :class="checkSponsorized(apartment) ? 'sponsorized-card' : ''">
+                        <div class="sponzorized-tag" :class="checkSponsorized(apartment) ? '' : 'hidden'">Uno dei nostri preferiti <i class="fa-solid fa-crown"></i></div>
+                        <div class="ms_img mx-auto position-relative">
+                                <img :src="'../storage/'+apartment.preview" alt="">
+                                <div class="ms_shadow position-absolute"></div>
+                            <div class="ms_description position-absolute">
+                                <p class="ms_beds mx-2">Numero di letti: {{apartment.num_beds}}</p>
                             </div>
                         </div>
-                    </router-link>
-                </div>
+                        <div class="ms_text">
+                            <h2 class="ms_title mt-3">{{apartment.title}}</h2>
+                            <h4 class="ms_city mt-3">{{apartment.location.city}}</h4>
+                            <p class="ms_address">{{apartment.location.address}}</p>
+                            <div class="ms_description2 d-flex justify-content-between mt-3">
+                                <p class="ms_rooms">Stanze: {{apartment.num_rooms}}</p>
+                                <p class="ms_bath">Bagni: {{apartment.num_bath}}</p>
+                                <p class="ms_square">Mq: {{apartment.square_footage}}</p>
+                            </div>
+                            <p v-if="checkSponsorized(apartment)" class="sponsorized-text">Post sponsorizzato</p>
+                        </div>
+                    </div>
+                </router-link>
             </div>
         </div>
-        <div class="ms_information">
+        <!-- <div class="ms_information">
             <div class="row row-cols-1 row-cols-lg-3 p-3">
                 <div class="col my-3 t-center">
                     <div class="ms_img_information">
@@ -110,7 +111,7 @@
                     <p class="mt-2">Comunica direttamente con gli inserzionisti. Per verificare la disponibilità o per richiedere servizi aggiuntivi</p>
                 </div>
             </div>
-        </div>
+        </div> -->
     </section>
 </template>
 
@@ -129,7 +130,7 @@ export default {
             inputBath: 1,
             inputRange: 20,           
             searchInput: "",
-            oldSearchInput: "",
+            oldSearchInput: null,
             selectedLocation: 0,
             locationList: [],
             apiKey: 'LmxBM8DrAJjBA1BQPufxlrTGrO4c4Byh',
@@ -187,7 +188,6 @@ export default {
             });
         }, 
         search(){
-            window.scrollTo(0,1200)
             if(this.CheckedServices == "" && this.inputBeds == 1 && this.inputRooms == 1 && this.inputBath == 1){
                 this.filteredApartments = this.apartments;
             }else{                
@@ -221,6 +221,9 @@ export default {
                 .catch(() => {
                     console.log('error api location');
                 });
+            }
+            if (this.searchInput == '') {
+                this.locationList = [];
             }
         },
         stringObj: function(index) {
@@ -266,9 +269,7 @@ export default {
         
     },
     created() {
-        this.getServices();
-        this.getApartments();
-        
+        this.getServices();        
     },
     computed:{
         setOption() {
@@ -285,9 +286,6 @@ export default {
 @import '../../../../sass/variables.scss';
 
 section{
-    .ms_apartment{
-        display: none;
-    }
     .ms_card{
         width: 100%;
         height: 500px;
@@ -621,9 +619,7 @@ section{
 .ms_address{
     margin-bottom: -3px!important;
 }
-.ms_active{
-    display: block!important;
-}
+
 .ms_img_information{
     width: 150px;
     height: 100px;
