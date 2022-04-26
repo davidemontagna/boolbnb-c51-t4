@@ -51,17 +51,6 @@
                                     <input class="btn ms_delete m-2" type="button" value="Elimina Appartamento" data-toggle="modal" data-target="#ModalDelete{{$apartment->id}}">
                                 </div>
                             </div>
-                            
-                                <div class="ms_dropdown-2 dropdown position-absolute">
-                                    <button class="btn msg-button dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Sponsorizzato
-                                    </button>
-                                    <div class="dropdown-menu p-1" aria-labelledby="dropdownMenu3">
-                                        <p>Piano :</p>
-                                        <p>Scadenza : </p>
-                                    </div>
-                                </div>
-                            
 
                             <form action="{{route("user.apartments.destroy", $apartment->id)}}" method="POST">
                                 @csrf
@@ -101,6 +90,17 @@
                                 <p class="ms_bath">Bagni: {{$apartment->num_bath}}</p>
                                 <p class="ms_square">Mq: {{$apartment->square_footage}}</p>
                             </div>
+                            @if($dataSponsorships[$index]["check"])
+                                <div class="ms_dropdown-2 dropdown position-relative">
+                                    <button class="btn msg-button dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa-solid fa-star"></i>
+                                    </button>
+                                    <div class="dropdown-menu p-3" aria-labelledby="dropdownMenu3">
+                                        <p>Scadenza : {{$dataSponsorships[$index]['end']->format('Y-m-d H:i')}}</p>
+                                        <p>Alle ore : {{$dataSponsorships[$index]['end']->format('H:i')}}</p>
+                                    </div>
+                                </div>
+                                @endif
                         </div>
                     </div>
                 </div>
