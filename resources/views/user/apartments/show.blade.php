@@ -90,17 +90,22 @@
                     </div>
                 </div>
                 <div>   
-                    Messaggi da leggere
+                    Messaggi: 
+                    @if (count($messages)== 0)
+                    <p>
+                        Nessun Messaggio
+                    </p>
+                    @endif
                     @foreach ($messages as $message)
-                        @if ($message->visualized == 0)
+                    @if ($message->visualized == 0)
                             <div class="card my-1 p-3">
                                 <div class="d-flex justify-content-between m-1">
                                     <i class="fa-solid fa-comments" style="{{ ($message->answered == 0) ? 'color: red' : 'color: #9fff6b' }}"></i>
                                     <div class="row row-cols-2 justify-content-center align-intems-center my-1">
                                         <div class="col text-center">
-                                            <a href="{{route('user.messages.edit', $message->id)}}">
+                                            <a href="{{route('user.messages.show', $message->id)}}">
                                                 <button class="announcement-btn text-center msg-button" style="width: 6rem">
-                                                    Edit
+                                                    Mostra
                                                 </button>
                                             </a>
                                         </div>
@@ -128,25 +133,22 @@
                                         </div>
                                     </div>
                                 </div>
-                                <p class="mb-3 ms_break-word">{{$message->content}}</p>
-                                <p class="mb-3 ms_break-word">Messaggio inviato da: {{$message->sender_email}}</p>
-                                <p class="">alle: {{$message->created_at}}</p>
+                                <p class="mb-3 ms_break-word font-weight-bold">{{$message->content}}</p>
+                                <p class="mb-3 ms_break-word  font-weight-bold">Messaggio inviato da: {{$message->sender_email}}</p>
+                                <p class="font-weight-bold">alle: {{$message->created_at}}</p>
                             </div>
                         @endif
                     @endforeach
-                    <div>
-                        Messaggi letti
-                    </div>
                     @foreach ($messages as $message)
-                        @if ($message->visualized == 1)
+                    @if ($message->visualized == 1)
                         <div class="card my-1 p-3">
                             <div class="d-flex justify-content-between m-1">
                                 <i class="fa-solid fa-comments" style="{{ ($message->answered == 0) ? 'color: red' : 'color: #9fff6b' }}"></i>
                                 <div class="row row-cols-2 justify-content-center align-intems-center my-1">
                                     <div class="col text-center">
-                                        <a href="{{route('user.messages.edit', $message->id)}}">
+                                        <a href="{{route('user.messages.show', $message->id)}}">
                                             <button class="announcement-btn text-center msg-button" style="width: 6rem">
-                                                Edit
+                                                Mostra
                                             </button>
                                         </a>
                                     </div>

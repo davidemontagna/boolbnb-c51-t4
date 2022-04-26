@@ -13,7 +13,7 @@
         </a>  
         <div class="container mt-3">
             <div class="row justify-content-center">
-                <div class="col-12 col-md-8 col-lg-7">
+                <div class="col-12 col-md-8">
                     <!-- Controllo per vedere se l'utente e' autorizzato a visualizzare quel determinato messaggio -->
                     @if ($message->apartment->user_id == auth()->id())
                         <div class="card text-center ms_container_show_messages">
@@ -27,7 +27,30 @@
                                 <h6 class="card-title">Struttura: {{$message->apartment->title}}</h6>
                                 <img src="{{ asset("storage/{$message->apartment->preview}")}}" class="card-img-top mb-3" alt="...">
                                 <div>
-                                    <a href="{{route('user.messages.edit', $message->id)}}" class="d-inline-block"><button type="button" class="announcement-btn text-center msg-button" style="width: 6rem">Edit</button></a>
+                                    <form action="{{route("user.messages.update", $message->id)}}" method="POST">
+        
+                                        @csrf
+                                        @method('PUT')
+                                
+                                        <div class="form-group">
+                                            <label>Visualizzato</label>
+                                            <select name="visualized" class="form-control">
+                                                <option value=1 {{$message->visualized == 1 ? 'selected' : ''}}>Si</option>
+                                                <option value=0 {{$message->visualized == 0 ? 'selected' : ''}}>No</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Risposta</label>
+                                            <select name="answered" class="form-control">
+                                                <option value=1 {{$message->answered == 0 ? 'selected' : ''}}>Si</option>
+                                                <option value=0 {{$message->answered == 0 ? 'selected' : ''}}>No</option>
+                                            </select>
+                                        </div>
+                                        
+                                
+                                    <button type="submit" class="btn mr-3 msg-button p-3">Salva</button>
+                                    <a href="{{route("user.apartments.show", $message->apartment->id)}}"><button type="button" class="btn msg-button p-3">Indietro</button></a> 
+                                    </form>
                                     <form action="{{route('user.messages.destroy', $message->id)}}" method="POST" class="d-inline-block">
                                         @csrf
                                         @method("DELETE")
