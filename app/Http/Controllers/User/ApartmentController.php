@@ -147,39 +147,33 @@ class ApartmentController extends Controller
         // $plans = Apartment::whereHas('plans', function(Builder $query ) use($apartment) {
         //     $query->where('apartment_id', $apartment->id);
         // })->with('plans')->get();
-
-        // $apartment = Apartment::where('id', $apartment->id)->with('plans')->get();
         
-
-
-        $messages = Message::where('apartment_id', $apartment['id'])->get();
+        $apartment = Apartment::where('id', $apartment->id)->with('plans')->first();
+        
+        $messages = Message::where('apartment_id', $apartment->id)->get();
         if(!$apartment){
             abort(404);
         }
 
-        // $today= new DateTime();
-        // $end = $today;
-        // $check = false;
-        // foreach ($apartment->plans as $sponsorship) {
-        //     $tempDate = DateTime::createFromFormat('Y-m-d H:i:s', $sponsorship->pivot->date_end);
-        //     if ($tempDate > $today) {
-        //         $check = true;
-        //         if ($tempDate > $end) {
-        //             $end = $tempDate;
-        //         }
-        //     }
-        // }
+        $today= new DateTime();
+        $end = $today;
+        $check = false;
+        foreach ($apartment->plans as $sponsorship) {
+            $tempDate = DateTime::createFromFormat('Y-m-d H:i:s', $sponsorship->pivot->date_end);
+            if ($tempDate > $today) {
+                $check = true;
+                if ($tempDate > $end) {
+                    $end = $tempDate;
+                }
+            }
+        }
 
-        // $closeEnd = false;
-        // if ($check && $end->modify('-1 day') < $today) {
-        //     $closeEnd = true;
-        // }
+        $closeEnd = false;
+        if ($check && $end->modify('-1 day') < $today) {
+            $closeEnd = true;
+        }
 
-
-        // dd($closeEnd);
-
-
-        return view('user.apartments.show', compact('apartment', 'messages'));
+        return view('user.apartments.show', compact('apartment', 'messages', 'closeEnd'));
     }
 
     /**
