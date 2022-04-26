@@ -18,10 +18,11 @@ use Illuminate\Support\Facades\Auth;
 
 class PaymentController extends Controller
 {
-    public function plans($apartment_id)
+    public function plans(Apartment $apartment)
     {
+        
         $plans = Plan::All();
-        return view('user.sponsorship.plans', compact('plans', 'apartment_id'));
+        return view('user.sponsorship.plans', compact('plans', 'apartment'));
     }
 
     public function index(Apartment $apartment, $plan_id)
