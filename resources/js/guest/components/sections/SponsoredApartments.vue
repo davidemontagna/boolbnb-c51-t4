@@ -5,17 +5,46 @@
         </div>
         <div class="row"  @mouseover="timerStop" @mouseleave="timer">
                 
-                    <div v-for="(apartment, index) in apartments" :key="index" class="sm-card-container flex-column col-3 p-0 " :class="immagineCorrente(index)">
-                        
-                        <div class="sm-card-top">
-                            <img :src="'../storage/'+apartment.preview">
-                        </div>
-                        <div class="sm-card-bottom">
-                            <h3>{{apartment.title}}</h3>
-                            <p>{{apartment.location.city}}</p>
-                            <p>{{apartment.location.address}}</p>
-                        </div>
+                <div class="sm-card-container flex-column col-3 p-0 ">
+                    
+                    <div class="sm-card-top">
+                        <img :src="'../storage/'+apartments[setIndex(0)].preview">
                     </div>
+                    <div class="sm-card-bottom">
+                        <h3>{{apartments[setIndex(0)].title}}</h3>
+                        <p>{{apartments[setIndex(0)].location.city}}</p>
+                        <p>{{apartments[setIndex(0)].location.address}}</p>
+                    </div>
+                </div>
+
+                <div class="sm-card-container flex-column col-3 p-0 ">
+                
+                    <router-link :to="{name: 'single-apartment', params:{slug: apartments[setIndex(1)].slug}}" class="router-link">
+
+                    <div class="sm-card-top">
+                        <img :src="'../storage/'+apartments[setIndex(1)].preview">
+                    </div>
+                    <div class="sm-card-bottom">
+                        <h3>{{apartments[setIndex(1)].title}}</h3>
+                        <p>{{apartments[setIndex(1)].location.city}}</p>
+                        <p>{{apartments[setIndex(1)].location.address}}</p>
+                    </div>
+
+                    </router-link>
+                    
+                </div>
+
+                <div class="sm-card-container flex-column col-3 p-0 ">
+                    
+                    <div class="sm-card-top">
+                        <img :src="'../storage/'+apartments[setIndex(2)].preview">
+                    </div>
+                    <div class="sm-card-bottom">
+                        <h3>{{apartments[setIndex(2)].title}}</h3>
+                        <p>{{apartments[setIndex(2)].location.city}}</p>
+                        <p>{{apartments[setIndex(2)].location.address}}</p>
+                    </div>
+                </div>
 
                 <div class="arrows" @mouseover="timerStop" @mouseleave="timer">
                     <div @click="indietro" class="prev  text-center"><i class="fa-solid fa-chevron-left"></i></div>
@@ -93,7 +122,6 @@ export default {
             console.log(sponsorized.length);
             this.apartments = sponsorized;
         },
-
         checkSponsorized: function(apartment){  
             const today = new Date();
 
@@ -107,36 +135,12 @@ export default {
                     console.log(check)
             return check;
         },
-        
-        
-
-        immagineCorrente: function(indiceimmagine){
-            let corrente2 = this.corrente+1;
-            let corrente3 = corrente2+1;
-
-            if(corrente2 == this.apartments.length){
-                corrente2 = 0; 
+        setIndex: function(position){
+            if (this.corrente + position >= this.apartments.length) {
+                return position - 1;
+            } else {
+               return this.corrente + position; 
             }
-            if(corrente3 == this.apartments.length){
-                corrente3 =  1; 
-            }
-            if(corrente2 < 0){
-                corrente2 = this.apartments.length - 1;
-            }
-            if(corrente3 < 0){
-                corrente3 = this.apartments.length - 1;
-            }
-            if(indiceimmagine == this.corrente){
-                return "active";
-            }
-            if(indiceimmagine == corrente2){
-                return "active";
-            }
-            if(indiceimmagine == corrente3){
-                return "active";
-            }
-
-            return "none";
         },
         avanti: function(){
             this.corrente ++;
@@ -157,7 +161,7 @@ export default {
             let start = this;
             this.tempo = setInterval (function(){
             start.avanti();
-        },10000);
+        },1000);
         },
         timerStop: function(){
             clearInterval(this.tempo);
@@ -166,6 +170,8 @@ export default {
     created() {
         this.getApartments();
         this.timer();
+    },
+    computed: {
     }
 };
 
@@ -174,7 +180,7 @@ export default {
 <style lang="scss" scoped>
 @import '../../../../sass/variables.scss';
 .sm-card-container{
-    display: none;
+    // display: none;
     border-radius: 1rem;
     overflow: hidden;
     color: white;
