@@ -1,5 +1,19 @@
 <template>
 <footer>
+    <div class="footer-top">
+        <div class="row">
+            <div class="col-12">
+                <span>Chi Siamo:</span>
+                <ul>
+                    <li><a href="https://github.com/davidemontagna" target="_blank">Davide Montagna</a></li>
+                    <li><a href="https://github.com/Masadavide" target="_blank">Davide Masa</a></li>
+                    <li><a href="https://github.com/Mosi8" target="_blank">Maurizio Moisello</a></li>
+                    <li><a href="https://github.com/SalvatoreMilone" target="_blank">Salvatore Milone</a></li>
+                    <li><a href="https://github.com/Alessio-Tomei" target="_blank">Alessio Tomei</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <div class="footer-container">
         <div class="footer-left">© 2022 BoolBnb, Inc.</div>
         <div class="footer-socials">
@@ -52,6 +66,38 @@ footer{
             & > *{
                 font-size: 1.5rem;
                 padding: 0 .3rem;
+            }
+        }
+    }
+
+    .footer-top{
+        color: $primary-light;
+        position: absolute;
+        bottom: 120px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 3rem;
+        width: 90%;
+
+        span{
+            font-weight: 400;
+            font-size: 1.5rem;
+            color: $primary-red;
+        }
+        ul{
+            margin-top: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            li{
+                list-style: none;
+                padding: 0 1rem 0 0;
+                a{
+                    color: white;
+                    text-decoration-color: $primary-red;
+                }
             }
         }
     }
