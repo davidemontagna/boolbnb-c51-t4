@@ -21,7 +21,7 @@ export default {
 @import '../../../../sass/variables.scss';
 
 footer{
-    background-image: url('../../../../../storage/app/public/resorces/img-footer-100.webp');
+    background-image: url('../../../../../storage/app/public/resources/img-footer-100.webp');
     width: 100%;
     height: 500px;
     margin-top: 1rem;

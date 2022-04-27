@@ -87,31 +87,32 @@
                 </router-link>
             </div>
         </div>
-        <!-- <div class="ms_information">
+
+        <div class="ms_information">
             <div class="row row-cols-1 row-cols-lg-3 p-3">
                 <div class="col my-3 t-center">
                     <div class="ms_img_information">
-                        <img :src="require('/storage/app/public/resorces/img-1.svg')" alt="">
+                        <img :src="require('/storage/app/public/resources/img-1.svg')" alt="">
                     </div>
-                    <h4 class="mt-2">Cerca velocemente, cerca in modo intelligente</h4>
-                    <p class="mt-2">Sfoglia centinaia di alloggi nella tua città preferita. Così da non perdere il posto dei tuoi sogni!</p>
+                    <h4 class="mt-3">Cerca velocemente, cerca in modo intelligente</h4>
+                    <p class="mt-3">Sfoglia centinaia di alloggi nella tua città preferita. Così da non perdere il posto dei tuoi sogni!</p>
                 </div>
                 <div class="col my-3">
                     <div class="ms_img_information">
-                        <img :src="require('/storage/app/public/resorces/img-3.svg')" alt="">
+                        <img :src="require('/storage/app/public/resources/img-3.svg')" alt="">
                     </div>
-                    <h4 class="mt-2">Confronta i vari servizi per trovare l'aloggio che fà per te</h4>
-                    <p class="mt-2">Non farti trovare impreparato dopo una pioggierella estiva, assicurati che l'asciugacapelli sia presente in struttura</p>
+                    <h4 class="mt-3">Confronta i vari servizi per trovare l'aloggio che fà per te</h4>
+                    <p class="mt-3">Non farti trovare impreparato dopo una pioggierella estiva, assicurati che l'asciugacapelli sia presente in struttura</p>
                 </div>
                 <div class="col my-3">
                     <div class="ms_img_information">
-                        <img :src="require('/storage/app/public/resorces/img-2.svg')" alt="">
+                        <img :src="require('/storage/app/public/resources/img-2.svg')" alt="">
                     </div>
-                    <h4 class="mt-2">Chatta con persone reali</h4>
-                    <p class="mt-2">Comunica direttamente con gli inserzionisti. Per verificare la disponibilità o per richiedere servizi aggiuntivi</p>
+                    <h4 class="mt-3">Chatta con persone reali</h4>
+                    <p class="mt-3">Comunica direttamente con gli inserzionisti. Per verificare la disponibilità o per richiedere servizi aggiuntivi</p>
                 </div>
             </div>
-        </div> -->
+        </div>
     </section>
 </template>
 
