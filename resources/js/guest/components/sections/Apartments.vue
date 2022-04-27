@@ -87,7 +87,7 @@
                 </router-link>
             </div>
         </div>
-
+        
         <div class="ms_information">
             <div class="row row-cols-1 row-cols-lg-3 p-3">
                 <div class="col my-3 t-center">

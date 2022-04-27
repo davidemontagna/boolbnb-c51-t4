@@ -1,12 +1,12 @@
 <template>
-    <section>
+    <section class="section-sponsored">
         <div class="row">
                 <h4>Lasciati guidare dalla curiosità</h4>
         </div>
-        <div class="row"  @mouseover="timerStop" @mouseleave="timer">
+        <div class="row justify-content-around"  @mouseover="timerStop" @mouseleave="timer">
                 
-                <div class="sm-card-container flex-column col-3 p-0 ">
-                    
+                <div class="sm-card-container flex-column col-10 col-md-5 col-xl-3 p-0 ">
+                    <router-link :to="{name: 'single-apartment', params:{slug: apartments[setIndex(0)].slug}}" class="router-link">
                     <div class="sm-card-top">
                         <img :src="'../storage/'+apartments[setIndex(0)].preview">
                     </div>
@@ -15,9 +15,10 @@
                         <p>{{apartments[setIndex(0)].location.city}}</p>
                         <p>{{apartments[setIndex(0)].location.address}}</p>
                     </div>
+                    </router-link>
                 </div>
 
-                <div class="sm-card-container flex-column col-3 p-0 ">
+                <div class="sm-card-container flex-column d-none d-md-flex col-5 col-xl-3 p-0 ">
                 
                     <router-link :to="{name: 'single-apartment', params:{slug: apartments[setIndex(1)].slug}}" class="router-link">
 
@@ -34,8 +35,8 @@
                     
                 </div>
 
-                <div class="sm-card-container flex-column col-3 p-0 ">
-                    
+                <div class="sm-card-container flex-column d-none d-xl-flex col-3 p-0 ">
+                    <router-link :to="{name: 'single-apartment', params:{slug: apartments[setIndex(2)].slug}}" class="router-link">
                     <div class="sm-card-top">
                         <img :src="'../storage/'+apartments[setIndex(2)].preview">
                     </div>
@@ -44,28 +45,14 @@
                         <p>{{apartments[setIndex(2)].location.city}}</p>
                         <p>{{apartments[setIndex(2)].location.address}}</p>
                     </div>
+                    </router-link>
                 </div>
-
+        </div>
                 <div class="arrows" @mouseover="timerStop" @mouseleave="timer">
                     <div @click="indietro" class="prev  text-center"><i class="fa-solid fa-chevron-left"></i></div>
                     <div @click="avanti" class="next text-center"><i class="fa-solid fa-chevron-right"></i></div>
                 </div>
 
-        </div>
-                 <!-- 
-                    <div class="ms_sponsor position-absolute">I nostri preferiti</div>
-                    <div class="ms_description position-absolute">
-                        <p class="ms_beds mx-2">Numero di letti: {{apartment.num_beds}}</p>
-                    </div>
-                </div>
-                <div class="ms_text">
-                    <h2 class="ms_title my-2">{{apartment.title}}</h2>
-                    <h4 class="ms_city mt-3">{{apartment.location.city}}</h4>
-                    <p class="ms_address">{{apartment.location.address}}</p>
-                    <div class="ms_description2 d-flex justify-content-between mt-3">
-                        <p class="ms_rooms">Stanze: {{apartment.num_rooms}}</p>
-                        <p class="ms_bath">Bagni: {{apartment.num_bath}}</p>
-                        <p class="ms_square">Mq: {{apartment.square_footage}}</p> -->
     </section>
 </template>
 
@@ -179,6 +166,13 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../../../sass/variables.scss';
+.section-sponsored{
+    min-height: 50vh;
+}
+.router-link{
+    color: white;
+    text-decoration: none;
+}
 .sm-card-container{
     // display: none;
     border-radius: 1rem;
@@ -189,9 +183,11 @@ export default {
         width: 100%;
         height: 200px;
         background-color: $primary-red;
+            overflow: hidden;
 
         img{
             width: 100%;
+            height: 200px;
             object-fit: cover;
         }
     }
@@ -199,7 +195,7 @@ export default {
         padding: 1rem;
         width: 100%;
         background-color: $primary-red;
-        height: 230px;
+        min-height: 230px;
     }
 }
 .sm-card-container.active{
