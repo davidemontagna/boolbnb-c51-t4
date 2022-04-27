@@ -4,12 +4,12 @@
     <h1>ECCO CHI SIAMO</h1>
         <div class="row row-cols-2 row-cols-md-1">
             <div class="col-12 col-md-6  d-flex justify-content-center align-items-center">
-                <div class="name-section row row-cols-5 row-cols-md-1">
-                    <div class="founder d-flex justify-content-between col-2 m-2 col-md-12 m-md-0 selected" @click="founderSelect(0)">Davide Montagna <a href="https://github.com/davidemontagna" target="_blank"><i class="fa-brands fa-github"></i></a></div>
-                    <div class="founder d-flex justify-content-between col-2 m-2 col-md-12 m-md-0" @click="founderSelect(1)">Davide Masa <a href="https://github.com/Masadavide" target="_blank"><i class="fa-brands fa-github"></i></a></div>
-                    <div class="founder d-flex justify-content-between col-2 m-2 col-md-12 m-md-0" @click="founderSelect(2)">Maurizio Mosiello <a href="https://github.com/Mosi8" target="_blank"><i class="fa-brands fa-github"></i></a></div>
-                    <div class="founder d-flex justify-content-between col-2 m-2 col-md-12 m-md-0" @click="founderSelect(3)">Salvatore Milone <a href="https://github.com/SalvatoreMilone" target="_blank"><i class="fa-brands fa-github"></i></a></div>
-                    <div class="founder d-flex justify-content-between col-2 m-2 col-md-12 m-md-0" @click="founderSelect(4)">Alessio Tomei <a href="https://github.com/Alessio-Tomei" target="_blank"><i class="fa-brands fa-github"></i></a></div>
+                <div class="name-section row row-cols-4 row-cols-md-1">
+                    <div class="founder d-flex justify-content-between col m-md-0 selected mx-3" @click="founderSelect(0)">Davide Montagna <a href="https://github.com/davidemontagna" target="_blank"><i class="fa-brands fa-github"></i></a></div>
+                    <div class="founder d-flex justify-content-between col m-md-0 mx-3" @click="founderSelect(1)">Davide Masa <a href="https://github.com/Masadavide" target="_blank"><i class="fa-brands fa-github"></i></a></div>
+                    <div class="founder d-flex justify-content-between col m-md-0 mx-3" @click="founderSelect(2)">Maurizio Mosiello <a href="https://github.com/Mosi8" target="_blank"><i class="fa-brands fa-github"></i></a></div>
+                    <div class="founder d-flex justify-content-between col m-md-0 mx-3" @click="founderSelect(3)">Salvatore Milone <a href="https://github.com/SalvatoreMilone" target="_blank"><i class="fa-brands fa-github"></i></a></div>
+                    <div class="founder d-flex justify-content-between col m-md-0 mx-3" @click="founderSelect(4)">Alessio Tomei <a href="https://github.com/Alessio-Tomei" target="_blank"><i class="fa-brands fa-github"></i></a></div>
                 </div>
             </div>
             <div class="img-section col-12 col-md-6 d-flex justify-content-center align-items-center">
@@ -45,7 +45,7 @@ export default {
 
                 this.img[id].classList.add("show")
             });
-             this.founders.forEach(founder => {
+            this.founders.forEach(founder => {
                 founder.classList.remove("selected")
 
                 this.founders[id].classList.add("selected")
@@ -60,7 +60,8 @@ export default {
 <style lang="scss" scoped>
 @import '../../../sass/variables.scss';
 .about-container{
-    margin-top: 7rem;
+    padding-top: 7rem;
+    padding-bottom: 7rem;
     min-height: 80vh;
 }
 

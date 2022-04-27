@@ -115,9 +115,9 @@
 
 .ms_container_index_apartment{
     .ms_dropdown{
-        top: 20px;
-        left: 20px;
-        z-index: 1;
+        top: 30px;
+        left: 45px;
+        z-index: 2;
 
         a{
             text-decoration: none;
@@ -137,6 +137,9 @@
         .ms_delete{
             background-color: $primary-red;
         }
+    }
+    .dropdown-menu {
+        z-index: 2;
     }
     .announcement-btn{
         font-size: 20px;
@@ -421,97 +424,44 @@
 /*plans.blade.php sponsorhip*/
 
 .dm-card-plan{
-    border: 1px solid $primary-grey;
-    border-radius: 10px;
-    background-color: $pink;
+    border-radius: 20px;
     cursor: pointer;  
     width: 30%;  
+    height: 200px;
+    align-items: center;
 
-    &:first-child{        
-        background-color: $green;
-
-        div a{
-            background-image: linear-gradient(
-            to right,
-            $primary-lightgrey,
-            $primary-lightgrey 50%,
-            $red 50%
-            );     
-            
-        }
+    .title{
+        font-weight: bold;
     }
 
-    &:last-child{        
-        background-color: $purple;
-
-        div a{
-            background-image: linear-gradient(
-            to right,
-            $primary-lightgrey,
-            $primary-lightgrey 50%,
-            $yellow 50%
-            ); 
-        }
-    }
-
-    div{
-
+    &:first-child{
+        border: 1px solid rgb(199, 199, 199);
+        background-color: #f1f1f1;
         a{
-            background-image: linear-gradient(
-            to right,
-            $primary-lightgrey,
-            $primary-lightgrey 50%,
-            $indigo 50%
-            );
-            background-size: 200% 100%;
-            background-position: -100%;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            transition: all 0.5s ease-in-out;
+            color: $primary-red;
             text-decoration: none;
-
-            &:hover{
-                transform: scale(1.1);
-                text-decoration: underline;
-                background-position: 0;
-            }
-
-            &:hover::before{
-                width: 100%;
-            }
-
-            p{
-                font-size: 20px;
-            }
         }
     }
-}
-
-.dm-button{
-        font-size: 20px;
-        width: 100%;
+    &:nth-child(2){
+        border: 1px solid rgb(199, 199, 199);
+        background-color: #f1f1f1;
+        a{
+            color: $primary-red;
+            text-decoration: none;
+        }
+    }
+    &:last-child{
         background-color: $primary-red;
-        padding: 0 1rem;
-        border: none;
-        border-radius: 2rem;
-        color: white;
-        overflow: hidden;
-        text-overflow: ellipsis; 
-        &:hover, &:active{
-            padding: 0 1.1rem;
-            filter: brightness(1.2);
-            box-shadow: 0px 2px 6px 1px rgba(0,0,0,.3);
-        }
-    
+        height: 230px;
         a{
-            line-height: 30px;
-            color: $primary-light;
+            color: white;
             text-decoration: none;
-
-            &:hover{
-                text-decoration: none;
-            }
         }
+    }
+
+}
+.plans-anteprima{
+    border-radius: 1rem;
 }
 
 // show messaggi 

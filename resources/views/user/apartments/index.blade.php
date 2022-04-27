@@ -32,25 +32,26 @@
             @foreach ($apartments as $index => $apartment)
                 <div class="col my-3">
                     <div class="ms_card">
-                        <div class="ms_img mx-auto position-relative">
-                            <div class="ms_dropdown dropdown position-absolute">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Azioni
-                                </button>
-                                <div class="dropdown-menu " aria-labelledby="dropdownMenu2">
-                                    <a href="{{route("user.apartments.show", $apartment->id)}}">
-                                        <button class="dropdown-item" type="button">
-                                            Mostra appartamento
-                                        </button>
-                                    </a>
-                                    <a href="{{route("user.plans", $apartment->id)}}">
-                                        <button class="dropdown-item" type="button">
-                                            Sponsorizza appartamento
-                                        </button>
-                                    </a>
-                                    <input class="btn ms_delete m-2" type="button" value="Elimina Appartamento" data-toggle="modal" data-target="#ModalDelete{{$apartment->id}}">
-                                </div>
+                        <div class="ms_dropdown dropdown position-absolute">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Azioni
+                            </button>
+                            <div class="dropdown-menu " aria-labelledby="dropdownMenu2">
+                                <a href="{{route("user.apartments.show", $apartment->id)}}">
+                                    <button class="dropdown-item" type="button">
+                                        Mostra appartamento
+                                    </button>
+                                </a>
+                                <a href="{{route("user.plans", $apartment->id)}}">
+                                    <button class="dropdown-item" type="button">
+                                        Sponsorizza appartamento
+                                    </button>
+                                </a>
+                                <input class="btn ms_delete m-2" type="button" value="Elimina Appartamento" data-toggle="modal" data-target="#ModalDelete{{$apartment->id}}">
                             </div>
+                        </div>
+                        <div class="ms_img mx-auto position-relative">
+                            
                             @if($newMessages[$index]["counter"])
                                 <div class="msg-notification">
                                     <i class="fas fa-envelope"></i> {{$newMessages[$index]["counter"]}}
