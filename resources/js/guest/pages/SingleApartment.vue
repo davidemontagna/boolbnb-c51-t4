@@ -5,10 +5,14 @@
         <div>{{apartment.title}}</div>
         <div>{{apartment.location.city}}</div>
     </div>
-    <div class="apartment-img mx-auto col-12 col-sm-8 col-md-5">
-        <img :src="'../storage/'+apartment.preview" alt="Missing Preview">
+    <div class="mx-auto col-12 col-sm-8 col-md-12 d-flex justify-content-between align-items-center mb-4">
+        <div class="apartment-img">
+             <img :src="'../storage/'+apartment.preview" alt="Missing Preview">
+        </div>       
+        <div id="map" class="dm-map-style ml-5"></div>
     </div>
-    <div class="structure row row-cols-3 text-center border-top border-bottom">
+    
+    <div class="structure row row-cols-3 text-center border-top border-bottom mt-5">
         <div class="room col">
             <div>
                 <i class="fas fa-couch"></i>
@@ -89,7 +93,7 @@
 </template>
 
 <script>
-
+import tt from '@tomtom-international/web-sdk-maps'
 export default {
     name: 'SingleApartment',
     data() {
@@ -101,8 +105,11 @@ export default {
                     sender_email: "",
                     apartment_id: null,
                 },
-                commentSent: false,
-                formErrors: {}
+            commentSent: false,
+            formErrors: {},
+            lat: "",
+            lon: "",
+            apiKey: 'LmxBM8DrAJjBA1BQPufxlrTGrO4c4Byh',                
         }
     },
     methods: {
@@ -111,7 +118,9 @@ export default {
             .then(apiResponse => {
                 this.apartment = apiResponse.data;
                 this.formData.apartment_id = this.apartment.id;
-                console.log(this.apartment)
+                this.lat = this.apartment.location.lat;
+                this.lon = this.apartment.location.lon;
+                
                 })
             .catch(() => {
                 console.log('error');
@@ -143,11 +152,27 @@ export default {
                 this.formErrors = error.response.data.errors;
                 console.log(error.response);
             })
+        },
+        mapSearch() {        
+            let position = [this.lon,this.lat]; 
+
+            const map= tt.map({
+                key: this.apiKey,
+                container: "map",
+                center: position,
+                zoom: 18
+            })                              
+            new tt.Marker().setLngLat(position).addTo(map);           
+
         }
     },
     created() {
         this.getApartment();
-    }
+        this.mapSearch();
+    },
+    updated(){
+       //this.mapSearch();
+    },
 }
 </script>
 
@@ -272,4 +297,15 @@ export default {
     }
 }
 }
+
+.dm-map-style{
+    width: 100%;
+    height: 500px;
+    margin-bottom: 40px;
+    overflow: hidden;
+}
+#map{
+    border-radius: 15px;
+}
+
 </style>
