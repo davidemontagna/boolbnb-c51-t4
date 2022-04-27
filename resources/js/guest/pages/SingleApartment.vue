@@ -156,22 +156,21 @@ export default {
         mapSearch() {        
             let position = [this.lon,this.lat]; 
 
-            const map= tt.map({
+            let map= tt.map({
                 key: this.apiKey,
                 container: "map",
                 center: position,
                 zoom: 18
-            })                              
-            new tt.Marker().setLngLat(position).addTo(map);           
-
+            })  
+                        
+            new tt.Marker(marker).setLngLat(position).addTo(map);           
         }
     },
     created() {
         this.getApartment();
-        this.mapSearch();
     },
     updated(){
-       //this.mapSearch();
+       this.mapSearch();
     },
 }
 </script>
