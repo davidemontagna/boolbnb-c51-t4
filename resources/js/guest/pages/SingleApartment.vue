@@ -178,7 +178,8 @@ export default {
                 zoom: 18
             })  
                         
-            new tt.Marker(marker).setLngLat(position).addTo(map);           
+            new tt.Marker().setLngLat(position).addTo(map);   
+   
         }
     },
     created() {
