@@ -175,7 +175,7 @@ export default {
                 key: this.apiKey,
                 container: "map",
                 center: position,
-                zoom: 18
+                zoom: 16
             })  
                         
             new tt.Marker().setLngLat(position).addTo(map);   
