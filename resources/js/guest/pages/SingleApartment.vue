@@ -1,15 +1,26 @@
 <template>
 <div class="container-fluid">
         <!-- <p>Category: {{apartment.category ? apartment.category.name : '-'}}</p> -->
-    <div class="title">
-        <div>{{apartment.title}}</div>
-        <div>{{apartment.location.city}}</div>
+    <div class="py-3">
+        <h2>{{apartment.title}}</h2>
+        <div class="row row-cols-1 row-cols-md-2">
+            <div class="col">
+                <h3>{{apartment.location.city}}</h3>
+            </div>
+            <div class="col">
+                <h5>{{apartment.location.address}}</h5>
+            </div>
+        </div>
     </div>
-    <div class="mx-auto col-12 col-sm-8 col-md-12 d-flex justify-content-between align-items-center mb-4">
-        <div class="apartment-img">
-             <img :src="'../storage/'+apartment.preview" alt="Missing Preview">
-        </div>       
-        <div id="map" class="dm-map-style ml-5"></div>
+    <div class="row row-cols-1 row-cols-lg-2">
+        <div class="col">
+            <div class="apartment-img">
+                <img :src="'../storage/'+apartment.preview" alt="Missing Preview">
+            </div>       
+        </div>
+        <div class="col">
+            <div id="map" class="dm-map-style"></div>
+        </div>
     </div>
     
     <div class="structure row row-cols-3 text-center border-top border-bottom mt-5">
@@ -54,11 +65,13 @@
         <div class="row row-cols-3 mx-3">
             <div class="col my-3" v-for="(service, index) in apartment.services" :key="index">
                 <i :class="service.icon"></i>
-                {{service.name}}
+                <div>
+                    {{service.name}}
+                </div>
             </div>
         </div>
     </div>
-    <section class="form-section">
+    <section class="form-section pb-3">
         <h3 class="d-flex mt-5">Contatta l'Host
             <div class="apartment-description-button">
                 <i class="fa-solid fa-chevron-down  a-d-button ml-3" @click="descriptionFunc()"></i>
@@ -172,25 +185,13 @@ export default {
         this.getApartment();
     },
     updated(){
-       this.mapSearch();
+        this.mapSearch();
     },
 }
 </script>
 
 <style lang="scss" scoped>
 @import '../../../sass/variables.scss';
-
-
-.title{
-    & div:first-child{
-        font-size: 3vw;
-    }
-    & div:nth-child(2){
-        font-size: 2vw;
-        margin-bottom: 1rem;
-    }
-}
-
 .structure{
     background-color: $primary-lightgrey;
     padding: 2rem;
@@ -198,6 +199,7 @@ export default {
 
 .apartment-img{
     width: 100%;
+    height: 300px;
     margin-bottom: 1rem;
     overflow: hidden;
 
@@ -209,16 +211,6 @@ export default {
     }
 }
 
-.description-section{
-    background-color: $primary-light;
-    display: flex;
-    align-items: flex-end;
-
-    .apartment-description{
-        position: relative;
-        width: 90%;
-    }
-}
 .fa-chevron-up{
         display: none;
     }
@@ -284,8 +276,7 @@ export default {
 
 .dm-map-style{
     width: 100%;
-    height: 500px;
-    margin-bottom: 40px;
+    height: 300px;
     overflow: hidden;
 }
 #map{
