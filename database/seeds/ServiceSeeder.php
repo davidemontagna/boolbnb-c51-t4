@@ -14,10 +14,10 @@ class ServiceSeeder extends Seeder
      */
     public function run()
     {
-        $services = ['tv', 'pool', 'parking slot',
-        'wi-fi', 'air conditioning', 'breakfast',
-        'barbecue','room service','kitchen',
-        'hairdryer', 'towels'];
+        $services = ['tv', 'piscina', 'parcheggio',
+        'wi-fi', 'aria condizionata', 'colazione',
+        'bbq','servizion in camera','cucina',
+        'asciugacapelli', 'asciugamani'];
 
         $icons = ['fas fa-tv', 'fas fa-swimming-pool', 'fas fa-parking',
         'fas fa-wifi', 'fas fa-fan', 'fas fa-coffee',

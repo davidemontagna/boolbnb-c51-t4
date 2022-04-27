@@ -11,10 +11,14 @@
                 <div class="header-routes col-4 justify-content-center align-items-center d-none d-md-flex ">
                     <li><router-link :to="{name: 'about'}" class="text-secondary ruouter-link">CHI SIAMO</router-link></li>
                 </div>
-                <div class="col-6 col-md-4 d-flex justify-content-end align-items-center">
-                    <div class="text-secondary">
-                        Sei un host?
-                    </div>
+                <div v-if="setLogin" class="col-6 col-md-4 d-flex justify-content-end align-items-center">
+                    <a class="login" href="http://127.0.0.1:8000/user">
+                        <button class="login-btn">
+                            <div>Area Personale</div>
+                        </button>
+                    </a>
+                </div>
+                <div v-else class="col-6 col-md-4 d-flex justify-content-end align-items-center">
                     <a class="login" href="http://127.0.0.1:8000/login">
                         <button class="login-btn">
                             <div>Login</div>
@@ -22,7 +26,7 @@
                     </a>
                     <a class="login" href="http://127.0.0.1:8000/register">
                         <button class="login-btn">
-                            <div>Register</div>
+                            <div>Diventa un Host</div>
                         </button>
                     </a>
                 </div>
@@ -37,6 +41,7 @@ export default {
     name: 'Header',
     data(){
         return{
+            loginCheck: false,
 
         }
     },
@@ -48,7 +53,7 @@ export default {
             }else if(window.scrollY < 350 && headerScr.classList.contains("scrolled")){
                 headerScr.classList.remove("scrolled")
             }
-  }
+        }
     },
     mounted() {
         window.addEventListener("scroll", this.onScroll, true)
@@ -56,6 +61,15 @@ export default {
     beforeDestroy() {
         window.removeEventListener("scroll", this.onScroll, true)
     },
+    computed: {
+        setLogin() {
+            let metaLogin = document.getElementById('meta-login');
+            if (metaLogin != null) {
+                this.loginCheck = metaLogin.content;
+            }
+            return this.loginCheck;
+        }
+    }
 }
 </script>
 
