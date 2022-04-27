@@ -60,7 +60,7 @@ export default {
 <style lang="scss" scoped>
 @import '../../../sass/variables.scss';
 .about-container{
-    margin-top: 7rem;
+    padding-top: 7rem;
     min-height: 80vh;
 }
 

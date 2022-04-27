@@ -18,18 +18,14 @@
             </div>
             @if ($apartment->user_id == auth()->id())
                 <div class="title mx-5">
-                    <div class="row">
-                        <div class="col-12">
-                            <h1>{{$apartment->title}}</h1>
+                    <h1>{{$apartment->title}}</h1>
+                    <div class="row row-cols-1 row-cols-md-2">
+                        <div class="col">
+                            <h3>{{$apartment->location->city}}</h3>
                         </div>
-                    </div>
-                    <div class="row">
-                        <h2 class="col-2">
-                            {{$apartment->location->city}}
-                        </h2>
-                        <h2 class="col-10">
-                            {{$apartment->location->address}}
-                        </h2>
+                        <div class="col">
+                            <h5>{{$apartment->location->address}}</h5>
+                        </div>
                     </div>
                     
                 </div>
