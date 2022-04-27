@@ -102,14 +102,14 @@
                         <img :src="require('/storage/app/public/resources/img-3.svg')" alt="">
                     </div>
                     <h4 class="mt-3">Confronta i vari servizi per trovare l'aloggio che fà per te</h4>
-                    <p class="mt-3">Non farti trovare impreparato dopo una pioggierella estiva, assicurati che l'asciugacapelli sia presente in struttura</p>
+                    <p class="mt-3">Non farti trovare impreparato dopo una pioggierella estiva, assicurati che l'asciugacapelli sia presente in struttura.</p>
                 </div>
                 <div class="col my-3">
                     <div class="ms_img_information">
                         <img :src="require('/storage/app/public/resources/img-2.svg')" alt="">
                     </div>
                     <h4 class="mt-3">Chatta con persone reali</h4>
-                    <p class="mt-3">Comunica direttamente con gli inserzionisti. Per verificare la disponibilità o per richiedere servizi aggiuntivi</p>
+                    <p class="mt-3">Comunica direttamente con gli inserzionisti. Per verificare la disponibilità o per richiedere servizi aggiuntivi.</p>
                 </div>
             </div>
         </div>
@@ -598,7 +598,7 @@ section{
 
 .sponzorized-tag{
     position: absolute;
-    font-size: clamp(.7rem, 1vw, 2rem);
+    font-size: 15px;
     top: 2rem;
     left: 3rem;
     background-color: $primary-red;
@@ -624,7 +624,9 @@ section{
 .ms_img_information{
     width: 150px;
     height: 100px;
+    
     img{
+        object-fit: contain;
         width: 100%;
         height: 100%;
     }
