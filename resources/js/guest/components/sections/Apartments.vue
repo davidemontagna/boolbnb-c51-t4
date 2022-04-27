@@ -58,8 +58,8 @@
         
 
         <h5 class="text-center mb-3" v-if="filteredApartments.length == 0">Effettua una ricerca o prova a cambiare i filtri</h5>
+        <h2 v-if="loading" class="col-12">Le nostre strutture</h2>
         <div v-if="loading" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mx-auto p-3">
-            <h2>Le nostre strutture</h2>
             <div class="col my-3" v-for="(apartment, index) in setApartments" :key="index">
                 <router-link :to="{name: 'single-apartment', params:{slug: apartment.slug}}" class="router-link">
                     <div class="ms_card" :class="checkSponsorized(apartment) ? 'sponsorized-card' : ''">
@@ -286,7 +286,6 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../../../sass/variables.scss';
-
 section{
     .ms_card{
         width: 100%;

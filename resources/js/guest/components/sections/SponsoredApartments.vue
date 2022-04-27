@@ -1,7 +1,7 @@
 <template>
     <section class="section-sponsored pb-5">
         <div class="row mb-3 justify-content-around">
-            <h4>Lasciati guidare dalla curiosità</h4>
+            <h4 class="title">Lasciati guidare dalla curiosità</h4>
         </div>
         <div v-if="loading" class="row justify-content-around"  @mouseover="timerStop" @mouseleave="timer">
             <div class="sm-card-container flex-column col-10 col-md-5 col-xl-3 p-0 ">
@@ -171,6 +171,8 @@ export default {
 
 <style lang="scss" scoped>
 @import '../../../../sass/variables.scss';
+@import url('https://fonts.googleapis.com/css2?family=Square+Peg&display=swap');
+
 .section-sponsored{
     min-height: 50vh;
 }
@@ -232,5 +234,11 @@ export default {
         position: absolute;
         right: 0;
     }
+}
+
+.title{
+    font-family: 'Square Peg', cursive;
+    font-size: max(4vw, 2.2rem);
+    color: $primary-red;
 }
 </style>
