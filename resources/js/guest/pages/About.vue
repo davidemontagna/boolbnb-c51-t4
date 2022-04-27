@@ -5,11 +5,11 @@
         <div class="row row-cols-2 row-cols-md-1">
             <div class="col-12 col-md-6  d-flex justify-content-center align-items-center">
                 <div class="name-section row row-cols-5 row-cols-md-1">
-                    <div class="founder col-2 m-2 col-md-12 m-md-0 selected" @click="founderSelect(0)"><span>D</span>avide Montagna</div>
-                    <div class="founder col-2 m-2 col-md-12 m-md-0" @click="founderSelect(1)"><span>D</span>avide Masa</div>
-                    <div class="founder col-2 m-2 col-md-12 m-md-0" @click="founderSelect(2)"><span>M</span>aurizio Mosiello</div>
-                    <div class="founder col-2 m-2 col-md-12 m-md-0" @click="founderSelect(3)"><span>S</span>alvatore Milone</div>
-                    <div class="founder col-2 m-2 col-md-12 m-md-0" @click="founderSelect(4)"><span>A</span>lessio Tomei</div>
+                    <div class="founder d-flex justify-content-between col-2 m-2 col-md-12 m-md-0 selected" @click="founderSelect(0)">Davide Montagna <a href="https://github.com/davidemontagna" target="_blank"><i class="fa-brands fa-github"></i></a></div>
+                    <div class="founder d-flex justify-content-between col-2 m-2 col-md-12 m-md-0" @click="founderSelect(1)">Davide Masa <a href="https://github.com/Masadavide" target="_blank"><i class="fa-brands fa-github"></i></a></div>
+                    <div class="founder d-flex justify-content-between col-2 m-2 col-md-12 m-md-0" @click="founderSelect(2)">Maurizio Mosiello <a href="https://github.com/Mosi8" target="_blank"><i class="fa-brands fa-github"></i></a></div>
+                    <div class="founder d-flex justify-content-between col-2 m-2 col-md-12 m-md-0" @click="founderSelect(3)">Salvatore Milone <a href="https://github.com/SalvatoreMilone" target="_blank"><i class="fa-brands fa-github"></i></a></div>
+                    <div class="founder d-flex justify-content-between col-2 m-2 col-md-12 m-md-0" @click="founderSelect(4)">Alessio Tomei <a href="https://github.com/Alessio-Tomei" target="_blank"><i class="fa-brands fa-github"></i></a></div>
                 </div>
             </div>
             <div class="img-section col-12 col-md-6 d-flex justify-content-center align-items-center">
@@ -69,16 +69,29 @@ h1{
     font-size: 1.5rem;
     letter-spacing: .4rem;
 }
-
+a{
+    color: $primary-red;
+}
 .img-section{
     min-height: 300px;
     -moz-user-select: none;
     -webkit-user-select: none;
     user-select: none;
-    pointer-events: none;
+    // pointer-events: none; 
 
     img{
-        width: 30%;
+        width: 50%;
+        max-height: 300px;
+        object-fit: cover;
+        mask-image: url("../../../../storage/app/public/resources/circle-solid.svg");
+        mask-repeat: no-repeat;
+        mask-position: center;
+    }
+    img:last-child{
+        width: 50%;
+        mask-image: url("../../../../storage/app/public/resources/circle-solid.svg");
+        mask-repeat: no-repeat;
+        mask-position: calc(50% + 20px);
     }
 }
 
@@ -130,12 +143,10 @@ h1{
 @keyframes about {
     0%{
         opacity: 0;
-        transform: rotate(30deg);
     }
     100%{
         opacity: 1;
-        width: 50%;
-        transform: rotate(0deg);
+        width: 60%;
     }
 }
 
