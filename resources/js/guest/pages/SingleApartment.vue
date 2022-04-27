@@ -42,14 +42,11 @@
         </div>
     </div>
     <section class="description-section">
-        <div class="apartment-description my-3">
+        <div class="apartment-description mb-4">
             <h3 class="my-3">
                 Descrizione
             </h3>
             {{apartment.description}}
-        </div>
-        <div class="apartment-description-button my-3">
-            <i class="fa-solid fa-chevron-down  a-d-button" @click="descriptionFunc()"></i>
         </div>
     </section>
     <div class="services">
@@ -61,8 +58,13 @@
             </div>
         </div>
     </div>
-    <section>
-        <h3>Contatta l'Host</h3>
+    <section class="form-section">
+        <h3 class="d-flex mt-5">Contatta l'Host
+            <div class="apartment-description-button">
+                <i class="fa-solid fa-chevron-down  a-d-button ml-3" @click="descriptionFunc()"></i>
+            </div>
+        </h3>
+        
         <form @submit.prevent="sendMessage()" class="form">
             <input type="text" id="sender_name" placeholder="Inserisci il tuo nome" v-model="formData.sender_name">
             <input type="email" id="sender_email" placeholder="Inserisci il tuo indirizzo mail" v-model="formData.sender_email">
@@ -128,7 +130,7 @@ export default {
             });
         },
         descriptionFunc: function(){
-            let aDescription = document.querySelector(".apartment-description");
+            let aDescription = document.querySelector(".form");
             let button = document.querySelector(".a-d-button");
 
             if(aDescription.classList.contains("show")){
@@ -181,7 +183,7 @@ export default {
 
 .title{
     & div:first-child{
-        font-size: 4vw;
+        font-size: 3vw;
     }
     & div:nth-child(2){
         font-size: 2vw;
@@ -200,7 +202,7 @@ export default {
     overflow: hidden;
 
     img{
-        border-radius: 2vw;
+        border-radius: 2rem;
         object-fit:cover;
         width: 100%;
         height: 100%;
@@ -212,36 +214,14 @@ export default {
     display: flex;
     align-items: flex-end;
 
-    .fa-chevron-up{
-        display: none;
-    }
     .apartment-description{
         position: relative;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
         width: 90%;
-
-
-        &::after{
-            content: "";
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background-color: rgba(0, 0, 0, .2);
-            bottom: -1rem;
-            left: 0;
-        }
     }
-
-    .apartment-description.show{
-        position: relative;
-        white-space: normal;
-        overflow: none;
-        text-overflow: none;
-        width: 100%;
+}
+.fa-chevron-up{
+        display: none;
     }
-
     .apartment-description-button{
         width: 10%;
         font-size: 2rem;
@@ -259,15 +239,20 @@ export default {
         }
         .a-d-button.active{
             transform: rotate(180deg);
+            color: $primary-red;
         }
     }
+.form-section{
+    margin-bottom: 10rem;
 }
-
 .form{
+    display: none;
+}
+.form.show{
+    display: block;
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
-
     input, textarea{
         width: 100%;
         padding: 12px;
