@@ -51,6 +51,11 @@
                                     <input class="btn ms_delete m-2" type="button" value="Elimina Appartamento" data-toggle="modal" data-target="#ModalDelete{{$apartment->id}}">
                                 </div>
                             </div>
+                            @if($newMessages[$index]["counter"])
+                                <div class="msg-notification">
+                                    <i class="fas fa-envelope"></i> {{$newMessages[$index]["counter"]}}
+                                </div>
+                            @endif
 
                             <form action="{{route("user.apartments.destroy", $apartment->id)}}" method="POST">
                                 @csrf
@@ -96,11 +101,11 @@
                                         <i class="fa-solid fa-star"></i>
                                     </button>
                                     <div class="dropdown-menu p-3" aria-labelledby="dropdownMenu3">
-                                        <p>Scadenza : {{$dataSponsorships[$index]['end']->format('Y-m-d H:i')}}</p>
+                                        <p>Scadenza : {{$dataSponsorships[$index]['end']->format('d-m-Y')}}</p>
                                         <p>Alle ore : {{$dataSponsorships[$index]['end']->format('H:i')}}</p>
                                     </div>
                                 </div>
-                                @endif
+                            @endif
                         </div>
                     </div>
                 </div>

@@ -533,3 +533,18 @@
         font-size: 15px;
     }
 }
+
+.msg-notification{
+    background-color: $primary-red;
+    border: none;
+    border-radius: 2rem;
+    color: white;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    display: inline-block;
+    padding: 5px 12px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1;
+}
