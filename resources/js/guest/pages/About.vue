@@ -13,11 +13,11 @@
                 </div>
             </div>
             <div class="img-section col-12 col-md-6 d-flex justify-content-center align-items-center">
-                <img class="about-img show" draggable="false" src="https://free3dicon.com/wp-content/uploads/2022/04/function-300x300.png.webp">
-                <img class="about-img hidden" draggable="false" src="https://free3dicon.com/wp-content/uploads/2022/04/improvement-300x300.png.webp">
-                <img class="about-img hidden" draggable="false" src="https://free3dicon.com/wp-content/uploads/2022/03/administration-300x300.png.webp">
-                <img class="about-img hidden" draggable="false" src="https://free3dicon.com/wp-content/uploads/2022/03/impliment-300x300.png.webp">
-                <img class="about-img hidden" draggable="false" src="https://free3dicon.com/wp-content/uploads/2022/04/establishment-300x300.png.webp">
+                <img class="about-img show" draggable="false" :src="require('/storage/app/public/resources/Montagna.png')">
+                <img class="about-img hidden" draggable="false" :src="require('/storage/app/public/resources/Masa.png')">
+                <img class="about-img hidden" draggable="false" :src="require('/storage/app/public/resources/Mosiello.png')">
+                <img class="about-img hidden" draggable="false" :src="require('/storage/app/public/resources/Milone.png')">
+                <img class="about-img hidden" draggable="false" :src="require('/storage/app/public/resources/Tomei.png')">
             </div>
         </div>
     </div>
