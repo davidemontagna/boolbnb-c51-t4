@@ -7,11 +7,11 @@
                 
                 <div class="sm-card-container flex-column col-10 col-md-5 col-xl-3 p-0 ">
                     <router-link :to="{name: 'single-apartment', params:{slug: apartments[setIndex(0)].slug}}" class="router-link">
-                    <div class="sm-card-top">
+                    <div class="sm-card-top" :class="cardColor()">
                         <img :src="'../storage/'+apartments[setIndex(0)].preview">
                     </div>
-                    <div class="sm-card-bottom">
-                        <h3>{{apartments[setIndex(0)].title}}</h3>
+                    <div class="sm-card-bottom" :class="cardColor()">
+                        <h4>{{apartments[setIndex(0)].title}}</h4>
                         <p>{{apartments[setIndex(0)].location.city}}</p>
                         <p>{{apartments[setIndex(0)].location.address}}</p>
                     </div>
@@ -22,11 +22,11 @@
                 
                     <router-link :to="{name: 'single-apartment', params:{slug: apartments[setIndex(1)].slug}}" class="router-link">
 
-                    <div class="sm-card-top">
+                    <div class="sm-card-top" :class="cardColor()">
                         <img :src="'../storage/'+apartments[setIndex(1)].preview">
                     </div>
-                    <div class="sm-card-bottom">
-                        <h3>{{apartments[setIndex(1)].title}}</h3>
+                    <div class="sm-card-bottom" :class="cardColor()">
+                        <h4>{{apartments[setIndex(1)].title}}</h4>
                         <p>{{apartments[setIndex(1)].location.city}}</p>
                         <p>{{apartments[setIndex(1)].location.address}}</p>
                     </div>
@@ -37,11 +37,11 @@
 
                 <div class="sm-card-container flex-column d-none d-xl-flex col-3 p-0 ">
                     <router-link :to="{name: 'single-apartment', params:{slug: apartments[setIndex(2)].slug}}" class="router-link">
-                    <div class="sm-card-top">
+                    <div class="sm-card-top" :class="cardColor()">
                         <img :src="'../storage/'+apartments[setIndex(2)].preview">
                     </div>
-                    <div class="sm-card-bottom">
-                        <h3>{{apartments[setIndex(2)].title}}</h3>
+                    <div class="sm-card-bottom" :class="cardColor()">
+                        <h4>{{apartments[setIndex(2)].title}}</h4>
                         <p>{{apartments[setIndex(2)].location.city}}</p>
                         <p>{{apartments[setIndex(2)].location.address}}</p>
                     </div>
@@ -148,10 +148,21 @@ export default {
             let start = this;
             this.tempo = setInterval (function(){
             start.avanti();
-        },1000);
+        },3000);
         },
         timerStop: function(){
             clearInterval(this.tempo);
+        },
+        cardColor: function(){
+            let colors = [
+                "bg-secondary1",
+                "bg-secondary2",
+                "bg-secondary3",
+                "bg-secondary4"
+            ]
+            let rand = Math.floor(Math.random() * 4);
+
+            return colors[rand]
         }
     },
     created() {
@@ -182,7 +193,7 @@ export default {
     .sm-card-top{
         width: 100%;
         height: 200px;
-        background-color: $primary-red;
+        // background-color: $primary-red;
             overflow: hidden;
 
         img{
@@ -194,7 +205,7 @@ export default {
     .sm-card-bottom{
         padding: 1rem;
         width: 100%;
-        background-color: $primary-red;
+        // background-color: $primary-red;
         min-height: 230px;
     }
 }
@@ -202,4 +213,31 @@ export default {
     display: flex;
 }
 
+.bg-secondary1{
+    background-color: #bc1a6e;
+}
+.bg-secondary2{
+    background-color: #cc2d4a;
+}
+.bg-secondary3{
+    background-color: #de3151;
+}
+.bg-secondary4{
+    background-color: #d93b30;
+}
+
+.arrows{
+    position: relative;
+    width: 100%;
+    bottom: 225px;
+    transform: translateY(-50%);
+    .prev{
+        position: absolute;
+        left: 0;
+    }
+    .next{
+        position: absolute;
+        right: 0;
+    }
+}
 </style>
