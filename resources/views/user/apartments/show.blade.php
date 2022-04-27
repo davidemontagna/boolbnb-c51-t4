@@ -7,7 +7,7 @@
     <section class="ms_container_show_apartment">
         <div class="container-fluid">
             <div class="row justify-content-between mx-3 mt-3">
-                <div class="col col-lg-3">
+                <div class="col col-md-3 col-xl-2">
                     <a href="{{route("user.apartments.index")}}">
                         <button class="announcement-btn text-center my-3 p-3">
                             <i class="fas fa-chevron-left"></i>
