@@ -3,7 +3,7 @@
         <div class="row">
                 <h4>Lasciati guidare dalla curiosità</h4>
         </div>
-        <div class="row justify-content-around"  @mouseover="timerStop" @mouseleave="timer">
+        <div v-if="loading" class="row justify-content-around"  @mouseover="timerStop" @mouseleave="timer">
                 
                 <div class="sm-card-container flex-column col-10 col-md-5 col-xl-3 p-0 ">
                     <router-link :to="{name: 'single-apartment', params:{slug: apartments[setIndex(0)].slug}}" class="router-link">
@@ -69,6 +69,7 @@ export default {
         return {
             apartments: [],
             corrente: 0,
+            loading: false,
         }
     },
     methods: {
@@ -87,6 +88,7 @@ export default {
             axios.get('/api/apartments')
             .then(apiResponse => {
                 this.apartments = apiResponse.data;
+                this.loading = true;
                 this.orderBySponsorized(); 
                 })
             .catch(() => {

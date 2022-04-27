@@ -60,7 +60,7 @@
 
         <p v-if="filteredApartments.length == 0">Effettua una ricerca o prova a cambiare i filtri</p>
 
-        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mx-auto p-3">
+        <div v-if="loading" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mx-auto p-3">
             <div class="col my-3" v-for="(apartment, index) in setApartments" :key="index">
                 <router-link :to="{name: 'single-apartment', params:{slug: apartment.slug}}" class="router-link">
                     <div class="ms_card" :class="checkSponsorized(apartment) ? 'sponsorized-card' : ''">
@@ -136,6 +136,7 @@ export default {
             locationList: [],
             apiKey: 'LmxBM8DrAJjBA1BQPufxlrTGrO4c4Byh',
             addClass: false,
+            loading: false, 
         }
     },
     methods: {
@@ -182,6 +183,7 @@ export default {
             })
             .then(apiResponse => {
                 this.apartments = apiResponse.data;
+                this.loading = true;
                 this.search();
                 })
             .catch(() => {
