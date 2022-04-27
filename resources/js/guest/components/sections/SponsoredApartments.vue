@@ -1,58 +1,50 @@
 <template>
-    <section class="section-sponsored">
-        <div class="row">
-                <h4>Lasciati guidare dalla curiosità</h4>
+    <section class="section-sponsored pb-5">
+        <div class="row mb-3 justify-content-around">
+            <h4>Lasciati guidare dalla curiosità</h4>
         </div>
         <div v-if="loading" class="row justify-content-around"  @mouseover="timerStop" @mouseleave="timer">
-                
-                <div class="sm-card-container flex-column col-10 col-md-5 col-xl-3 p-0 ">
-                    <router-link :to="{name: 'single-apartment', params:{slug: apartments[setIndex(0)].slug}}" class="router-link">
-                    <div class="sm-card-top" :class="cardColor()">
-                        <img :src="'../storage/'+apartments[setIndex(0)].preview">
-                    </div>
-                    <div class="sm-card-bottom" :class="cardColor()">
-                        <h4>{{apartments[setIndex(0)].title}}</h4>
-                        <p>{{apartments[setIndex(0)].location.city}}</p>
-                        <p>{{apartments[setIndex(0)].location.address}}</p>
-                    </div>
-                    </router-link>
+            <div class="sm-card-container flex-column col-10 col-md-5 col-xl-3 p-0 ">
+                <router-link :to="{name: 'single-apartment', params:{slug: apartments[setIndex(0)].slug}}" class="router-link">
+                <div class="sm-card-top" :class="cardColor()">
+                    <img :src="'../storage/'+apartments[setIndex(0)].preview">
                 </div>
-
-                <div class="sm-card-container flex-column d-none d-md-flex col-5 col-xl-3 p-0 ">
-                
-                    <router-link :to="{name: 'single-apartment', params:{slug: apartments[setIndex(1)].slug}}" class="router-link">
-
-                    <div class="sm-card-top" :class="cardColor()">
-                        <img :src="'../storage/'+apartments[setIndex(1)].preview">
-                    </div>
-                    <div class="sm-card-bottom" :class="cardColor()">
-                        <h4>{{apartments[setIndex(1)].title}}</h4>
-                        <p>{{apartments[setIndex(1)].location.city}}</p>
-                        <p>{{apartments[setIndex(1)].location.address}}</p>
-                    </div>
-
-                    </router-link>
-                    
+                <div class="sm-card-bottom" :class="cardColor()">
+                    <h4>{{apartments[setIndex(0)].title}}</h4>
+                    <p>{{apartments[setIndex(0)].location.city}}</p>
+                    <p>{{apartments[setIndex(0)].location.address}}</p>
                 </div>
-
-                <div class="sm-card-container flex-column d-none d-xl-flex col-3 p-0 ">
-                    <router-link :to="{name: 'single-apartment', params:{slug: apartments[setIndex(2)].slug}}" class="router-link">
-                    <div class="sm-card-top" :class="cardColor()">
-                        <img :src="'../storage/'+apartments[setIndex(2)].preview">
-                    </div>
-                    <div class="sm-card-bottom" :class="cardColor()">
-                        <h4>{{apartments[setIndex(2)].title}}</h4>
-                        <p>{{apartments[setIndex(2)].location.city}}</p>
-                        <p>{{apartments[setIndex(2)].location.address}}</p>
-                    </div>
-                    </router-link>
+                </router-link>
+            </div>
+            <div class="sm-card-container flex-column d-none d-md-flex col-5 col-xl-3 p-0 ">
+                <router-link :to="{name: 'single-apartment', params:{slug: apartments[setIndex(1)].slug}}" class="router-link">
+                <div class="sm-card-top" :class="cardColor()">
+                    <img :src="'../storage/'+apartments[setIndex(1)].preview">
                 </div>
+                <div class="sm-card-bottom" :class="cardColor()">
+                    <h4>{{apartments[setIndex(1)].title}}</h4>
+                    <p>{{apartments[setIndex(1)].location.city}}</p>
+                    <p>{{apartments[setIndex(1)].location.address}}</p>
+                </div>
+                </router-link>
+            </div>
+            <div class="sm-card-container flex-column d-none d-xl-flex col-3 p-0">
+                <router-link :to="{name: 'single-apartment', params:{slug: apartments[setIndex(2)].slug}}" class="router-link">
+                <div class="sm-card-top" :class="cardColor()">
+                    <img :src="'../storage/'+apartments[setIndex(2)].preview">
+                </div>
+                <div class="sm-card-bottom" :class="cardColor()">
+                    <h4>{{apartments[setIndex(2)].title}}</h4>
+                    <p>{{apartments[setIndex(2)].location.city}}</p>
+                    <p>{{apartments[setIndex(2)].location.address}}</p>
+                </div>
+                </router-link>
+            </div>
         </div>
-                <div class="arrows" @mouseover="timerStop" @mouseleave="timer">
-                    <div @click="indietro" class="prev  text-center"><i class="fa-solid fa-chevron-left"></i></div>
-                    <div @click="avanti" class="next text-center"><i class="fa-solid fa-chevron-right"></i></div>
-                </div>
-
+        <div class="arrows" @mouseover="timerStop" @mouseleave="timer">
+            <div @click="indietro" class="prev  text-center"><i class="fa-solid fa-chevron-left"></i></div>
+            <div @click="avanti" class="next text-center"><i class="fa-solid fa-chevron-right"></i></div>
+        </div>
     </section>
 </template>
 
@@ -128,7 +120,7 @@ export default {
             if (this.corrente + position >= this.apartments.length) {
                 return position - 1;
             } else {
-               return this.corrente + position; 
+                return this.corrente + position; 
             }
         },
         avanti: function(){
@@ -195,7 +187,6 @@ export default {
     .sm-card-top{
         width: 100%;
         height: 200px;
-        // background-color: $primary-red;
             overflow: hidden;
 
         img{
@@ -207,8 +198,8 @@ export default {
     .sm-card-bottom{
         padding: 1rem;
         width: 100%;
-        // background-color: $primary-red;
         min-height: 230px;
+        border-radius: 0 0 15px 15px;
     }
 }
 .sm-card-container.active{
