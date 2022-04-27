@@ -133,4 +133,33 @@ return [
             'rule-name' => 'custom-message',
         ],
     ],
+
+    'attributes' => [
+        'title'=> 'Nome appartamento',
+        'num_rooms'=> 'Numero di stanze',
+        'num_beds'=> 'Numero di letti',
+        'num_bath'=> 'Numero di bagni',
+        'num_guest'=> 'Numero di ospiti',
+        'price'=> 'Prezzo',
+        'square_footage'=> 'Metri quadri',
+        'preview'=> 'Immagine di copertina',
+        'visible'=> 'Visibile',
+        'description'=> 'Descrizione',
+        'address_obj' => 'Indirizzo',        
+
+        'services' => 'servizi',
+
+        'name' => 'Nome',
+        'surname' => 'Cognome',
+        'date_of_birth' => 'Data di nascita',
+        'email' => 'Email',
+        'password' => 'Password',
+
+        'sender_name' => 'Name',
+        'content' => 'Contenuto',
+        'sender_email' => 'Email',
+        'apartment_id' => 'Appartamento',
+        'visualized' => 'Visualizzato',
+        'answered' => 'Risposto',
+    ],
 ];
