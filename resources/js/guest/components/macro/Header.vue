@@ -68,7 +68,6 @@ header{
     background-position: center;
     background-repeat: no-repeat;
     position: relative;
-    margin-bottom: 3rem;
 }
 .wrapper{
     position: absolute;

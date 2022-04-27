@@ -21,18 +21,28 @@ export default {
 @import '../../../../sass/variables.scss';
 
 footer{
+    background-size: cover;
+    background-image: url('../../../../../storage/app/public/resources/img-footer-100.webp');
+    width: 100%;
+    height: 500px;
     margin-top: 1rem;
-    background: linear-gradient(0deg, rgba(144, 144, 144, 0.5) 0%, rgba(255,255,255,0) 60%);
+    /* background: linear-gradient(0deg, rgba(144, 144, 144, 0.5) 0%, rgba(255,255,255,0) 60%); */
     position: relative;
     bottom: 0;
     left: 0;
 }
     .footer-container{
+        border-top: 2px solid $primary-light;
+        color: $primary-light;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 0);
         display: flex;
         justify-content: space-between;
         align-items: center;
         height: 3rem;
-        width: calc(100% - 2rem);
+        width: 90%;
         padding: 0 1rem;
 
         .footer-socials{
