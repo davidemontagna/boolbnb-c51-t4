@@ -1,72 +1,75 @@
 <template>
 <div class="container-fluid">
         <!-- <p>Category: {{apartment.category ? apartment.category.name : '-'}}</p> -->
-    <div class="py-3">
-        <h2>{{apartment.title}}</h2>
-        <div class="row row-cols-1 row-cols-md-2">
+    <div v-if="loading">
+
+        <div class="py-3">
+            <h2>{{apartment.title}}</h2>
+            <div class="row row-cols-1 row-cols-md-2">
+                <div class="col">
+                    <h3>{{apartment.location.city}}</h3>
+                </div>
+                <div class="col">
+                    <h5>{{apartment.location.address}}</h5>
+                </div>
+            </div>
+        </div>
+        <div class="row row-cols-1 row-cols-lg-2">
             <div class="col">
-                <h3>{{apartment.location.city}}</h3>
+                <div class="apartment-img">
+                    <img :src="'../storage/'+apartment.preview" alt="Missing Preview">
+                </div>       
             </div>
             <div class="col">
-                <h5>{{apartment.location.address}}</h5>
+                <div id="map" class="dm-map-style"></div>
             </div>
         </div>
-    </div>
-    <div class="row row-cols-1 row-cols-lg-2">
-        <div class="col">
-            <div class="apartment-img">
-                <img :src="'../storage/'+apartment.preview" alt="Missing Preview">
-            </div>       
-        </div>
-        <div class="col">
-            <div id="map" class="dm-map-style"></div>
-        </div>
-    </div>
-    
-    <div class="structure row row-cols-3 text-center border-top border-bottom mt-5">
-        <div class="room col">
-            <div>
-                <i class="fas fa-couch"></i>
-            </div>
-            <div>
-                Stanze
-            </div>
-            {{apartment.num_rooms}}
-        </div>
-        <div class="bath col">
-            <div>
-                <i class="fas fa-bath"></i>
-            </div>
-            <div>
-                Bagni
-            </div>
-            {{apartment.num_bath}}
-        </div>
-        <div class="squarefootage col">
-            <div>
-                <i class="fas fa-ruler"></i>
-            </div>
-            <div>
-                Mq
-            </div>
-            {{apartment.square_footage}}
-        </div>
-    </div>
-    <section class="description-section">
-        <div class="apartment-description mb-4">
-            <h3 class="my-3">
-                Descrizione
-            </h3>
-            {{apartment.description}}
-        </div>
-    </section>
-    <div class="services">
-        Cosa troverai
-        <div class="row row-cols-3 mx-3">
-            <div class="col my-3" v-for="(service, index) in apartment.services" :key="index">
-                <i :class="service.icon"></i>
+        
+        <div class="structure row row-cols-3 text-center border-top border-bottom mt-5">
+            <div class="room col">
                 <div>
-                    {{service.name}}
+                    <i class="fas fa-couch"></i>
+                </div>
+                <div>
+                    Stanze
+                </div>
+                {{apartment.num_rooms}}
+            </div>
+            <div class="bath col">
+                <div>
+                    <i class="fas fa-bath"></i>
+                </div>
+                <div>
+                    Bagni
+                </div>
+                {{apartment.num_bath}}
+            </div>
+            <div class="squarefootage col">
+                <div>
+                    <i class="fas fa-ruler"></i>
+                </div>
+                <div>
+                    Mq
+                </div>
+                {{apartment.square_footage}}
+            </div>
+        </div>
+        <section class="description-section">
+            <div class="apartment-description mb-4">
+                <h3 class="my-3">
+                    Descrizione
+                </h3>
+                {{apartment.description}}
+            </div>
+        </section>
+        <div class="services">
+            Cosa troverai
+            <div class="row row-cols-3 mx-3">
+                <div class="col my-3" v-for="(service, index) in apartment.services" :key="index">
+                    <i :class="service.icon"></i>
+                    <div>
+                        {{service.name}}
+                    </div>
                 </div>
             </div>
         </div>
@@ -124,7 +127,8 @@ export default {
             formErrors: {},
             lat: "",
             lon: "",
-            apiKey: 'LmxBM8DrAJjBA1BQPufxlrTGrO4c4Byh',                
+            apiKey: 'LmxBM8DrAJjBA1BQPufxlrTGrO4c4Byh',
+            loading: false,                
         }
     },
     methods: {
@@ -135,6 +139,7 @@ export default {
                 this.formData.apartment_id = this.apartment.id;
                 this.lat = this.apartment.location.lat;
                 this.lon = this.apartment.location.lon;
+                this.loading = true;
                 
                 })
             .catch(() => {
