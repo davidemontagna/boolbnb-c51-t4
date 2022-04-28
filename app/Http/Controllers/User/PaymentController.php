@@ -38,7 +38,7 @@ class PaymentController extends Controller
         $token = $gateway->ClientToken()->generate();
 
 
-        return view('user.sponsorship.index', ['token' => $token, 'user' => $apartment->id_user, 'plan' => $plan, 'apartment_id' => $apartment->id]);
+        return view('user.sponsorship.index', ['token' => $token, 'user' => $apartment->user_id, 'plan' => $plan, 'apartment_id' => $apartment->id]);
     }
 
     public function checkout(Request $request, $apartment_id, $plan_id)

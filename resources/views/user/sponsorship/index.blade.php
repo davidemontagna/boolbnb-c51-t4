@@ -4,6 +4,7 @@
 @section('content')
 
 <div class="content">
+    @if ($user == auth()->id())
     <form method="POST" id="payment-form" action="{{ route('user.checkout', [$apartment_id, $plan->id])}}">
         @csrf
         <section class="mt-3">
@@ -31,8 +32,16 @@
         </div>
     </form>
     <a href="{{route("user.apartments.index")}}" class="col-12 col-sm-6 col-md-6 col-lg-3 mt-3 mb-3 p-0 d-inline-block"><button type="submit" class="mb-4 dm-button">Torna ai tuoi appartamenti</button></a>
+    @else
+    <div class="row mb-5">
+        <div class="col mt-4 p-0">
+            <h4 class=>Puoi sponsorizzare solo i tuoi appartamenti</h4>
+        </div>
+    </div>
+    <a href="{{route("user.apartments.index")}}" class="col-12 col-sm-6 col-md-6 col-lg-3 mt-3 mb-3 p-0 d-inline-block"><button type="submit" class="mb-4 dm-button">Torna ai tuoi appartamenti</button></a>
+    @endif
 </div>
-</div>
+
 
 <script src="https://js.braintreegateway.com/web/dropin/1.13.0/js/dropin.min.js"></script>
 

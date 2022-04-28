@@ -11,7 +11,7 @@
             </button>
         </a>
     </div> 
-    
+    @if ($apartment->user_id == auth()->id())
     <div class="row">
         <div class="col mt-5 p-0">
             <h2 class="mt-2">Seleziona il piano più adatto al tuo appartamento:</h2>
@@ -58,6 +58,13 @@
             <img src="{{ asset("storage/{$apartment->preview}")}}" alt="{{$apartment->title}}" height="150" class="mt-3 plans-anteprima">
             <div class="pb-4 mb-5 border-bottom"></div>
         </div>
-    </div>    
+    </div>
+    @else 
+    <div class="row mb-5">
+        <div class="col mt-4 p-0">
+            <h4 class=>Puoi sponsorizzare solo i tuoi appartamenti</h4>
+        </div>
+    </div>
+    @endif    
 </div>
 @endsection
