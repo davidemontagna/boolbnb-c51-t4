@@ -15,7 +15,7 @@
                                     <i class="fa-solid fa-filter"></i>
                                 </button>
                             </p>
-                            <button type="submit" value="Submit" id="submit" class="d-flex justify-content-center align-items-center" @click.prevent="getApartments" ><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <button type="submit" value="Submit" id="submit" class="d-flex justify-content-center align-items-center" @click.prevent="getApartments" @click="goto('apartamentmain')"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
                         <div class="collapse" id="collapseExample">
                             <div class="card card-body rounded-pill">
@@ -58,7 +58,7 @@
         
 
         <h5 class="text-center mb-3" v-if="filteredApartments.length == 0">Effettua una ricerca o prova a cambiare i filtri</h5>
-        <h2 v-if="loading" class="col-12">Le nostre strutture</h2>
+        <h2 v-if="loading" class="col-12" ref="apartamentmain">Le nostre strutture</h2>
         <div v-if="loading" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 mx-auto p-3">
             <div class="col my-3" v-for="(apartment, index) in setApartments" :key="index">
                 <router-link :to="{name: 'single-apartment', params:{slug: apartment.slug}}" class="router-link">
@@ -139,6 +139,11 @@ export default {
         }
     },
     methods: {
+        goto(apartamentmain) {
+            var element = this.$refs[apartamentmain];
+            var top = element.offsetTop;
+            window.scrollTo(0, top);
+        },
         services(){
             //funzione per far sparire ed apparire le opzioni checkbox
 
