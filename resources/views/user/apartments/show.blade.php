@@ -86,7 +86,7 @@
                     </div>
                 </div>
                 <div>   
-                    Messaggi: 
+                    <h4>Messaggi:</h4>
                     @if (count($messages)== 0)
                     <p>
                         Nessun Messaggio
@@ -178,6 +178,40 @@
                         </div>
                         @endif
                     @endforeach
+                </div>
+                <div>
+                    <h4>Storico sponsorizzazioni:</h4>
+                    @if ($closeEnd)
+                    <div class="alert alert-danger" role="alert">
+                        La tua sponsorizzazione sta per terminare!
+                    </div>
+                    @endif
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Piano</th>
+                                <th scope="col">Prezzo</th>
+                                <th scope="col">Durata</th>
+                                <th scope="col">Inizio</th>
+                                <th scope="col">Fine</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($apartment->plans as $index => $sponsorship)
+                                <tr>
+                                    <th scope="row">{{$index + 1}}</th>
+                                    <td>{{$sponsorship->title}}</td>
+                                    <td>{{$sponsorship->price}}</td>
+                                    <td>{{$sponsorship->duration}}</td>
+                                    <td>{{DateTime::createFromFormat('Y-m-d H:i:s', $sponsorship->pivot->date_start)->format('d-m-Y H:i')}}</td>
+                                    <td>{{DateTime::createFromFormat('Y-m-d H:i:s', $sponsorship->pivot->date_end)->format('d-m-Y H:i')}}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>      
+                    </div>
                 </div>
                 <div class="col col-lg-3 my-3 mx-auto">
                     <a href="{{route("user.apartments.edit", $apartment->id)}}">
