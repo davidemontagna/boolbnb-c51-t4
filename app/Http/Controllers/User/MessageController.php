@@ -119,6 +119,6 @@ class MessageController extends Controller
 
         $message->delete();
 
-        return redirect()->route("user.messages.index");
+        return redirect()->route("user.apartments.show", $message->apartment_id);
     }
 }
