@@ -86,10 +86,10 @@
             <input type="email" id="sender_email" placeholder="Inserisci il tuo indirizzo mail" v-model="formData.sender_email">
             <textarea id="content" cols="30" rows="10" placeholder="Inserisci i dettagli" v-model="formData.content"></textarea>
 
-            <div v-if="formErrors.content">
+            <div v-if="formErrors">
                 <ul>
-                    <li v-for="(error, index) in formErrors.content" :key="index">
-                        {{error}}
+                    <li v-for="(error, index) in formErrors" :key="index">
+                        {{error[0]}}
                     </li>
                 </ul>
             </div>
@@ -136,15 +136,17 @@ export default {
             axios.get(`/api/apartments/${this.$route.params.slug}`)
             .then(apiResponse => {
                 this.apartment = apiResponse.data;
-                this.formData.apartment_id = this.apartment.id;
                 this.lat = this.apartment.location.lat;
                 this.lon = this.apartment.location.lon;
+                this.formData.apartment_id = this.apartment.id;
                 this.loading = true;
-                
-                })
+            })
             .catch(() => {
                 console.log('error');
                 this.$router.push({name: 'page-404'});
+            })
+            .then(() => {
+                this.mapSearch();
             });
         },
         descriptionFunc: function(){
@@ -175,23 +177,19 @@ export default {
         },
         mapSearch() {        
             let position = [this.lon,this.lat]; 
-
             let map= tt.map({
                 key: this.apiKey,
                 container: "map",
                 center: position,
                 zoom: 16
-            })  
-                        
+            })
+                   
             new tt.Marker().setLngLat(position).addTo(map);   
    
         }
     },
-    created() {
+    mounted() {
         this.getApartment();
-    },
-    updated(){
-        this.mapSearch();
     },
 }
 </script>

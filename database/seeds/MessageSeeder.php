@@ -13,7 +13,7 @@ class MessageSeeder extends Seeder
      */
     public function run(Faker $faker)
     {
-        for ($i=0; $i < 10; $i++) { 
+        for ($i=0; $i < 40; $i++) { 
             $newMessage = new Message();
             
             $newMessage->apartment_id = rand(1, 20) ;
@@ -21,7 +21,7 @@ class MessageSeeder extends Seeder
             $newMessage->sender_email = $faker->email();
             $newMessage->sender_name = $faker->name();
             $newMessage->visualized = rand(0, 1);
-            $newMessage->answered = rand(0, 1);
+            $newMessage->answered = $newMessage->visualized ? rand(0, 1) : 0;
             $newMessage->filed = 0;
             $newMessage->save();
         }

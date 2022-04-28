@@ -68,9 +68,9 @@ class MessageController extends Controller
         $data = $request->all();
 
         $validator = Validator::make($data, [
-            'sender_name' => 'nullable|string|max:50',
-            'content' => 'string|required',
-            'sender_email' => 'string|max:50|required',
+            'sender_name' => 'required|string|max:50',
+            'content' => 'required|string',
+            'sender_email' => 'required|string|max:50|',
             'apartment_id' => 'exists:apartments,id',
         ]);
 
