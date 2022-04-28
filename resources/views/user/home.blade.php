@@ -6,12 +6,12 @@
         <h2 class="mb-3">
             Bentornato, {{ Auth::user()->name }} {{ Auth::user()->surname }}
         </h2>
-        <button class="announcement-btn text-center my-3 p-3">
-            <a href="{{ route('user.apartments.create') }}">
+        <a href="{{ route('user.apartments.create') }}">
+            <button class="announcement-btn text-center my-3 p-3">
                 <i class="fas fa-plus"></i> 
                 Pubblica annuncio
-            </a>
-        </button>
+            </button>
+        </a>
     </div>
     <div class="dashboard text-center mt-3">
         <div class="row justify-content-between m-2">
