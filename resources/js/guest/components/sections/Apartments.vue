@@ -15,7 +15,7 @@
                                     <i class="fa-solid fa-filter"></i>
                                 </button>
                             </p>
-                            <button type="submit" value="Submit" id="submit" class="d-flex justify-content-center align-items-center" @click.prevent="getApartments" @click="goto('apartamentmain')"><i class="fa-solid fa-magnifying-glass"></i></button>
+                            <button type="submit" value="Submit" id="submit" class="d-flex justify-content-center align-items-center" @click.prevent="getApartments"><i class="fa-solid fa-magnifying-glass"></i></button>
                         </div>
                         <div class="collapse" id="collapseExample">
                             <div class="card card-body rounded-pill">
@@ -139,11 +139,6 @@ export default {
         }
     },
     methods: {
-        goto(apartamentmain) {
-            var element = this.$refs[apartamentmain];
-            var top = element.offsetTop;
-            window.scrollTo(0, top);
-        },
         services(){
             //funzione per far sparire ed apparire le opzioni checkbox
 
@@ -189,6 +184,8 @@ export default {
                 this.apartments = apiResponse.data;
                 this.loading = true;
                 this.search();
+                window.scrollTo(0, 300);
+
                 })
             .catch(() => {
                 console.log('errore chiamata agli appartamenti');
