@@ -7,7 +7,7 @@
                 <ul>
                     <li><a href="https://github.com/davidemontagna" target="_blank">Davide Montagna</a></li>
                     <li><a href="https://github.com/Masadavide" target="_blank">Davide Masa</a></li>
-                    <li><a href="https://github.com/Mosi8" target="_blank">Maurizio Moisello</a></li>
+                    <li><a href="https://github.com/Mosi8" target="_blank">Maurizio Mosiello</a></li>
                     <li><a href="https://github.com/SalvatoreMilone" target="_blank">Salvatore Milone</a></li>
                     <li><a href="https://github.com/Alessio-Tomei" target="_blank">Alessio Tomei</a></li>
                 </ul>
