@@ -26,11 +26,11 @@
         </section>
 
         <input id="nonce" name="payment_method_nonce" type="hidden" />
-        <div class="col-12 col-sm-6 col-md-6 col-lg-3 mt-3 mb-5 p-0 ">
+        <div class="col-12 col-sm-6 col-md-6 col-lg-3 mt-3 mb-3 p-0">
             <button class="dm-button " type="submit"><span>Procedi all'acquisto</span></button>
-            <a href="{{route("user.apartments.index")}}" class=""><button type="submit" class="mt-4 mb-4 dm-button">Torna ai tuoi appartamenti</button></a>
         </div>
     </form>
+    <a href="{{route("user.apartments.index")}}" class="col-12 col-sm-6 col-md-6 col-lg-3 mt-3 mb-3 p-0 d-inline-block"><button type="submit" class="mb-4 dm-button">Torna ai tuoi appartamenti</button></a>
 </div>
 </div>
 
