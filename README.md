@@ -1,3 +1,48 @@
+## BoolBnB
+
+BoolBnb è una web application ispirata ai famosi siti AirBnb e Booking.com. L'applicazione gestisce tre diverse tipologie di utente: l'utente interessato, l'utente registrato e l'utente registrato con appartamento.
+
+I proprietari di appartamenti, registrandosi a BoolBnB, possono inserire le informazioni delle loro proprietà e decidere se sponsorizzarle per avere una posizione evidenziata nelle ricerche e in home page.
+
+Gli utenti interessati ad affittare, senza registrazione, possono cercare e visualizzare gli appartamenti. Una volta scelto l’appartamento di interesse, possono inviare un messaggio al proprietario tramite la piattaforma, per chiedere maggiori dettagli.
+
+LISTA DELLE PAGINE
+
+<ul>
+    <li><h3>Homepage:</h3>
+        offre la possibilità di ricercare gli appartamenti.
+        Permette di visualizzare i risultati di ricerca, ogni risultato permetterà l'accesso alla pagina di dettaglio dell'appartamento.
+        Inoltre è possibilke raffinare la ricerca senza il refresh della pagina, applicando dei filtri.
+    </li>
+    <li><h3>Pagina Dettaglio Appartamento Pubblica:</h3>
+        permette di visualizzare tutti i dettagli disponibili per un appartamento e permette
+        l’invio di un messaggio al proprietario.
+    </li>
+    <li><h3>Dashboard Utente Registrato:</h3>
+        <ul>
+            <li><h4>Pagina Lista Appartamenti</h4>
+                Da qui è possibile aggiungere un nuovo appartamento, modificare, sponsorizzare, cancellare i propri appartamenti.
+            </li>            
+            <li><h4>Pagina Dettaglio Appartamento Privata:</h4>
+                Da qui è possibile accedere alla modifica e cancellazione del proprio appartamento, visualizzare i relativi messaggi e accedere alla pagina                             impostazioni messaggio.
+            </li> 
+            <li><h4>Pagina Di Impostazioni del Messaggio:</h4>
+                Da qui è possibile accedere impostare se il messaggio è stato visualizzato e se si ha risposto.
+            </li> 
+        </ul>
+        <li><h3>Pagina di Sponsorizzazione:</h3>
+            Qui è possibile scegliere tra tre diversi tipi di pacchetto di sponsorizzazione, una volta scelto si accede alla pagina di pagamento che viene gestita                 tramite Braintree.
+        </li>
+    </li>
+</ul>  
+
+Le tecnologie usate per lo sviluppo del sito sono : Laravel, Blade, PHP, VueJS, JavaScript, Html, SCSS, Bootstrap, TomTom Api, Braintree.
+
+Il sito è responsive e quindi correttamente visibile sia da desktop che da smartphone.
+
+
+
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
